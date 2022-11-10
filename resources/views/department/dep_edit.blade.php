@@ -19,8 +19,9 @@
               <h5 class="card-title">Edit Department</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('department.store') }}" method="POST">
+              <form action="{{ route('department.store',$dep->id) }}" method="POST">
                 @csrf
+                @method('patch')
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
                   <div class="col-sm-10">

@@ -15,7 +15,7 @@ class DepertmentController extends Controller
     public function index()
     {
         $department=Depertment::paginate(10);
-        return view('department.depindex',compact('department'));
+        return view('department.dep_index',compact('department'));
     }
 
     /**
@@ -25,7 +25,7 @@ class DepertmentController extends Controller
      */
     public function create()
     {
-        return view('department.depcreate');
+        return view('department.dep_create');
     }
 
     /**
@@ -64,7 +64,7 @@ class DepertmentController extends Controller
     public function edit(Depertment $depertment)
     {
         $depar=Depertment::all();
-        return view('department.depedit',compact('depar','depertment'));
+        return view('department.dep_edit',compact('depar','depertment'));
     }
 
     /**
