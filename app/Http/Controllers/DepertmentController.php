@@ -61,10 +61,10 @@ class DepertmentController extends Controller
      * @param  \App\Models\Depertment  $depertment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Depertment $depertment)
+    public function edit(Depertment $department)
     {
-        $depar=Depertment::all();
-        return view('department.dep_edit',compact('depar','depertment'));
+        // $depertments=Depertment::where($department)->first();
+        return view('department.dep_edit',compact('department'));
     }
 
     /**
@@ -76,7 +76,11 @@ class DepertmentController extends Controller
      */
     public function update(Request $request, Depertment $depertment)
     {
-        //
+        $depertment->name=$request->dep_name;
+        $depertment->description=$request->dep_description;
+        $depertment->status=$request->status;
+        $depertment->save();
+        return redirect(route('department.index'));
     }
 
     /**
