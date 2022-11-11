@@ -43,7 +43,8 @@ class PatientController extends Controller
         $p->gender=$request->p_gender;
         $p->blood=$request->p_blood;
         $p->address=$request->p_address;
-        $p->status=$request->p_status;
+        $p->problem=$request->p_problem;
+        $p->status=1;
         $p->save();
         return redirect(route('patient.index'));
     }
@@ -68,7 +69,7 @@ class PatientController extends Controller
     public function edit(Patient $patient)
     {
         $patient=Patient::all();
-        return view('patient_edit',compact('patient','patient'));
+        return view('patient.patient_edit',compact('patient','patient'));
     }
 
     /**

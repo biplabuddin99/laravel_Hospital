@@ -42,11 +42,11 @@
                 <div class="row mb-3">
                   <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
                   <div class="col-sm-10">
-                    <input type="radio" value="0" name="status"> Male
+                    <input type="radio" value="1" name="p_gender"> Male
                     &nbsp;
-                    <input type="radio" value="1" name="status"> Female
+                    <input type="radio" value="2" name="p_gender"> Female
                     &nbsp;
-                    <input type="radio" value="1" name="status"> Female
+                    <input type="radio" value="3" name="p_gender"> Other
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -68,6 +68,12 @@
                   <label for="address" class="col-sm-2 col-form-label">Address:</label>
                   <div class="col-sm-10">
                     <textarea type="text" name="p_address" cols="30" class="form-control" id="address"></textarea>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" name="p_problem" cols="30" class="form-control" id="problem"></textarea>
                   </div>
                 </div>
                 <fieldset class="row mb-3">
