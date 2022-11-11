@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('blood');
             $table->string('address')->nullable();
+            $table->string('problem')->nullable();
             $table->integer('status')->default(1);
             $table->softDeletes();
             $table->timestamps();

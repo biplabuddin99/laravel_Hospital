@@ -42,6 +42,7 @@
                     <th scope="col">Gender</th>
                     <th scope="col">Blood</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Problem</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -49,13 +50,14 @@
                 <tbody>
                     @forelse ($patient as $p)
                     <tr>
-                        <th scope="row">{{ ++$loop->index }}</th>
-                        <td>{{ $p->p_name }}</td>
-                        <td>{{ $p->p_age }}</td>
-                        <td>{{ $p->p_phone }}</td>
-                        <td>@if($p->p_gender==1) Male @elseif ($p->p_gender==2) Female @else ($p->p_gender==3) Common @endif</td>
-                        <td>{{ $p->p_blood }}</td>
-                        <td>{{ $p->p_address }}</td>
+                        <th scope="row">{{ ++$loop->index+1000 }}</th>
+                        <td>{{ $p->name }}</td>
+                        <td>{{ $p->age }}</td>
+                        <td>{{ $p->phone }}</td>
+                        <td>@if($p->gender==1) Male @elseif ($p->gender==2) Female @else Other @endif</td>
+                        <td>{{ $p->blood }}</td>
+                        <td>{{ $p->address }}</td>
+                        <td>{{ $p->problem }}</td>
                         <td>@if($p->status==1) Active @else Inactive @endif</td>
                         <td>
                             <a href="{{ route('patient.edit',$p->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -63,7 +65,7 @@
                         </td>
                     </tr>
                     @empty
-                    <td>There is no Patient</td>
+                    <td colspan="10" class="text-center">There is no Patient</td>
                     @endforelse
 
                 </tbody>
