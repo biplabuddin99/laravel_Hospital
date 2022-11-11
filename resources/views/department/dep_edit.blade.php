@@ -19,19 +19,19 @@
               <h5 class="card-title">Edit Department</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('department.update',$department->id) }}" method="POST">
+              <form action="{{ route('depertment.update',$depertment->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" value="{{ old('dep_name',$department->name) }}" name="dep_name">
+                    <input type="text" class="form-control" id="name" value="{{ $depertment->name }}" name="dep_name">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="description" class="col-sm-2 col-form-label">Description:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="dep_description" cols="30" class="form-control" rows="5" id="description"></textarea>
+                    <textarea type="text" name="dep_description" cols="30" class="form-control" rows="5" id="description">{{ $depertment->description }}</textarea>
                   </div>
                 </div>
                 <fieldset class="row mb-3">

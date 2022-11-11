@@ -20,7 +20,7 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <div class="panel-heading"><a href="{{route('department.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Department </a></div>
+    <div class="panel-heading"><a href="{{route('depertment.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Department </a></div>
 
     <section class="section">
       <div class="row">
@@ -50,8 +50,15 @@
                         <td>{{ $dep->description }}</td>
                         <td>@if($dep->status==1) Active @else Inactive @endif</td>
                         <td>
-                            <a href="{{ route('department.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href=""><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+                            <a href="{{ route('depertment.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            {{-- <a href="javascript:void()" onclick="$('#form{{$dep->id}}').submit()">
+                                <i class="fa fa-trash"></i>
+                            </a> --}}
+                            <form id="form{{$dep->id}}" action="{{ route('depertment.destroy',$dep->id) }}" method="POST">
+                                @csrf
+                                @method('delete');
+                                <button type="submit" onclick="return confirm('are Yout confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
+                            </form>
                         </td>
                     </tr>
                     @empty
@@ -61,7 +68,7 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-
+              {{ $department->links() }}
             </div>
           </div>
 

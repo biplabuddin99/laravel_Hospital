@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Depertment;
+use Exception;
 use Illuminate\Http\Request;
 
 class DepertmentController extends Controller
@@ -36,12 +37,20 @@ class DepertmentController extends Controller
      */
     public function store(Request $request)
     {
-        $dep=new Depertment;
-        $dep->name=$request->dep_name;
-        $dep->description=$request->dep_description;
-        $dep->status=$request->status;
-        $dep->save();
-        return redirect(route('department.index'));
+        try{
+            $dep=new Depertment;
+
+            $dep->name=$request->dep_name;
+            $dep->description=$request->dep_description;
+            $dep->status=$request->status;
+            $dep->save();
+            return redirect(route('depertment.index'));
+            // dd($request);
+        }
+        catch (Exception $e){
+            return back()->withInput();
+
+        }
     }
 
     /**
@@ -61,10 +70,11 @@ class DepertmentController extends Controller
      * @param  \App\Models\Depertment  $depertment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Depertment $department)
+    public function edit(Depertment $depertment)
     {
+        // $dep=Depertment::paginate(10);
         // $depertments=Depertment::where($department)->first();
-        return view('department.dep_edit',compact('department'));
+        return view('department.dep_edit',compact('depertment'));
     }
 
     /**
@@ -76,11 +86,18 @@ class DepertmentController extends Controller
      */
     public function update(Request $request, Depertment $depertment)
     {
-        $depertment->name=$request->dep_name;
-        $depertment->description=$request->dep_description;
-        $depertment->status=$request->status;
-        $depertment->save();
-        return redirect(route('department.index'));
+        try{
+            $depertments=$depertment;
+            $depertment->name=$request->dep_name;
+            $depertment->description=$request->dep_description;
+            $depertment->status=$request->status;
+            if($depertments->save());
+            return redirect(route('depertment.index'));
+
+        }catch(Exception $e){
+            return back()->withInput();
+        }
+
     }
 
     /**
@@ -91,6 +108,7 @@ class DepertmentController extends Controller
      */
     public function destroy(Depertment $depertment)
     {
-        //
+        $depertment->delete();
+        return redirect()->back();
     }
 }

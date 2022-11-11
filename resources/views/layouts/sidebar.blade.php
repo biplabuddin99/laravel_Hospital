@@ -15,7 +15,7 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ route('department.index') }}">
+            <a href="{{ route('depertment.index') }}">
               <i class="bi bi-circle"></i><span>Manage Depertment</span>
             </a>
           </li>

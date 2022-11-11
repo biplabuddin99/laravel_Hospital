@@ -19,7 +19,7 @@
               <h5 class="card-title">Add New Department</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('department.store') }}" method="POST">
+              <form action="{{ route('depertment.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>

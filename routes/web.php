@@ -20,6 +20,6 @@ Route::get('/', function () {
 });
 
 // Doctor route
-Route::resource('department',DepertmentController::class);
+Route::resource('depertment',DepertmentController::class);
 
 Route::resource('patient',PatientController::class);
