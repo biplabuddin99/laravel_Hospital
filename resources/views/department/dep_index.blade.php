@@ -1,3 +1,4 @@
+@section('title','Department')
 @include('layouts.header')
 
   <!-- ======= Header ======= -->
@@ -6,6 +7,7 @@
 
   <!-- ======= Sidebar ======= -->
   @include('layouts.sidebar')
+
 <!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -49,7 +51,7 @@
                         <td>{{ $dep->name }}</td>
                         <td>{{ $dep->description }}</td>
                         <td>@if($dep->status==1) Active @else Inactive @endif</td>
-                        <td>
+                        <td class="d-flex">
                             <a href="{{ route('depertment.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             {{-- <a href="javascript:void()" onclick="$('#form{{$dep->id}}').submit()">
                                 <i class="fa fa-trash"></i>
@@ -57,7 +59,7 @@
                             <form id="form{{$dep->id}}" action="{{ route('depertment.destroy',$dep->id) }}" method="POST">
                                 @csrf
                                 @method('delete');
-                                <button type="submit" onclick="return confirm('are Yout confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
+                                <button class="btn p-0" type="submit" onclick="return confirm('are Yout confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
                             </form>
                         </td>
                     </tr>
