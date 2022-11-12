@@ -59,9 +59,14 @@
                         <td>{{ $p->address }}</td>
                         <td>{{ $p->problem }}</td>
                         <td>@if($p->status==1) Active @else Inactive @endif</td>
-                        <td>
+                        <td class="d-flex">
                             <a href="{{ route('patient.edit',$p->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href=""><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+                            &nbsp;
+                            <form id="form{{$p->id}}" action="{{ route('patient.destroy',$p->id) }}" method="POST">
+                              @csrf
+                              @method('delete')
+                              <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
+                          </form>
                         </td>
                     </tr>
                     @empty

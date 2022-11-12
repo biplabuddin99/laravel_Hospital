@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -36,17 +37,23 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $p=new Patient;
-        $p->name=$request->p_name;
-        $p->age=$request->p_age;
-        $p->phone=$request->p_phone;
-        $p->gender=$request->p_gender;
-        $p->blood=$request->p_blood;
-        $p->address=$request->p_address;
-        $p->problem=$request->p_problem;
-        $p->status=1;
-        $p->save();
-        return redirect(route('patient.index'));
+        try{
+            $p=new Patient;
+            $p->name=$request->p_name;
+            $p->age=$request->p_age;
+            $p->phone=$request->p_phone;
+            $p->gender=$request->p_gender;
+            $p->blood=$request->p_blood;
+            $p->address=$request->p_address;
+            $p->problem=$request->p_problem;
+            $p->status=1;
+            $p->save();
+            return redirect(route('patient.index'));
+
+
+        }catch(Exception $e){
+            return back()->withInput();
+        }
     }
 
     /**
@@ -68,8 +75,7 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        $patient=Patient::all();
-        return view('patient.patient_edit',compact('patient','patient'));
+        return view('patient.patient_edit',compact('patient'));
     }
 
     /**
@@ -81,7 +87,23 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        try{
+            $p=$patient;
+            $p->name=$request->p_name;
+            $p->age=$request->p_age;
+            $p->phone=$request->p_phone;
+            $p->gender=$request->p_gender;
+            $p->blood=$request->p_blood;
+            $p->address=$request->p_address;
+            $p->problem=$request->p_problem;
+            $p->status=1;
+            if($p->save());
+            return redirect(route('patient.index'));
+
+
+        }catch(Exception $e){
+            return back()->withInput();
+        }
     }
 
     /**
@@ -92,6 +114,7 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        return redirect()->back();
     }
 }

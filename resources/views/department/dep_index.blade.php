@@ -59,7 +59,7 @@
                             <form id="form{{$dep->id}}" action="{{ route('depertment.destroy',$dep->id) }}" method="POST">
                                 @csrf
                                 @method('delete');
-                                <button class="btn p-0" type="submit" onclick="return confirm('are Yout confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
+                                <button class="btn p-0" type="submit" onclick="return confirm('are You confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
                             </form>
                         </td>
                     </tr>
