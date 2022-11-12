@@ -16,9 +16,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('admin.dashboard');
 
 // authentication
 Route::get('/', [UserController::class, 'userLoginForm'])->name('userlogin');

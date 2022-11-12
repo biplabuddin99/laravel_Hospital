@@ -22,9 +22,24 @@
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
+                    @if ($errors->any())
+                    <div class="alert alert-danger mb-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <p class="invalid-tooltips">{{ $error }}</p>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    @if(Session::has('response'))
+                    {!!Session::get('response')['message']!!}
+                    @endif
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" action="{{route('userlogin')}}" method="POST">
+                    @csrf
+                    @method('post')
 
                     <div class="col-12">
                         <label for="userPhoneNumber" class="form-label">{{__('Phone')}}</label>

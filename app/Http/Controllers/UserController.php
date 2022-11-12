@@ -25,7 +25,7 @@ class UserController extends Controller
             $store = new User();
 
             $store->name = $request->userFullName;
-            $store->email = $request->userEmailAddress;
+            $store->contact_no = $request->userPhoneNumber;
             $store->password =Crypt::encryptString( $request->userPassword);
             $store->role_id = $request->userRoles;
             $store->contact_no = $request->userPhoneNumber;
@@ -49,22 +49,34 @@ class UserController extends Controller
 
     public function userLoginCheck(LoginRequest $request)
     {
-
-
+        dd($request);
         try {
-            $user = User::where('email', $request->userEmailAddress)->first();
+            $user = User::where('contact_no', $request->userPhoneNumber)->first();
             if ($user) {
                 if ($request->userPassword === Crypt::decryptString($user->password)) {
                     $this->userSessionData($user);
-                    return redirect()->route($user->role->identify . '.dashboard')->with($this->resMessageHtml(true, null, 'Successfully login'));
+                    return redirect()->route($user->role->identify . '.dashboard');
                 } else
-                    return redirect()->route('userlogin')->with($this->resMessageHtml(false, 'error', 'wrong cradential! Please try Again'));
+                    return redirect()->route('userlogin');
             } else {
-                return redirect()->route('userlogin')->with($this->resMessageHtml(false, 'error', 'wrong cradential!. Or no user found!'));
+                return redirect()->route('userlogin');
             }
         } catch (Exception $error) {
             dd($error);
-            return redirect()->route('userlogin')->with($this->resMessageHtml(false, 'error', 'wrong cradential!'));
+            return redirect()->route('userlogin');
         }
+    }
+    public function userSessionData($user){
+        return request()->session()->put(
+                [
+                    'userId'=>$user->id,
+                    'userName'=>$user->name,
+                    'role'=>$user->role->type,
+                    'identity'=>$user->role->identity,
+                    'language'=>$user->language,
+                    'companyId'=>$user->companyId,
+                    'image'=>$user->image?$user->image:'no-image.png'
+                ]
+            );
     }
 }
