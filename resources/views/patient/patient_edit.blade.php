@@ -25,66 +25,88 @@
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Patient Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="p_name" value="{{ $patient->name }}">
+                    <input type="text" class="form-control" id="name" name="patientName" value="{{ $patient->name }}">
+                    @if($errors->has('patientName'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('patientName') }}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="age" class="col-sm-2 col-form-label">Age:</label>
                   <div class="col-sm-10">
-                    <input type="text" name="p_age" cols="30" class="form-control" id="age" value="{{ $patient->age }}">
+                    <input type="text" name="patientAge" cols="30" class="form-control" id="age" value="{{ $patient->age }}">
+                    @if($errors->has('patientAge'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('patientAge') }}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
                   <div class="col-sm-10">
-                    <input type="text" name="p_phone" cols="30" class="form-control" id="phone" value="{{ $patient->phone }}">
+                    <input type="text" name="patientPhone" cols="30" class="form-control" id="phone" value="{{ $patient->phone }}">
+                    @if($errors->has('patientPhone'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('patientPhone') }}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
                   <div class="col-sm-10">
-                    <input type="radio" value="1" {{ old('p_gender',$patient->gender)=="1" ? "checked":"" }} name="p_gender"> Male
+                    <input type="radio" value="1" {{ old('patientGender',$patient->gender)=="1" ? "checked":"" }} name="patientGender"> Male
                     &nbsp;
-                    <input type="radio" value="2" {{ old('p_gender',$patient->gender)=="2" ? "checked":"" }} name="p_gender"> Female
+                    <input type="radio" value="2" {{ old('patientGender',$patient->gender)=="2" ? "checked":"" }} name="patientGender"> Female
                     &nbsp;
-                    <input type="radio" value="3" {{ old('p_gender',$patient->gender)=="3" ? "checked":"" }} name="p_gender"> Other
+                    <input type="radio" value="3" {{ old('patientGender',$patient->gender)=="3" ? "checked":"" }} name="patientGender"> Other <br>
+                    @if($errors->has('patientGender'))
+                    <span class="text-danger">
+                      {{ $errors->first('patientGender') }}
+                    </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="blood" class="col-sm-2 col-form-label">Blood:</label>
                   <div class="col-sm-10">
-                    <select class="form-control" name="p_blood" id="blood">
-                      <option value="A+" {{ old('p_blood', $patient->blood)=="A+" ? "selected":""}}>A+</option>
-                      <option value="A-" {{ old('p_blood', $patient->blood)=="A-" ? "selected":""}}>A-</option>
-                      <option value="B+" {{ old('p_blood', $patient->blood)=="B+" ? "selected":""}}>B+</option>
-                      <option value="B-" {{ old('p_blood', $patient->blood)=="B-" ? "selected":""}}>B-</option>
-                      <option value="O+" {{ old('p_blood', $patient->blood)=="O+" ? "selected":""}}>O+</option>
-                      <option value="O-" {{ old('p_blood', $patient->blood)=="O-" ? "selected":""}}>O-</option>
-                      <option value="AB+" {{ old('p_blood', $patient->blood)=="AB+" ? "selected":""}}>AB+</option>
-                      <option value="AB-" {{ old('p_blood', $patient->blood)=="AB-" ? "selected":""}}>AB-</option>
+                    <select class="form-control" name="patientBlood" id="blood">
+                      <option value="A+" {{ old('patientBlood', $patient->blood)=="A+" ? "selected":""}}>A+</option>
+                      <option value="A-" {{ old('patientBlood', $patient->blood)=="A-" ? "selected":""}}>A-</option>
+                      <option value="B+" {{ old('patientBlood', $patient->blood)=="B+" ? "selected":""}}>B+</option>
+                      <option value="B-" {{ old('patientBlood', $patient->blood)=="B-" ? "selected":""}}>B-</option>
+                      <option value="O+" {{ old('patientBlood', $patient->blood)=="O+" ? "selected":""}}>O+</option>
+                      <option value="O-" {{ old('patientBlood', $patient->blood)=="O-" ? "selected":""}}>O-</option>
+                      <option value="AB+" {{ old('patientBlood', $patient->blood)=="AB+" ? "selected":""}}>AB+</option>
+                      <option value="AB-" {{ old('patientBlood', $patient->blood)=="AB-" ? "selected":""}}>AB-</option>
                     </select>
+                    @if($errors->has('patientBlood'))
+                  <span class="text-danger">
+                    {{ $errors->first('patientBlood') }}
+                  </span>
+                  @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="address" class="col-sm-2 col-form-label">Address:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="p_address" cols="30" class="form-control" id="address" value="">{{ $patient->address }}</textarea>
+                    <textarea type="text" name="patientAddress" cols="30" class="form-control" id="address" value="">{{ $patient->address }}</textarea>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="p_problem" cols="30" class="form-control" id="problem" value="">{{ $patient->problem }}</textarea>
+                    <textarea type="text" name="patientProblem" cols="30" class="form-control" id="problem" value="">{{ $patient->problem }}</textarea>
+                    @if($errors->has('patientProblem'))
+                  <span class="text-danger">
+                    {{ $errors->first('patientProblem') }}
+                  </span>
+                  @endif
                   </div>
                 </div>
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
-                  <div class="col-sm-10">
-                    <input type="radio" value="1" name="status" checked> Active
-                    &nbsp;
-                    <input type="radio" value="0" name="status"> Inactive
-                  </div>
-                </fieldset>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Update</button>
                   <span class="btn or">or</span>

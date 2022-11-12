@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Http\Requests\patient\PatientRequest;
 
 class PatientController extends Controller
 {
@@ -35,17 +36,17 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
         try{
             $p=new Patient;
-            $p->name=$request->p_name;
-            $p->age=$request->p_age;
-            $p->phone=$request->p_phone;
-            $p->gender=$request->p_gender;
-            $p->blood=$request->p_blood;
-            $p->address=$request->p_address;
-            $p->problem=$request->p_problem;
+            $p->name=$request->patientName;
+            $p->age=$request->patientAge;
+            $p->phone=$request->patientPhone;
+            $p->gender=$request->patientGender;
+            $p->blood=$request->patientBlood;
+            $p->address=$request->patientAddress;
+            $p->problem=$request->patientProblem;
             $p->status=1;
             $p->save();
             return redirect(route('patient.index'));
@@ -85,17 +86,17 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(PatientRequest $request, Patient $patient)
     {
         try{
             $p=$patient;
-            $p->name=$request->p_name;
-            $p->age=$request->p_age;
-            $p->phone=$request->p_phone;
-            $p->gender=$request->p_gender;
-            $p->blood=$request->p_blood;
-            $p->address=$request->p_address;
-            $p->problem=$request->p_problem;
+            $p->name=$request->patientName;
+            $p->age=$request->patientAge;
+            $p->phone=$request->patientPhone;
+            $p->gender=$request->patientGender;
+            $p->blood=$request->patientBlood;
+            $p->address=$request->patientAddress;
+            $p->problem=$request->patientProblem;
             $p->status=1;
             if($p->save());
             return redirect(route('patient.index'));
