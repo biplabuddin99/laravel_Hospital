@@ -27,6 +27,7 @@ class PatientRequest extends FormRequest
             'patientName'=>'required|string',
             'patientAge'=>'required|string',
             'patientPhone'=>'required|string',
+            'birth_date'=>'required|date',
             'patientGender'=>'required|string',
             'patientBlood'=>'required|string',
             'patientProblem'=>'required|string',

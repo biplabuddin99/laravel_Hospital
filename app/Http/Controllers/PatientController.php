@@ -43,6 +43,7 @@ class PatientController extends Controller
             $p->name=$request->patientName;
             $p->age=$request->patientAge;
             $p->phone=$request->patientPhone;
+            $p->dob=$request->birth_date;
             $p->gender=$request->patientGender;
             $p->blood=$request->patientBlood;
             $p->address=$request->patientAddress;
@@ -93,6 +94,7 @@ class PatientController extends Controller
             $p->name=$request->patientName;
             $p->age=$request->patientAge;
             $p->phone=$request->patientPhone;
+            $p->dob=$request->birth_date;
             $p->gender=$request->patientGender;
             $p->blood=$request->patientBlood;
             $p->address=$request->patientAddress;

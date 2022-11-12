@@ -39,6 +39,7 @@
                     <th scope="col">Patient Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Phone</th>
+                    <th scope="col">Birth_Date</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Blood</th>
                     <th scope="col">Address</th>
@@ -54,6 +55,7 @@
                         <td>{{ $p->name }}</td>
                         <td>{{ $p->age }}</td>
                         <td>{{ $p->phone }}</td>
+                        <td>{{ $p->dob }}</td>
                         <td>@if($p->gender==1) Male @elseif ($p->gender==2) Female @else Other @endif</td>
                         <td>{{ $p->blood }}</td>
                         <td>{{ $p->address }}</td>

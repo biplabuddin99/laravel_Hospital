@@ -55,6 +55,17 @@
                   </div>
                 </div>
                 <div class="row mb-3">
+                  <label for="birth_date" class="col-sm-2 col-form-label">Date of Birth:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="birth_date" cols="30" class="form-control" id="birth_date" value="{{ old('birth_date') }}">
+                    @if($errors->has('birth_date'))
+                    <span class="text-danger">
+                        {{ $errors->first('birth_date')}}
+                    </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="row mb-3">
                   <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
                   <div class="col-sm-10">
                     <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
