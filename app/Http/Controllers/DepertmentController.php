@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Depertment;
 use Exception;
 use Illuminate\Http\Request;
+use App\Http\Requests\doctor\DepartmentRequest;
 
 class DepertmentController extends Controller
 {
@@ -35,13 +36,13 @@ class DepertmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
         try{
             $dep=new Depertment;
 
-            $dep->name=$request->dep_name;
-            $dep->description=$request->dep_description;
+            $dep->name=$request->DepartnemtName;
+            $dep->description=$request->DepartmentDescription;
             $dep->status=$request->status;
             $dep->save();
             return redirect(route('depertment.index'));

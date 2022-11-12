@@ -64,7 +64,7 @@
                         </td>
                     </tr>
                     @empty
-                    <td>There is no Depertment</td>
+                    <td colspan="5" class="text-center">There is no Depertment</td>
                     @endforelse
 
                 </tbody>
