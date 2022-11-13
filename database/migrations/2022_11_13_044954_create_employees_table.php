@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('patient_id');
+            $table->integer('role_id')->unsigned()->nullable();
+            $table->foreign('role_id')->reference('id')->onDelete('cascade');
             $table->string('name');
-            $table->string('age');
+            $table->string('email');
             $table->string('phone');
-            $table->date('dob');
             $table->string('gender');
+            $table->string('dob');
             $table->string('blood');
-            $table->string('address')->nullable();
-            $table->string('problem')->nullable();
+            $table->string('picture');
+            $table->string('address');
             $table->integer('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('employees');
     }
 };

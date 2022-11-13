@@ -11,12 +11,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>General Tables</h1>
+      <h1>Patient Tables</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">General</li>
+          <li class="breadcrumb-item active">Patient</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -35,6 +35,7 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
+                    <th scope="col">#SL</th>
                     <th scope="col">Patient Id</th>
                     <th scope="col">Patient Name</th>
                     <th scope="col">Age</th>
@@ -51,7 +52,8 @@
                 <tbody>
                     @forelse ($patient as $p)
                     <tr>
-                        <th scope="row">{{ ++$loop->index+1000 }}</th>
+                        <th>{{ ++$loop->index }}</th>
+                        <td>{{ $p->patient_id }}</td>
                         <td>{{ $p->name }}</td>
                         <td>{{ $p->age }}</td>
                         <td>{{ $p->phone }}</td>
@@ -72,7 +74,7 @@
                         </td>
                     </tr>
                     @empty
-                    <td colspan="10" class="text-center">There is no Patient</td>
+                    <td colspan="12" class="text-center">There is no Patient</td>
                     @endforelse
 
                 </tbody>

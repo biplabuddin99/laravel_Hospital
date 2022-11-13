@@ -16,31 +16,41 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Add New Patient</h5>
+              <h5 class="card-title">Add Appointment</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('patient.store') }}" method="POST">
+              <form action="{{ route('appoint.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
-                  <label for="name" class="col-sm-2 col-form-label">Patient Name:</label>
+                  <label for="p_id" class="col-sm-2 col-form-label">Patient Id:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName') }}">
-                    @if($errors->has('patientName'))
+
+                    <input type="hidden" name="id" id="p_id"/>
+					<input type="text" class="form-control" id="patient_id" name="patient_id" value="{{Request::old('patient_id')}}">
+
+{{-- 
+                    @if($errors->has('patient_id'))
                         <span class="text-danger"> 
-                          {{ $errors->first('patientName') }}
+                          {{ $errors->first('patient_id') }}
                         </span>
-                    @endif
+                    @endif --}}
+
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="age" class="col-sm-2 col-form-label">Age:</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="patientAge" cols="30" class="form-control" id="age" value="{{ old('patientAge') }}">
-                    @if($errors->has('patientAge'))
+                  <label for="department" class="col-sm-2 col-form-label">Department Name:</label>
+                  <select class="form-control" style="width: 100%;" id="department" name="department">
+                    <option value="">select department</option>
+                    
+                      @forelse($department as $dep)
+                          <option value="{{ $dep->department_id }}" {{$dep->'department_id' == Request::old('department') ? 'selected' : ''}}>{{$dep['dep_name']}}</option>
+                   
+                   
+                    {{-- @if($errors->has('patientAge'))
                       <span class="text-danger">
                         {{ $errors->first('patientAge') }}
                       </span>
-                      @endif
+                      @endif --}}
                   </div>
                 </div>
                 <div class="row mb-3">

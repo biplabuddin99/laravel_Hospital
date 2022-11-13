@@ -56,7 +56,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="birth_date" class="col-sm-2 col-form-label">Phone:</label>
+                  <label for="birth_date" class="col-sm-2 col-form-label">Date of Birth:</label>
                   <div class="col-sm-10">
                     <input type="date" name="birth_date" cols="30" class="form-control" id="datepicker" value="{{ $patient->dob }}">
                     @if($errors->has('birth_date'))

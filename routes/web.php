@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepertmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -35,4 +36,9 @@ Route::post('register', [UserController::class, 'userRegistrationStore'])->name(
 Route::resource('depertment',DepertmentController::class);
 Route::resource('designation',DesignationController::class);
 
+
+//Appoint route
+Route::resource('appoint',AppointmentController::class);
+
+//Patient route
 Route::resource('patient',PatientController::class);
