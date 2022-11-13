@@ -41,9 +41,9 @@ class AppointmentController extends Controller
             $app->patient_id=$request->id;
             $app->employee_id=$request->doctor_id;
             $app->phone=$request->patientPhone;
-            $app->serial=$request->serial;
             $app->problem=$request->patientProblem;
             $app->appoint_date=$request->appoint_date;
+            $app->serial=$request->serial;
             $app->approve=$request->approve;
             $app->save();
             return redirect(route('appoint.index'));

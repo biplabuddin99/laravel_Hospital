@@ -22,7 +22,7 @@
               <form action="{{ route('appoint.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
-                  <label for="p_id" class="col-sm-2 col-form-label">Patient Id:</label>
+                  <label for="p_id" class="col-sm-2 col-form-label">Patient Id<span style="color:red">* </span>:</label>
                   <div class="col-sm-10">
 
                     <input type="hidden" name="id" id="p_id"/>
@@ -38,104 +38,114 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="department" class="col-sm-2 col-form-label">Department Name:</label>
+                  <label for="department" class="col-sm-2 col-form-label">Department Name<span style="color:red">* </span>:</label>
                   <select class="form-control" style="width: 100%;" id="department" name="department">
                     <option value="">select department</option>
                     
-                      @forelse($department as $dep)
-                          <option value="{{ $dep->department_id }}" {{$dep->'department_id' == Request::old('department') ? 'selected' : ''}}>{{$dep['dep_name']}}</option>
+                        @forelse($department as $dep)
+                          <option value="{{ $dep->department_id }}" {{ $dep->department_id == Request::old('department') ? 'selected' : ''}}>{{ $dep->dep_name }}</option>
+                        @empty
+                          <option>No data found</option>
+                        @endforelse
+                          
+                  </select>
                    
-                   
-                    {{-- @if($errors->has('patientAge'))
+                    {{-- @if($errors->has('department'))
                       <span class="text-danger">
-                        {{ $errors->first('patientAge') }}
+                        {{ $errors->first('department') }}
                       </span>
                       @endif --}}
                   </div>
                 </div>
+
                 <div class="row mb-3">
-                  <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+                    <label for="doctor" class="col-sm-2 col-form-label">Doctor Name<span style="color:red">* </span>:</label>
+                    <select class="form-control" style="width: 100%;" id="doctor" name="doctor_id">
+                      <option value=""></option>    
+                    </select>
+                     
+                      {{-- @if($errors->has('doctor_id'))
+                        <span class="text-danger">
+                          {{ $errors->first('doctor_id') }}
+                        </span>
+                        @endif --}}
+                    </div>
+                  </div>
+
+                <div class="row mb-3">
+                  <label for="phone" class="col-sm-2 col-form-label">Phone<span style="color:red">* </span>:</label>
                   <div class="col-sm-10">
                     <input type="text" name="patientPhone" cols="30" class="form-control" id="phone" value="{{ old('patientPhone') }}">
-                    @if($errors->has('patientPhone'))
+
+                    {{-- @if($errors->has('patientPhone'))
                     <span class="text-danger">
                         {{ $errors->first('patientPhone')}}
                     </span>
-                    @endif
+                    @endif --}}
+
                   </div>
                 </div>
+
                 <div class="row mb-3">
-                  <label for="birth_date" class="col-sm-2 col-form-label">Date of Birth:</label>
-                  <div class="col-sm-10">
-                    <input type="date" name="birth_date" cols="30" class="form-control" id="datepicker" value="{{ old('birth_date') }}">
-                    @if($errors->has('birth_date'))
+                    <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
+                    <div class="col-sm-10">
+                      <textarea type="text" name="patientProblem" value="" cols="30" class="form-control" id="problem">{{ old('patientProblem') }}</textarea>
+   
+                      {{-- @if($errors->has('patientProblem'))
                     <span class="text-danger">
-                        {{ $errors->first('birth_date')}}
+                      {{ $errors->first('patientProblem') }}
                     </span>
-                    @endif
-                  </div>
-                </div>
+                    @endif --}}
+   
+                    
                 <div class="row mb-3">
-                  <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
+                  <label for="birth_date" class="col-sm-2 col-form-label">Appointment Date<span style="color:red">* </span>:</label>
                   <div class="col-sm-10">
-                    <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
-                    &nbsp;
-                    <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
-                    &nbsp;
-                    <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
-                    @if($errors->has('patientGender'))
+                    <input type="date" name="appoint_date" cols="30" class="form-control" id="datepicker" value="{{ old('appoint_date') }}">
+
+                    {{-- @if($errors->has('appoint_date'))
                     <span class="text-danger">
-                      {{ $errors->first('patientGender') }}
+                        {{ $errors->first('appoint_date')}}
                     </span>
-                    @endif
+                    @endif --}}
+
                   </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="serial">Serial No <span style="color:red">* </span>:</label>
+                    <div class="col-sm-10" style="display:none;color:red">
+                        No Schedule available
+                    </div>
+                    <div class="col-sm-10">
+                        <a class="btn btn-sm btn-success serial" id="serial1">01</a>
+                        <a class="btn btn-sm btn-success serial" id="serial2">02</a>
+                        <a class="btn btn-sm btn-success serial" id="serial3">03</a>
+                        <a class="btn btn-sm btn-success serial" id="serial4">04</a>
+                        <a class="btn btn-sm btn-success serial" id="serial5">05</a>
+                        <a class="btn btn-sm btn-success serial" id="serial6">06</a>
+                        <a class="btn btn-sm btn-success serial" id="serial7">07</a>
+                        <a class="btn btn-sm btn-success serial" id="serial8">08</a>
+                        <a class="btn btn-sm btn-success serial" id="serial9">09</a>
+                        <a class="btn btn-sm btn-success serial" id="serial10">10</a>
+                        <input type="hidden" name="serial" id="serial_div" />
+                    </div>
+
+                    {{-- @if($errors->has('serial'))
+                    <span class="text-danger">
+                        {{ $errors->first('serial')}}
+                    </span>
+                    @endif --}}
+
                 </div>
                 <div class="row mb-3">
-                  <label for="blood" class="col-sm-2 col-form-label">Blood:</label>
-                  <div class="col-sm-10">
-                    <select class="form-control" name="patientBlood" id="blood">
-                      <option value="">Select Blood Group</option>
-                      <option value="A+" {{ old('patientBlood')=='A+' ? 'selected':''}}>A+</option>
-                      <option value="A-"{{ old('patientBlood')=='A-' ? 'selected':''}}>A-</option>
-                      <option value="B+"{{ old('patientBlood')=='B+' ? 'selected':''}}>B+</option>
-                      <option value="B-"{{ old('patientBlood')=='B-' ? 'selected':''}}>B-</option>
-                      <option value="O+"{{ old('patientBlood')=='O+' ? 'selected':''}}>O+</option>
-                      <option value="O-"{{ old('patientBlood')=='O-' ? 'selected':''}}>O-</option>
-                      <option value="AB+"{{ old('patientBlood')=='AB+' ? 'selected':''}}>AB+</option>
-                      <option value="AB-"{{ old('patientBlood')=='AB-' ? 'selected':''}}>AB-</option>
-                    </select>
-                    @if($errors->has('patientBlood'))
-                  <span class="text-danger">
-                    {{ $errors->first('patientBlood') }}
-                  </span>
-                  @endif
-                  </div>
+                    <label class="col-sm-2 col-form-label" for="status"></label>
+                    <div class="col-sm-9">
+                        <input type="radio" name="approve" value="1" checked> Approve
+                        &nbsp;
+                        <input type="radio" name="approve" value="2" {{ Request::old('status') == '0' ? 'checked' : '' }}> Not Approve
+                    </div>
                 </div>
-                <div class="row mb-3">
-                  <label for="address" class="col-sm-2 col-form-label">Address:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="patientAddress" cols="30" class="form-control" id="address">{{ old('patientAddress') }}</textarea>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="patientProblem" value="" cols="30" class="form-control" id="problem">{{ old('patientProblem') }}</textarea>
-                    @if($errors->has('patientProblem'))
-                  <span class="text-danger">
-                    {{ $errors->first('patientProblem') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
-                  <div class="col-sm-10">
-                    <input type="radio" value="1" name="status" checked> Active
-                    &nbsp;
-                    <input type="radio" value="0" name="status"> Inactive
-                  </div>
-                </fieldset>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <span class="btn or">or</span>
