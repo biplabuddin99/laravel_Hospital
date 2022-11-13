@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class AppointmentController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appoint=Appointment::paginate(10);
-        return view('appointment.appoint_index', compact('appoint'));
+        //
     }
 
     /**
@@ -36,31 +35,16 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $app=new Appointment;
-            $app->patient_id=$request->id;
-            $app->employee_id=$request->doctor_id;
-            $app->phone=$request->patientPhone;
-            $app->serial=$request->serial;
-            $app->problem=$request->patientProblem;
-            $app->appoint_date=$request->appoint_date;
-            $app->approve=$request->approve;
-            $app->save();
-            return redirect(route('appoint.index'));
-
-
-        }catch(Exception $e){
-            return back()->withInput();
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Appointment  $appointment
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show(Employee $employee)
     {
         //
     }
@@ -68,10 +52,10 @@ class AppointmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Appointment  $appointment
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
+    public function edit(Employee $employee)
     {
         //
     }
@@ -80,10 +64,10 @@ class AppointmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Appointment  $appointment
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -91,10 +75,10 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Appointment  $appointment
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy(Employee $employee)
     {
         //
     }
