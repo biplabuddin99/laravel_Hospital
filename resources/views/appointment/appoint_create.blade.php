@@ -11,9 +11,6 @@
   <main id="main" class="main">
 
     <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Add Appointment</h5>
@@ -22,14 +19,13 @@
               <form action="{{ route('appoint.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
-                  <label for="p_id" class="col-sm-2 col-form-label">Patient Id<span style="color:red">* </span>:</label>
+                  <label for="p_id" class="col-sm-2 col-form-label">Patient Id<span style="color:red">*</span>:</label>
                   <div class="col-sm-10">
-
                     <input type="hidden" name="id" id="p_id"/>
-					<input type="text" class="form-control" id="patient_id" name="patient_id" value="{{Request::old('patient_id')}}">
+					          <input type="text" class="form-control" id="patient_id" name="patient_id" value="{{ Request::old('patient_id') }}">
 
-{{-- 
-                    @if($errors->has('patient_id'))
+                    
+              {{--  @if($errors->has('patient_id'))
                         <span class="text-danger"> 
                           {{ $errors->first('patient_id') }}
                         </span>
@@ -38,15 +34,16 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="department" class="col-sm-2 col-form-label">Department Name<span style="color:red">* </span>:</label>
-                  <select class="form-control" style="width: 100%;" id="department" name="department">
-                    <option value="">select department</option>
+                  <label for="department" class="col-sm-2 col-form-label">Department Name<span style="color:red">*</span>:</label>
+                  <div class="col-sm-10">
+                  <select class="form-control"  id="department" name="department">
+                    <option value="">Select Department</option>
                     
-                        @forelse($department as $dep)
-                          <option value="{{ $dep->department_id }}" {{ $dep->department_id == Request::old('department') ? 'selected' : ''}}>{{ $dep->dep_name }}</option>
+                        {{-- @forelse($department as $dep)
+                          <option value="{{ $dep->dep_id }}" {{ $dep->department_id == Request::old('department') ? 'selected' : ''}}>{{ $dep->dep_name }}</option>
                         @empty
                           <option>No data found</option>
-                        @endforelse
+                        @endforelse --}}
                           
                   </select>
                    
@@ -60,7 +57,8 @@
 
                 <div class="row mb-3">
                     <label for="doctor" class="col-sm-2 col-form-label">Doctor Name<span style="color:red">* </span>:</label>
-                    <select class="form-control" style="width: 100%;" id="doctor" name="doctor_id">
+                    <div class="col-sm-10">
+                    <select class="form-control"  id="doctor" name="doctor_id">
                       <option value=""></option>    
                     </select>
                      
@@ -69,8 +67,8 @@
                           {{ $errors->first('doctor_id') }}
                         </span>
                         @endif --}}
-                    </div>
                   </div>
+                </div>
 
                 <div class="row mb-3">
                   <label for="phone" class="col-sm-2 col-form-label">Phone<span style="color:red">* </span>:</label>
@@ -96,7 +94,8 @@
                       {{ $errors->first('patientProblem') }}
                     </span>
                     @endif --}}
-   
+                  </div>
+                </div>
                     
                 <div class="row mb-3">
                   <label for="birth_date" class="col-sm-2 col-form-label">Appointment Date<span style="color:red">* </span>:</label>
@@ -138,8 +137,9 @@
                     @endif --}}
 
                 </div>
+
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="status"></label>
+                    <label class="col-sm-2 col-form-label" for="status">Status:</label>
                     <div class="col-sm-9">
                         <input type="radio" name="approve" value="1" checked> Approve
                         &nbsp;

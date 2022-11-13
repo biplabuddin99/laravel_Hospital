@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->reference('id')->onDelete('cascade');
+            $table->foreign('role_id')->reference('role_id')->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
