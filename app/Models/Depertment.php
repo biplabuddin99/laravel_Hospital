@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Depertment extends Model
 {
     use HasFactory,SoftDeletes;
+
+    public function doctor()
+    {
+        return $this->hasMany(Doctor::class);
+    }
 }

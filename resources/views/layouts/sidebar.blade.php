@@ -20,7 +20,7 @@
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="{{ route('designation.index') }}">
               <i class="bi bi-circle"></i><span>Manage Designation</span>
             </a>
           </li>
