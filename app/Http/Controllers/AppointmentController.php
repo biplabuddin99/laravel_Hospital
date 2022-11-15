@@ -24,8 +24,15 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
+    
     {
-        return view('appointment.appoint_create');
+		$nextSerial=1;
+		$lastSerial = Appointment::whereDate('appoint_date',date('y-m-d'))->max('serial');
+		if($lastSerial){
+			$nextSerial=$lastSerial+1;
+		}
+        return view('appointment.appoint_create', compact('nextSerial'));
     }
 
     /**

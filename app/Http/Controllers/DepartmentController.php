@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Depertment;
+use App\Models\Department;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\doctor\DepartmentRequest;
 
-class DepertmentController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class DepertmentController extends Controller
      */
     public function index()
     {
-        $department=Depertment::paginate(10);
+        $department=Department::paginate(10);
         return view('department.dep_index',compact('department'));
     }
 
@@ -39,13 +39,13 @@ class DepertmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         try{
-            $dep=new Depertment;
+            $dep=new Department;
 
-            $dep->name=$request->DepartnemtName;
+            $dep->name=$request->DepartmentName;
             $dep->description=$request->DepartmentDescription;
             $dep->status=$request->status;
             $dep->save();
-            return redirect(route('depertment.index'));
+            return redirect(route('department.index'));
             // dd($request);
         }
         catch (Exception $e){
@@ -57,10 +57,10 @@ class DepertmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Depertment  $depertment
+     * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Depertment $depertment)
+    public function show(Department $department)
     {
         //
     }
@@ -68,32 +68,32 @@ class DepertmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Depertment  $depertment
+     * @param  \App\Models\Depertment  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Depertment $depertment)
+    public function edit(Department $department)
     {
-        // $dep=Depertment::paginate(10);
-        // $depertments=Depertment::where($department)->first();
-        return view('department.dep_edit',compact('depertment'));
+        // $dep=Department::paginate(10);
+        // $departments=Department::where($department)->first();
+        return view('department.dep_edit',compact('department'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Depertment  $depertment
+     * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Depertment $depertment)
+    public function update(Request $request, Department $department)
     {
         try{
-            $depertments=$depertment;
-            $depertment->name=$request->dep_name;
-            $depertment->description=$request->dep_description;
-            $depertment->status=$request->status;
-            if($depertments->save());
-            return redirect(route('depertment.index'));
+            $departments=$department;
+            $department->name=$request->dep_name;
+            $department->description=$request->dep_description;
+            $department->status=$request->status;
+            if($departments->save());
+            return redirect(route('department.index'));
 
         }catch(Exception $e){
             return back()->withInput();
@@ -104,12 +104,12 @@ class DepertmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Depertment  $depertment
+     * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Depertment $depertment)
+    public function destroy(Department $department)
     {
-        $depertment->delete();
+        $department->delete();
         return redirect()->back();
     }
 }

@@ -19,14 +19,14 @@
               <h5 class="card-title">Add New Department</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('depertment.store') }}" method="POST">
+              <form action="{{ route('department.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="DepartnemtName">
-                    @if($errors->has('DepartnemtName'))
-                      <span class="text-danger"> {{ $errors->first('DepartnemtName') }}</span>
+                    <input type="text" class="form-control" id="name" name="DepartmentName">
+                    @if($errors->has('DepartmentName'))
+                      <span class="text-danger"> {{ $errors->first('DepartmentName') }}</span>
                     @endif
                   </div>
                 </div>
