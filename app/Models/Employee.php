@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 use App\Models\Blood;
 use App\Models\Role;
 use App\Models\Doctor;
+use App\Models\Appointment;
 
 
 class Employee extends Model
@@ -30,5 +31,9 @@ class Employee extends Model
 	{
 		return $this->hasMany(Doctor::class);
 	}
-    
+    public function appointment()
+	{
+		return $this->hasMany(Appointment::class);
+	}
+
 }

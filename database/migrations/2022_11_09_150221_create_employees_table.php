@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('gender');
             $table->string('birth_date');
-			$table->integer('blood_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('blood_id');
 			$table->foreign('blood_id')->references('id')->on('bloods')->onDelete('cascade');
             $table->string('picture');
             $table->string('address');
