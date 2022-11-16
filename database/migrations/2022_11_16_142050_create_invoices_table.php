@@ -14,8 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+			$table->unsignedBigInteger('patient_id')->nullable();
+			$table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');
+			$table->text('description');
+			$table->dateTime('payment_date');
+			$table->double('payment_amount');
+			$table->integer('status')->default(1);
+			$table->integer('created_by');
+			$table->integer('updated_by');
+			$table->softDeletes();
+			$table->timestamps();
         });
     }
 

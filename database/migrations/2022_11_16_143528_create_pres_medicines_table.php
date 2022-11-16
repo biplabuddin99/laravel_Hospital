@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('pres_medicines', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedBigInteger('appoint_id')->nullable();
-			$table->foreign('id')->references('appoint_id')->on('appointment')->onDelete('cascade');
-			$table->text('cc');
-			$table->text('inv');
-			$table->text('advice');
-			$table->integer('visit');
+			$table->unsignedBigInteger('prescription_id')->nullable();
+			$table->foreign('prescription_id')->references('id')->on('prescription')->onDelete('cascade');
+			$table->string('name');
+			$table->string('type');
+			$table->string('dose');
+			$table->string('note');
+			$table->integer('duration');
 			$table->integer('status')->default(1);
 			$table->integer('created_by');
 			$table->integer('updated_by');
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('pres_medicines');
     }
 };
