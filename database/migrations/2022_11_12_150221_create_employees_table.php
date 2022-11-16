@@ -16,16 +16,19 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->reference('role_id')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('gender');
-            $table->string('dob');
-            $table->string('blood');
+            $table->string('birth_date');
+			$table->integer('blood_id')->unsigned()->nullable();
+			$table->foreign('blood_id')->references('id')->on('bloods')->onDelete('cascade');
             $table->string('picture');
             $table->string('address');
             $table->integer('status')->default(1);
+            $table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

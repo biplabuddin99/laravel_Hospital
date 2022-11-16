@@ -12,4 +12,7 @@ class Role extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+    public function employee(){
+        return $this->hasMany(Employee::class);
+    }
 }
