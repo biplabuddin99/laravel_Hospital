@@ -6,6 +6,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::post('register', [UserController::class, 'userRegistrationStore'])->name(
 // Doctor route
 Route::resource('department',DepartmentController::class);
 Route::resource('designation',DesignationController::class);
+
+//employee
+Route::resource('employee',EmployeeController::class);
 
 
 //Appoint route

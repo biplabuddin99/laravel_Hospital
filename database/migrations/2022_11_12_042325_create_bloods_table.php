@@ -15,46 +15,47 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('bloods', function (Blueprint $table) {
             $table->id();
-            $table->string('role')->unique()->index();
-            $table->string('identify')->index();
-            $table->integer('status')->default(1);
+            $table->string('blood_name');
             $table->timestamps();
-            $table->softDeletes();
         });
-        DB::table('roles')->insert([
+
+        DB::table('bloods')->insert([
             [
-                'role'=>'Admin',
-                'identify'=>'admin',
+                'blood_name'=>'A+',
                 'created_at'=>Carbon::now(),
             ],
             [
-                'role'=>'Doctor',
-                'identify'=>'doctor',
+                'blood_name'=>'A-',
                 'created_at'=>Carbon::now(),
             ],
             [
-                'role'=>'Nurse',
-                'identify'=>'nurse',
+                'blood_name'=>'AB+',
                 'created_at'=>Carbon::now(),
             ],
             [
-                'role'=>'RECEPTIONIST',
-                'identify'=>'receptionist',
+                'blood_name'=>'AB-',
                 'created_at'=>Carbon::now(),
             ],
             [
-                'role'=>'LAB-TECH',
-                'identify'=>'labtech',
+                'blood_name'=>'B+',
                 'created_at'=>Carbon::now(),
             ],
             [
-                'role'=>'Accountant',
-                'identify'=>'labtech',
+                'blood_name'=>'B-',
+                'created_at'=>Carbon::now(),
+            ],
+            [
+                'blood_name'=>'O+',
+                'created_at'=>Carbon::now(),
+            ],
+            [
+                'blood_name'=>'O-',
                 'created_at'=>Carbon::now(),
             ],
         ]);
+
     }
 
     /**
@@ -64,6 +65,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('bloods');
     }
 };
