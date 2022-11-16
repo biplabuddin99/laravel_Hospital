@@ -39,11 +39,13 @@
                   <select class="form-control"  id="department" name="department">
                     <option value="">Select Department</option>
                     
-                       @forelse($department as $dep)
-                          <option value="{{ $department->id }}" {{ $dep->id == Request::old('department') ? 'selected' : ''}}>  {{ $dep->name }}  </option>
-                        @empty
-                          <option>No data found</option>
-                        @endforelse
+                         @forelse($department as $dep)
+                            <option value="{{$dep->id}}">
+                                {{__($dep->name)}}
+                            </option>
+                          @empty
+                            <option value="">No Data Founds</option>
+                          @endforelse
                           
                   </select>
                    
@@ -100,7 +102,8 @@
                 <div class="row mb-3">
                   <label for="birth_date" class="col-sm-2 col-form-label">Appointment Date<span style="color:red">* </span>:</label>
                   <div class="col-sm-10">
-                    <input type="date" name="appoint_date" cols="30" class="form-control" id="datepicker" value="{{ date('Y-m-d') }}" readonly>
+                    <input type="date" name="appoint_date" cols="30" class="form-control" id="datepicker" value="">
+                    {{-- {{ date('Y-m-d') }} readonly --}}
 
                     {{-- @if($errors->has('appoint_date'))
                     <span class="text-danger">
@@ -116,10 +119,18 @@
                     <div class="col-sm-10" style="display:none;color:red">
                         No Schedule available
                     </div>
-                    <div class="col-sm-10">
-                        <a class="btn btn-sm btn-success serial" id="serial1">{{ $nextSerial }}</a>
-                      
-                        <input type="hidden" name="serial" id="serial_div" value="{{ $nextSerial }}" />
+                    <div class="col-sm-9 ss">
+                      <a class="btn btn-sm btn-success serial" id="serial1">01</a>
+                      <a class="btn btn-sm btn-success serial" id="serial2">02</a>
+                      <a class="btn btn-sm btn-success serial" id="serial3">03</a>
+                      <a class="btn btn-sm btn-success serial" id="serial4">04</a>
+                      <a class="btn btn-sm btn-success serial" id="serial5">05</a>
+                      <a class="btn btn-sm btn-success serial" id="serial6">06</a>
+                      <a class="btn btn-sm btn-success serial" id="serial7">07</a>
+                      <a class="btn btn-sm btn-success serial" id="serial8">08</a>
+                      <a class="btn btn-sm btn-success serial" id="serial9">09</a>
+                      <a class="btn btn-sm btn-success serial" id="serial10">10</a>
+                      <input type="hidden" name="serial" id="serial_div" />
                     </div>
 
                     {{-- @if($errors->has('serial'))

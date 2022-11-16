@@ -9,4 +9,13 @@ use Illuminate\Database\Eloquent\softDeletes;
 class Appointment extends Model
 {
     use HasFactory, softDeletes;
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }
