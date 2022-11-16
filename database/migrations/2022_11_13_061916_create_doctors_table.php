@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
 			$table->increments('doctor_id');
 			$table->integer('employ_id')->unsigned()->nullable();
-			$table->foreign('employ_id')->references('employ_id')->on('employ_basic_models')->onDelete('cascade');
+			$table->foreign('employ_id')->references('id')->on('employees')->onDelete('cascade');
 			$table->integer('department_id')->unsigned()->nullable();
-			$table->foreign('department_id')->references('department_id')->on('department_models')->onDelete('cascade');
+			$table->foreign('department_id')->references('id')->on('depertments')->onDelete('cascade');
 			$table->integer('designation_id')->unsigned()->nullable();
-			$table->foreign('designation_id')->references('designation_id')->on('designation_models')->onDelete('cascade');
+			$table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
 			$table->text('biography');
 			$table->string('specialist');
 			$table->text('education');
 			$table->integer('status')->default(1);
-			$table->integer('created_by');
-			$table->integer('updated_by');
+			$table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
 			$table->softDeletes();
 			$table->timestamps();
         });
