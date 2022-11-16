@@ -24,7 +24,7 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'DepartnemtName'=>'bail|required|string',
+            'DepartmentName'=>'bail|required|string',
             'DepartmentDescription'=>'bail|required|string',
             'status'=>'nullable',
         ];

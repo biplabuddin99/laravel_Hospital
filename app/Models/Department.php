@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Doctor;
 
-class Depertment extends Model
+class Department extends Model
 {
     use HasFactory,SoftDeletes;
 

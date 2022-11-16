@@ -16,13 +16,13 @@
       <h1>General Tables</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
           <li class="breadcrumb-item active">General</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <div class="panel-heading"><a href="{{route('depertment.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Department </a></div>
+    <div class="panel-heading"><a href="{{route('department.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Department </a></div>
 
     <section class="section">
       <div class="row">
@@ -52,11 +52,11 @@
                         <td>{{ $dep->description }}</td>
                         <td>@if($dep->status==1) Active @else Inactive @endif</td>
                         <td class="d-flex">
-                            <a href="{{ route('depertment.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('department.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             {{-- <a href="javascript:void()" onclick="$('#form{{$dep->id}}').submit()">
                                 <i class="fa fa-trash"></i>
                             </a> --}}
-                            <form id="form{{$dep->id}}" action="{{ route('depertment.destroy',$dep->id) }}" method="POST">
+                            <form id="form{{$dep->id}}" action="{{ route('department.destroy',$dep->id) }}" method="POST">
                                 @csrf
                                 @method('delete');
                                 <button class="btn p-0" type="submit" onclick="return confirm('are You confirm?')"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
@@ -64,7 +64,7 @@
                         </td>
                     </tr>
                     @empty
-                    <td colspan="5" class="text-center">There is no Depertment</td>
+                    <td colspan="5" class="text-center">There is no Department</td>
                     @endforelse
 
                 </tbody>

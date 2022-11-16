@@ -17,6 +17,9 @@ return new class extends Migration
 			$table->increments('doctor_id');
 			$table->integer('employ_id')->unsigned()->nullable();
 			$table->foreign('employ_id')->references('id')->on('employees')->onDelete('cascade');
+
+			$table->integer('employee_id')->unsigned()->nullable();
+			$table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
 			$table->integer('department_id')->unsigned()->nullable();
 			$table->foreign('department_id')->references('id')->on('depertments')->onDelete('cascade');
 			$table->integer('designation_id')->unsigned()->nullable();

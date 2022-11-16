@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="{{ route('admin.dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -15,8 +15,8 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ route('depertment.index') }}">
-              <i class="bi bi-circle"></i><span>Manage Depertment</span>
+            <a href="{{ route('department.index') }}">
+              <i class="bi bi-circle"></i><span>Manage Department</span>
             </a>
           </li>
           <li>

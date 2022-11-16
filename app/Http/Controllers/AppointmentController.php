@@ -24,8 +24,15 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
+    
     {
-        //
+		$nextSerial=1;
+		$lastSerial = Appointment::whereDate('appoint_date',date('y-m-d'))->max('serial');
+		if($lastSerial){
+			$nextSerial=$lastSerial+1;
+		}
+        return view('appointment.appoint_create', compact('nextSerial'));
     }
 
     /**
@@ -41,9 +48,9 @@ class AppointmentController extends Controller
             $app->patient_id=$request->id;
             $app->employee_id=$request->doctor_id;
             $app->phone=$request->patientPhone;
-            $app->serial=$request->serial;
             $app->problem=$request->patientProblem;
             $app->appoint_date=$request->appoint_date;
+            $app->serial=$request->serial;
             $app->approve=$request->approve;
             $app->save();
             return redirect(route('appoint.index'));
