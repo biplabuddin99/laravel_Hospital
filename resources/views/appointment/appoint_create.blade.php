@@ -119,10 +119,18 @@
                     <div class="col-sm-10" style="display:none;color:red">
                         No Schedule available
                     </div>
-                    <div class="col-sm-10">
-                        <a class="btn btn-sm btn-success serial" id="serial1">1</a>
-                      
-                        <input type="hidden" name="serial" id="serial_div" value="" />
+                    <div class="col-sm-9 ss">
+                      <a class="btn btn-sm btn-success serial" id="serial1">01</a>
+                      <a class="btn btn-sm btn-success serial" id="serial2">02</a>
+                      <a class="btn btn-sm btn-success serial" id="serial3">03</a>
+                      <a class="btn btn-sm btn-success serial" id="serial4">04</a>
+                      <a class="btn btn-sm btn-success serial" id="serial5">05</a>
+                      <a class="btn btn-sm btn-success serial" id="serial6">06</a>
+                      <a class="btn btn-sm btn-success serial" id="serial7">07</a>
+                      <a class="btn btn-sm btn-success serial" id="serial8">08</a>
+                      <a class="btn btn-sm btn-success serial" id="serial9">09</a>
+                      <a class="btn btn-sm btn-success serial" id="serial10">10</a>
+                      <input type="hidden" name="serial" id="serial_div" />
                     </div>
 
                     {{-- @if($errors->has('serial'))

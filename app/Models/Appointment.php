@@ -12,10 +12,10 @@ class Appointment extends Model
 
     public function department()
     {
-        return $this->belongsTo(department::class);
+        return $this->belongsTo(Department::class);
     }
     public function employee()
     {
-        return $this->belongsTo(employee::class);
+        return $this->belongsTo(Employee::class);
     }
 }
