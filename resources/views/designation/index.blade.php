@@ -1,15 +1,7 @@
+@extends('app')
 @section('title','Designation')
-@include('layouts.header')
-
-  <!-- ======= Header ======= -->
-  @include('layouts.topbar')
-<!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  @include('layouts.sidebar')
-
 <!-- End Sidebar-->
-
+@section('content')
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -22,7 +14,7 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-     <div class="panel-heading"><a href="{{route('designation.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Designation </a></div> 
+     <div class="panel-heading"><a href="{{route('designation.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Designation </a></div>
 
     <section class="section">
       <div class="row">
@@ -60,7 +52,7 @@
                                 @csrf
                                 @method('delete')
                                 <button class="btn p-0" type="submit" onclick="return confirm('are You confirm?')"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
-                            </form> 
+                            </form>
                         </td>
                     </tr>
                     @empty
@@ -85,6 +77,4 @@
     </section>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-@include('layouts.footer')
+@endsection

@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-			$table->increments('doctor_id');
-			$table->integer('employee_id')->unsigned()->nullable();
+			$table->id();
+			$table->unsignedBigInteger('employee_id')->nullable();
 			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-			$table->integer('department_id')->unsigned()->nullable();
-			$table->foreign('department_id')->references('id')->on('depertments')->onDelete('cascade');
-			$table->integer('designation_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('department_id')->nullable();
+			$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+			$table->unsignedBigInteger('designation_id')->nullable();
 			$table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
 			$table->text('biography');
 			$table->string('specialist');

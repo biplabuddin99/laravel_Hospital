@@ -1,15 +1,7 @@
+@extends('app')
 @section('title','Department')
-@include('layouts.header')
 
-  <!-- ======= Header ======= -->
-  @include('layouts.topbar')
-<!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  @include('layouts.sidebar')
-
-<!-- End Sidebar-->
-
+@section('content')
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -85,6 +77,4 @@
     </section>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-@include('layouts.footer')
+@endsection

@@ -88,12 +88,12 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Employee</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-gem"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('employee.index') }}">
-              <i class="bi bi-circle"></i><span>Accountant</span>
+              <i class="bi bi-circle"></i><span>Employee List</span>
             </a>
           </li>
           <li>

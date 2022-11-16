@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Blood;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee=Employee::paginate(10);
+        return view('employee.index',compact('employee'));
     }
 
     /**
@@ -24,7 +27,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $role=Role::all();
+        $blood=Blood::all();
+        return view('employee.create',compact('role','blood'));
+
     }
 
     /**
@@ -44,9 +50,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        $role_id=$id;
+        $employee=Employee::findOrFail($role_id);
+        return view('employee.show',compact('employee'));
     }
 
     /**
