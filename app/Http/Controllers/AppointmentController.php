@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Exception;
 
 class AppointmentController extends Controller
 {
@@ -14,6 +16,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+
         $appoint=Appointment::paginate(10);
         return view('appointment.appoint_index', compact('appoint'));
     }
@@ -25,15 +28,24 @@ class AppointmentController extends Controller
      */
     public function create()
 
+        {
+        $depart = department::where('status',1)->orderBy('id','asc')->get();
+        return view('appointment.appoint_create')->with('department',$depart);
+        
+
     
-    {
-		$nextSerial=1;
-		$lastSerial = Appointment::whereDate('appoint_date',date('y-m-d'))->max('serial');
-		if($lastSerial){
-			$nextSerial=$lastSerial+1;
-		}
-        return view('appointment.appoint_create', compact('nextSerial'));
-    }
+    
+
+        }
+
+
+    // $nextSerial=1;
+    // $lastSerial = Appointment::whereDate('appoint_date',date('y-m-d'))->max('serial');
+    // if($lastSerial){
+    // 	$nextSerial=$lastSerial+1;
+    // }
+    // return view('appointment.appoint_create', compact('nextSerial'));
+    
 
     /**
      * Store a newly created resource in storage.

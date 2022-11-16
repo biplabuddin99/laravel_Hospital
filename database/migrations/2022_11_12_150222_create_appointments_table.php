@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('phone');
             $table->date('appoint_date');
             $table->integer('status')->default(1);
+            $table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
