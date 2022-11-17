@@ -60,6 +60,11 @@
               <i class="bi bi-circle"></i><span>Patients List</span>
             </a>
           </li>
+          <li>
+            <a href="{{ route('patientAdmit.index') }}">
+              <i class="bi bi-circle"></i><span>Admit Patient</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Forms Nav -->
 

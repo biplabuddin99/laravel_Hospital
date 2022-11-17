@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PatientAdmitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,4 @@ Route::resource('appoint',AppointmentController::class);
 
 //Patient route
 Route::resource('patient',PatientController::class);
+Route::resource('patientAdmit',PatientAdmitController::class);
