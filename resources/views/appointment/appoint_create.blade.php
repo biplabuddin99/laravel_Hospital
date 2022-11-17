@@ -1,12 +1,6 @@
-@include('layouts.header')
+@extends('app')
+@section('content')
 
-  <!-- ======= Header ======= -->
-  @include('layouts.topbar')
-<!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  @include('layouts.sidebar')
-<!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -162,6 +156,5 @@
     </section>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-@include('layouts.footer')
+    
+  @endsection

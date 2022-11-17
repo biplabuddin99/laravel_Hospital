@@ -1,12 +1,6 @@
-@include('layouts.header')
+@extends('app')
+@section('content')
 
-  <!-- ======= Header ======= -->
-  @include('layouts.topbar')
-<!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  @include('layouts.sidebar')
-<!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -16,10 +10,10 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Add New Patient</h5>
+              <h5 class="card-title">Admit Patient</h5>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('patient.store') }}" method="POST">
+              <form action="{{ route('patientAdmit.store') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Patient Name:</label>
@@ -33,78 +27,58 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="age" class="col-sm-2 col-form-label">Age:</label>
+                  <label for="fname" class="col-sm-2 col-form-label">Father's Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" name="patientAge" cols="30" class="form-control" id="age" value="{{ old('patientAge') }}">
-                    @if($errors->has('patientAge'))
-                      <span class="text-danger">
-                        {{ $errors->first('patientAge') }}
-                      </span>
-                      @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="patientPhone" cols="30" class="form-control" id="phone" value="{{ old('patientPhone') }}">
-                    @if($errors->has('patientPhone'))
-                    <span class="text-danger">
-                        {{ $errors->first('patientPhone')}}
-                    </span>
+                    <input type="text" class="form-control" id="fname" name="fname" value="{{ old('fname') }}">
+                    @if($errors->has('fname'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('fname') }}
+                        </span>
                     @endif
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="birth_date" class="col-sm-2 col-form-label">Date of Birth:</label>
+                  <label for="mname" class="col-sm-2 col-form-label">Mother's Name:</label>
                   <div class="col-sm-10">
-                    <input type="date" name="birth_date" cols="30" class="form-control" id="datepicker" value="{{ old('birth_date') }}">
-                    @if($errors->has('birth_date'))
-                    <span class="text-danger">
-                        {{ $errors->first('birth_date')}}
-                    </span>
+                    <input type="text" class="form-control" id="mname" name="mname" value="{{ old('mname') }}">
+                    @if($errors->has('mname'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('mname') }}
+                        </span>
                     @endif
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
+                  <label for="hname" class="col-sm-2 col-form-label">Husband's Name:</label>
                   <div class="col-sm-10">
-                    <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
-                    &nbsp;
-                    <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
-                    &nbsp;
-                    <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
-                    @if($errors->has('patientGender'))
-                    <span class="text-danger">
-                      {{ $errors->first('patientGender') }}
-                    </span>
+                    <input type="text" class="form-control" id="hname" name="hname" value="{{ old('hname') }}">
+                    @if($errors->has('hname'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('hname') }}
+                        </span>
                     @endif
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="blood" class="col-sm-2 col-form-label">Blood:</label>
+                  <label for="marital" class="col-sm-2 col-form-label">Marital Status:</label>
                   <div class="col-sm-10">
-                    <select class="form-control" name="patientBlood" id="blood">
-                      <option value="">Select Blood Group</option>
-                      <option value="A+" {{ old('patientBlood')=='A+' ? 'selected':''}}>A+</option>
-                      <option value="A-"{{ old('patientBlood')=='A-' ? 'selected':''}}>A-</option>
-                      <option value="B+"{{ old('patientBlood')=='B+' ? 'selected':''}}>B+</option>
-                      <option value="B-"{{ old('patientBlood')=='B-' ? 'selected':''}}>B-</option>
-                      <option value="O+"{{ old('patientBlood')=='O+' ? 'selected':''}}>O+</option>
-                      <option value="O-"{{ old('patientBlood')=='O-' ? 'selected':''}}>O-</option>
-                      <option value="AB+"{{ old('patientBlood')=='AB+' ? 'selected':''}}>AB+</option>
-                      <option value="AB-"{{ old('patientBlood')=='AB-' ? 'selected':''}}>AB-</option>
-                    </select>
-                    @if($errors->has('patientBlood'))
-                  <span class="text-danger">
-                    {{ $errors->first('patientBlood') }}
-                  </span>
-                  @endif
+                    <input type="text" class="form-control" id="marital" name="marital" value="{{ old('marital') }}">
+                    @if($errors->has('marital'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('marital') }}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="address" class="col-sm-2 col-form-label">Address:</label>
+                  <label for="doctor_ref" class="col-sm-2 col-form-label">Reference Doctor:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="patientAddress" cols="30" class="form-control" id="address">{{ old('patientAddress') }}</textarea>
+                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}">
+                    @if($errors->has('doctor_ref'))
+                        <span class="text-danger"> 
+                          {{ $errors->first('doctor_ref') }}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -118,6 +92,51 @@
                   @endif
                   </div>
                 </div>
+                <div class="row mb-3">
+                  <label for="admit_date" class="col-sm-2 col-form-label">Admit Date:</label>
+                  <div class="col-sm-10">
+                    <textarea type="date" name="admit_date" value="" cols="30" class="form-control" id="admit_date">{{ old('admit_date') }}</textarea>
+                    @if($errors->has('admit_date'))
+                  <span class="text-danger">
+                    {{ $errors->first('admit_date') }}
+                  </span>
+                  @endif
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="guardian" class="col-sm-2 col-form-label">Guardian:</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" name="guardian" value="" cols="30" class="form-control" id="guardian">{{ old('guardian') }}</textarea>
+                    @if($errors->has('guardian'))
+                  <span class="text-danger">
+                    {{ $errors->first('guardian') }}
+                  </span>
+                  @endif
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="relation" class="col-sm-2 col-form-label">Relation:</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" name="relation" value="" cols="30" class="form-control" id="relation">{{ old('relation') }}</textarea>
+                    @if($errors->has('relation'))
+                  <span class="text-danger">
+                    {{ $errors->first('relation') }}
+                  </span>
+                  @endif
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="emg_condition" class="col-sm-2 col-form-label">Emergency:</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" name="emg_condition" value="" cols="30" class="form-control" id="emg_condition">{{ old('emg_condition') }}</textarea>
+                    @if($errors->has('emg_condition'))
+                  <span class="text-danger">
+                    {{ $errors->first('emg_condition') }}
+                  </span>
+                  @endif
+                  </div>
+                </div>
+
                 <fieldset class="row mb-3">
                   <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
                   <div class="col-sm-10">
@@ -139,6 +158,5 @@
     </section>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-@include('layouts.footer')
+    
+  @endsection

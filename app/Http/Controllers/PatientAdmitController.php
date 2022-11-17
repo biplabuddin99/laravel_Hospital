@@ -14,8 +14,10 @@ class PatientAdmitController extends Controller
      */
     public function index()
     {
-        //
+        $patient_admit=PatientAdmit::paginate(10);
+        return view('patientAdmit.patient_admit_index' ,compact('patient_admit'));
     }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +26,7 @@ class PatientAdmitController extends Controller
      */
     public function create()
     {
-        //
+        return view('patientAdmit.patient_admit_create');
     }
 
     /**
