@@ -14,13 +14,13 @@
                             <div class="panel-heading">
                                 <div class="btn-group">
 
-                                    <a href="{{route('employee.show',2)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Accountant List </a>
+                                    <a href="{{route('employee.show',6)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Accountant List </a>
 
-                                    <a href="{{route('employee.show',3)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Laboratorist List </a>
+                                    <a href="{{route('employee.show',5)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Laboratorist List </a>
 
-                                    <a href="{{route('employee.show',4)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Nurse List </a>
+                                    <a href="{{route('employee.show',3)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Nurse List </a>
 
-                                    <a href="{{route('employee.show',5)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Reciptionist List </a>
+                                    <a href="{{route('employee.show',4)}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Reciptionist List </a>
 
                                 </div>
                             </div>
@@ -32,17 +32,17 @@
                                     @method('post')
                                     <div class="form-group mt-5">
                                         <label class="control-label col-sm-3" for="role">User Role <span style="color:red">* </span>:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control select2" style="width: 100%;" id="role" name="userRoles">
-                                             <option value="">-- select role --</option>
-                                            @forelse($role as $r)
-                                                <option value="{{$r['role_id']}}">{{$r['role']}}</option>
-                                            @empty
-                                                <option>No data found</option>
-                                            @endforelse
+                                        <div class="col-sm-9">
+                                            <select class="form-control select2" style="width: 100%;" id="role" name="userRoles">
+                                                <option value="">-- select role --</option>
+                                                @forelse($role as $r)
+                                                    <option value="{{$r['role_id']}}">{{$r['role']}}</option>
+                                                @empty
+                                                    <option>No data found</option>
+                                                @endforelse
 
-                                        </select>
-                                    </div>
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mt-3">

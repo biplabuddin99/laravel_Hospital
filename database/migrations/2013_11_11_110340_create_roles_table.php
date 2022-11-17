@@ -51,7 +51,7 @@ return new class extends Migration
             ],
             [
                 'role'=>'Accountant',
-                'identify'=>'labtech',
+                'identify'=>'accountant',
                 'created_at'=>Carbon::now(),
             ],
         ]);

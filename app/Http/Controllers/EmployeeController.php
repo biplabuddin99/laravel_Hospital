@@ -43,9 +43,9 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         try{
-             dd($request);
+            //  dd($request);
         $employee=new Employee;
-        $employee->role_id=$request->role;
+        $employee->role_id=$request->userRoles;
         $employee->name=$request->FullName;
         $employee->address=$request->FullAddress;
         $employee->phone=$request->contact;
@@ -71,9 +71,9 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($role_id)
     {
-        $role_id=$id;
+        // $role_id=$id;
         $employee=Employee::findOrFail($role_id);
         return view('employee.show',compact('employee'));
     }
