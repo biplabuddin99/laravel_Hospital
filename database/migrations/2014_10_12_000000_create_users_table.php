@@ -27,21 +27,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        DB::table('users')->insert([
-            [
-                'name'=>'MASUM',
-                'contact_no'=>'016',
-                'role_id'=>'1',
-                'password'=>'eyJpdiI6Ik5VRk1idis0VzlCVVNYOWhBcFVnNkE9PSIsInZhbHVlIjoiZkFBRldXcEVOV1FNbUhiQmhuVDNHUT09IiwibWFjIjoiODk2NjY3MTY5M2U0OTEwOWI0YmQ3M2Y2ZDY5MTNkYTMxZDkxMDg5YWU4ZWFhMzhmODZjYTI5MDE4ODhkY2Y2MSIsInRhZyI6IiJ9',
-            ],
-            [
-                'name'=>'BIPLAB',
-                'contact_no'=>'015',
-                'role_id'=>'1',
-                'password'=>'eyJpdiI6Ik5VRk1idis0VzlCVVNYOWhBcFVnNkE9PSIsInZhbHVlIjoiZkFBRldXcEVOV1FNbUhiQmhuVDNHUT09IiwibWFjIjoiODk2NjY3MTY5M2U0OTEwOWI0YmQ3M2Y2ZDY5MTNkYTMxZDkxMDg5YWU4ZWFhMzhmODZjYTI5MDE4ODhkY2Y2MSIsInRhZyI6IiJ9',
-            ],
-        ]);
     }
 
     /**
