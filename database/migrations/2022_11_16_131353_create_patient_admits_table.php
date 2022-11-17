@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('patient_admits', function (Blueprint $table) {
             $table->increments('admit_id');
+         
             $table->unsignedBigInteger('patient_id')->nullable();
-            $table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+         
             $table->string('father_name');
             $table->string('mother_name');
             $table->string('husband_name');
@@ -24,8 +26,8 @@ return new class extends Migration
             $table->string('doctor_ref');
             $table->text('problem');
             $table->dateTime('admit_date');
-            $table->unsignedBigInteger('room_id')->nullable();
-            $table->foreign('room_id')->references('id')->on('room')->onDelete('cascade');
+            // $table->unsignedBigInteger('room_id')->nullable();
+            // $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->string('guardian');
             $table->string('relation');
             $table->text('emg_condition');

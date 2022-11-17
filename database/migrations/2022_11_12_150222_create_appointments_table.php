@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('patient_id')->nullable();
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->unsignedBigInteger('employee_id')->nullable();
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->string('serial');
+        
+           $table->unsignedBigInteger('employee_id')->nullable();
+           $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+          
+           $table->unsignedBigInteger('patient_id')->nullable();
+           $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+          
+           $table->string('serial');
             $table->string('problem');
             $table->string('phone');
             $table->date('appoint_date');

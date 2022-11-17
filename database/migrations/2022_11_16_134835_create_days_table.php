@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('days', function (Blueprint $table) {
-            $table->increments('day_id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });

@@ -25,9 +25,7 @@
                                 </div>
                             </div>
 
-
                             <div class="panel-body">
-
 
                                 <form class="form-horizontal" action="{{route('employee.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -35,7 +33,7 @@
                                     <div class="form-group mt-5">
                                         <label class="control-label col-sm-3" for="role">User Role <span style="color:red">* </span>:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control select2" style="width: 100%;" id="role" name="role">
+                                        <select class="form-control select2" style="width: 100%;" id="role" name="userRoles">
                                              <option value="">-- select role --</option>
                                             @forelse($role as $r)
                                                 <option value="{{$r['role_id']}}">{{$r['role']}}</option>
@@ -71,7 +69,7 @@
                                     <div class="form-group mt-3">
                                         <label class="control-label col-sm-3" for="emaillAdress">Emaill <span style="color:red">* </span>:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="emaillAdress" name="emaillAdress" value="{{('emaillAdress')}}">
+                                        <input type="text" class="form-control" id="emaillAdress" name="emaillAdress">
                                     </div>
                                     </div>
 

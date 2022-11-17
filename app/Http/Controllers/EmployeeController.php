@@ -43,7 +43,7 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         try{
-            // dd($request);
+             dd($request);
         $employee=new Employee;
         $employee->role_id=$request->role;
         $employee->name=$request->FullName;
