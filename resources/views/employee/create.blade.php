@@ -36,7 +36,7 @@
                                             <select class="form-control select2" style="width: 100%;" id="role" name="userRoles">
                                                 <option value="">-- select role --</option>
                                                 @forelse($role as $r)
-                                                    <option value="{{$r['role_id']}}">{{$r['role']}}</option>
+                                                    <option value="{{$r['id']}}">{{$r['role']}}</option>
                                                 @empty
                                                     <option>No data found</option>
                                                 @endforelse
@@ -109,7 +109,7 @@
                                         <select class="form-control select2" style="width: 100%;" id="blood" name="blood">
                                             <option value="" selected style="display:none" >--  select blood group  --</option>
                                             @forelse($blood as $b)
-                                                <option value="{{$b['blood_id']}}">{{$b['blood_name']}}</option>
+                                                <option value="{{$b['id']}}">{{$b['blood_name']}}</option>
                                             @empty
                                                 <option>No data found</option>
                                             @endforelse
