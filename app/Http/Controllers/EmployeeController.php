@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Blood;
 use App\Models\Role;
+use Exception;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -41,7 +42,27 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            // dd($request);
+        $employee=new Employee;
+        $employee->role_id=$request->role;
+        $employee->name=$request->FullName;
+        $employee->address=$request->FullAddress;
+        $employee->phone=$request->contact;
+        $employee->email=$request->emaillAdress;
+        $employee->birth_date=$request->birthdate;
+        $employee->gender=$request->gender;
+        $employee->blood_id=$request->blood;
+        $employee->status=$request->status;
+        if($request->hasFile('image')){
+            $imageName = rand(111,999).time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads/employee'), $imageName);
+            $employee->picture=$imageName;
+        }
+        $employee->save();
+            }catch (Exception $e){
+            return back()->withInput();
+        }
     }
 
     /**
