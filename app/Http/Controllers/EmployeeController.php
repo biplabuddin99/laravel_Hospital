@@ -60,6 +60,7 @@ class EmployeeController extends Controller
             $employee->picture=$imageName;
         }
         $employee->save();
+        return redirect(route('employee.index'));
             }catch (Exception $e){
             return back()->withInput();
         }
@@ -71,11 +72,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($role_id)
+    public function show($id)
     {
-        // $role_id=$id;
-        $employee=Employee::findOrFail($role_id);
-        return view('employee.show',compact('employee'));
+        $role_id=$id;
+        $employee=Employee::all();
+        // $employee=Employee::where($role_id)->get();
+        return view('employee.show',compact('employee','role_id'));
     }
 
     /**
@@ -86,7 +88,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        $blood=Blood::all();
+        return view('employee.edit',compact('employee','blood'));
     }
 
     /**
@@ -98,7 +101,27 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        try{
+            //  dd($request);
+        $emp=$employee;
+        $employee->name=$request->FullName;
+        $employee->address=$request->FullAddress;
+        $employee->phone=$request->contact;
+        $employee->email=$request->emaillAdress;
+        $employee->birth_date=$request->birthdate;
+        $employee->gender=$request->gender;
+        $employee->blood_id=$request->blood;
+        $employee->status=$request->status;
+        if($request->hasFile('image')){
+            $imageName = rand(111,999).time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads/employee'), $imageName);
+            $employee->picture=$imageName;
+        }
+        $employee->save();
+        return redirect(route('employee.index'));
+            }catch (Exception $e){
+            return back()->withInput();
+        }
     }
 
     /**
@@ -109,6 +132,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return redirect()->back();
     }
 }
