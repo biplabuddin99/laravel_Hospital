@@ -4,159 +4,249 @@
 
   <main id="main" class="main">
 
-    <section class="section">
-      <div class="row">
         <div class="col-lg-12">
+          <h5 class="card-title">Admit Patient</h5>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Admit Patient</h5>
+          <!-- Horizontal Form -->
+          <form action="{{ route('patientAdmit.store') }}" method="POST">
+            @csrf
+              <div class="mb-3 d-grid justify-content-end">
+                <button type="button" class="btn btn-primary margin-right"><i class="fa fa-search-plus" style="padding-right:5px;"></i>Search Patient ID</button>
+              </div>
+        </div>
 
-              <!-- Horizontal Form -->
-              <form action="{{ route('patientAdmit.store') }}" method="POST">
-                @csrf
-                <div class="row mb-3">
-                  <label for="name" class="col-sm-2 col-form-label">Patient Name:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName') }}">
-                    @if($errors->has('patientName'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('patientName') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="fname" class="col-sm-2 col-form-label">Father's Name:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="fname" name="fname" value="{{ old('fname') }}">
-                    @if($errors->has('fname'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('fname') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="mname" class="col-sm-2 col-form-label">Mother's Name:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="mname" name="mname" value="{{ old('mname') }}">
-                    @if($errors->has('mname'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('mname') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="hname" class="col-sm-2 col-form-label">Husband's Name:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="hname" name="hname" value="{{ old('hname') }}">
-                    @if($errors->has('hname'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('hname') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="marital" class="col-sm-2 col-form-label">Marital Status:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="marital" name="marital" value="{{ old('marital') }}">
-                    @if($errors->has('marital'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('marital') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="doctor_ref" class="col-sm-2 col-form-label">Reference Doctor:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}">
-                    @if($errors->has('doctor_ref'))
-                        <span class="text-danger"> 
-                          {{ $errors->first('doctor_ref') }}
-                        </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="patientProblem" value="" cols="30" class="form-control" id="problem">{{ old('patientProblem') }}</textarea>
-                    @if($errors->has('patientProblem'))
-                  <span class="text-danger">
-                    {{ $errors->first('patientProblem') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="admit_date" class="col-sm-2 col-form-label">Admit Date:</label>
-                  <div class="col-sm-10">
-                    <textarea type="date" name="admit_date" value="" cols="30" class="form-control" id="admit_date">{{ old('admit_date') }}</textarea>
-                    @if($errors->has('admit_date'))
-                  <span class="text-danger">
-                    {{ $errors->first('admit_date') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="guardian" class="col-sm-2 col-form-label">Guardian:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="guardian" value="" cols="30" class="form-control" id="guardian">{{ old('guardian') }}</textarea>
-                    @if($errors->has('guardian'))
-                  <span class="text-danger">
-                    {{ $errors->first('guardian') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="relation" class="col-sm-2 col-form-label">Relation:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="relation" value="" cols="30" class="form-control" id="relation">{{ old('relation') }}</textarea>
-                    @if($errors->has('relation'))
-                  <span class="text-danger">
-                    {{ $errors->first('relation') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="emg_condition" class="col-sm-2 col-form-label">Emergency:</label>
-                  <div class="col-sm-10">
-                    <textarea type="text" name="emg_condition" value="" cols="30" class="form-control" id="emg_condition">{{ old('emg_condition') }}</textarea>
-                    @if($errors->has('emg_condition'))
-                  <span class="text-danger">
-                    {{ $errors->first('emg_condition') }}
-                  </span>
-                  @endif
-                  </div>
-                </div>
+                <div class="card">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="first_name">First Name <span style="color:red" >* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="fname" name="first_name" value="{{ Request::old('first_name') }}" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="last_name">Last Name <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="lname" name="last_name" value="{{ Request::old('last_name') }}" required>
+                          </div>	
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="email">Email<span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="email" class="form-control" id="email" name="email" value="{{ Request::old('email') }}" >
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="phone">Phone <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="present_add">Present Address <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="permanent_add">Permanent Address <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="picture">Picture :</label>
+                          <div class="col-sm-8">
+                            <input type="file" class="form-control-file" id="picture" name="picture">
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="birthdate">Date of Birth <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="date" class="form-control" id="birthdate" name="birth_date">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="sex">Sex <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="radio" name="sex" value="1" checked id="m"> Male
+                            &nbsp;
+                            <input type="radio" name="sex" value="2" id="f"> Female
+                            &nbsp;
+                            <input type="radio" name="sex" value="3" id="c"> Common
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <select class="form-control" id="blood" name="blood" required>
+                              <option>-- select --</option>
+                            {{-- @foreach($bl as $b) 
+                              <option value="{{$b->blood_id}}">{{$b->blood_name}}</option>
+                            @endforeach --}}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                        </div>
+                      </div>
+                      
+                      <!--########### Patient admit inforMation ############### -->
+                  
+                      <div class="panel-group" style="">
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><h4>Patient Admit Information</h4></div>
 
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
-                  <div class="col-sm-10">
-                    <input type="radio" value="1" name="status" checked> Active
-                    &nbsp;
-                    <input type="radio" value="0" name="status"> Inactive
-                  </div>
-                </fieldset>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <span class="btn or">or</span>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
-              </form><!-- End Horizontal Form -->
 
-            </div>
-          </div>
+                    <div class="card">
+                      <div class="card-body">
+                              <div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="admit_date">Date of Admit <span style="color:red">* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="date" class="form-control" id="admit_date" name="admit_date">
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="marital_status">Marital Status <span style="color:red">* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="radio" name="marital_status" value="1"> Married
+                                    &nbsp;
+                                    <input type="radio" name="marital_status" value="2"> Unmarried
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="father_name">Father Name <span style="color:red" >* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="father_name" name="father_name"  required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="mother_name">Mother Name <span style="color:red">* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="mother_name" name="mother_name"  required>
+                                  </div>	
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="hous_name">Husband Name :</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="hous_name" name="hous_name">
+                                  </div>	
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" required>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="gurdian_name">Gurdian Name :</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="gurdian_name" name="gurdian_name" >
+                                  </div>	
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="relation">Relation <span style="color:red" > </span>:</label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="relation" name="relation" >
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                    <label class="control-label col-sm-2" for="problem">Patient Problem <span style="color:red">* </span>:</label>
+                                  <div class="col-sm-10">
+                                    <textarea name="problem" id="problem" cols="30" class="form-control" rows="2" required></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <select class="form-control" id="room_cat_id" name="room_cat_id" required>
+                                      <option>-- select --</option>
+                                    {{-- @foreach($room_cat as $rc)
+                                      <option value="{{$rc->room_cat_id}}">{{$rc->room_cat_name}}</option>
+                                    @endforeach --}}
+                                    
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <label class="control-label col-sm-4" for="room_no">Room No <span style="color:red"></span>:</label>
+                                  <div class="col-sm-8">
+                                    <select class="form-control" id="room_no" name="room_no" required>
+                                      <option>-- select --</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                <div class="">
+                                  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" style="margin-left:188px;">Patient in Emergency</button>	
+                                
+                                <div id="demo" class="collapse">
+                                  <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-2">
+                                    <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" ></textarea>
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
+                              
 
-    </section>
+
+                            <fieldset class="row mb-3">
+                              <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
+                              <div class="col-sm-10">
+                                <input type="radio" value="1" name="status" checked> Active
+                                &nbsp;
+                                <input type="radio" value="0" name="status"> Inactive
+                              </div>
+                            </fieldset>
+                            <div class="text-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <span class="btn or">or</span>
+                              <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                          </form><!-- End Horizontal Form -->
+
+                      </div>
+
+
 
   </main><!-- End #main -->
+ 
     
   @endsection
+
+
+  
