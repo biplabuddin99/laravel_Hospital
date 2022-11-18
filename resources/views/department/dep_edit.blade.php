@@ -29,9 +29,9 @@
                 <fieldset class="row mb-3">
                   <legend class="col-form-label col-sm-2 pt-0">Status:</legend>
                   <div class="col-sm-10">
-                    <input type="radio" value="1" name="status" checked> Active
+                    <input type="radio" value="1" name="status" {{$department->status == '1' ? 'checked' : ''}}> Active
                     &nbsp;
-                    <input type="radio" value="0" name="status"> Inactive
+                    <input type="radio" value="0" name="status" {{$department->status == '0' ? 'checked' : ''}}> Inactive
                   </div>
                 </fieldset>
                 <div class="text-center">
