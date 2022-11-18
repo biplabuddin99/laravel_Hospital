@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blood;
+use App\Models\Department;
+use App\Models\Designation;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors=Doctor::all();
+        $doctors=Doctor::paginate(10);
         return view('doctor.index',compact('doctors'));
     }
 
@@ -25,7 +28,10 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $blood=Blood::get(['id','blood_name']);
+        $depart=Department::get(['id','name','status']);
+        $deg=Designation::get(['id','desig_name','status']);
+        return view('doctor.create',compact(['blood','depart','deg']));
     }
 
     /**

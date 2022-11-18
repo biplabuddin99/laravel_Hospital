@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PatientAdmitController;
@@ -37,6 +38,7 @@ Route::post('register', [UserController::class, 'userRegistrationStore'])->name(
 // Doctor route
 Route::resource('department',DepartmentController::class);
 Route::resource('designation',DesignationController::class);
+Route::resource('doctor',DoctorController::class);
 
 //employee
 Route::resource('employee',EmployeeController::class);

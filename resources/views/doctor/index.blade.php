@@ -9,13 +9,13 @@
       <h1>General Tables</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
           <li class="breadcrumb-item active">General</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-     <div class="panel-heading"><a href="{{route('designation.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Designation </a></div>
+     <div class="panel-heading"><a href="{{route('doctor.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Doctor </a></div>
 
     <section class="section">
       <div class="row">
@@ -24,7 +24,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">List of Designation</h5>
+              <h5 class="card-title">List of Doctor</h5>
 
               <!-- Table with stripped rows -->
               <table class="table table-striped">
@@ -40,19 +40,25 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>`id`, `employee_id`, `department_id`, `designation_id`, `biography`, `specialist`, `education`, `status`
+                <tbody>
                     @forelse ($doctors as $doct)
                     <tr>
                         <th scope="row">{{ ++$loop->index }}</th>
-                        <td>{{ $doct->employee_id }}</td>
-                        <td>{{ $doct->department_id }}</td>
-                        <td>{{ $doct->department_id }}</td>
-                        <td>@if($doct->status==1) Active @else Inactive @endif</td>
-                        <td class="d-flex">
+                        <td>
+                            @if($employee['picture'] == '')
+                                <i class="fa fa-user-md" style="font-size:50px;"></i>
+                            @else
+                            <img width="50px" src="{{ asset('uploads/employee/'.$employee->picture) }}" alt="no image">
+                            @endif
+                        </td>
+                        <td>{{ $doct->employee->name }}</td>
+                        <td>{{ $doct->department->name }}</td>
+                        <td>{{ $doct->designation->desig_name }}</td>
+                        <td>{{ $doct->employee->email }}</td>
+                        <td>{{ $doct->employee->phone }}</td>
+                        <td>@if($doct->status==1) Active @else Inactive @endif</td> --}}
+                         <td class="d-flex">
                             <a href="{{ route('doctignation.edit',$doct->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                            {{-- <a href="javascript:void()" onclick="$('#form{{$doct->id}}').submit()">
-                                <i class="fa fa-trash"></i>
-                            </a>  --}}
                              <form id="form{{$doct->id}}" action="{{ route('doctignation.docttroy',$doct->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
@@ -61,7 +67,7 @@
                         </td>
                     </tr>
                     @empty
-                    <td colspan="5" class="text-center">There is no docteor</td>
+                    <td colspan="8" class="text-center">There is no docteor</td>
                     @endforelse
 
                 </tbody>

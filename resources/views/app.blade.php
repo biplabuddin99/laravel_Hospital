@@ -14,3 +14,4 @@
 
   <!-- ======= Footer ======= -->
 @include('layouts.footer')
+

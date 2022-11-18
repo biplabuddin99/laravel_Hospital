@@ -13,15 +13,15 @@ class Doctor extends Model
 {
     use HasFactory,softDeletes;
 
-    public function employees()
+    public function employee()
 	{
 		return $this->belongsTo(Employee::class,'employee_id','id');
 	}
-    public function designations()
+    public function designation()
 	{
 		return $this->belongsTo(Designation::class,'designation_id','id');
 	}
-    public function departments()
+    public function department()
 	{
 		return $this->belongsTo(Department::class,'department_id','id');
 	}
