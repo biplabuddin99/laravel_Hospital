@@ -29,7 +29,6 @@
 												<thead>
 													<tr>
 														<th scope="col">#SL</th>
-														<th scope="col">Patient ID</th>
 														<th scope="col">Patient Name</th>
 														<th scope="col">Father Name</th>
 														<th scope="col">Reference Doctor</th>
@@ -46,7 +45,6 @@
                             @forelse($patient_admit as $pa)
                             <tr>
                               <th>{{ ++$loop->index }}</th>
-                              <td>{{ $p->patient_id }}</td>
                               <td>{{ $p->name }}</td>
                               <td>{{ $p->fatherName }}</td>
                               <td>{{ $p->doctor_ref }}</td>
