@@ -45,26 +45,27 @@
                     <tr>
                         <th scope="row">{{ ++$loop->index }}</th>
                         <td>
-                            @if($doct->$employee['picture'] == '')
+
+                            @if($doct->employee->picture == '')
                                 <i class="fa fa-user-md" style="font-size:50px;"></i>
                             @else
-                            <img width="50px" src="{{ asset('uploads/employee/'.$doct->$employee->picture) }}" alt="no image">
+                                <img src="{{ asset('uploads/employee/'.$doct->employee->picture)}}" height="50" width="80" alt="no image" />
                             @endif
+
                         </td>
                         <td>{{ $doct->employee->name }}</td>
                         <td>{{ $doct->department->name }}</td>
                         <td>{{ $doct->designation->desig_name }}</td>
                         <td>{{ $doct->employee->email }}</td>
                         <td>{{ $doct->employee->phone }}</td>
-                        <td>@if($doct->status==1) Active @else Inactive @endif</td>
-                         {{-- <td class="d-flex">
-                            <a href="{{ route('doctignation.edit',$doct->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                             <form id="form{{$doct->id}}" action="{{ route('doctignation.docttroy',$doct->id) }}" method="POST">
+                         <td class="d-flex">
+                            <a href="{{ route('doctor.edit',$doct->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                             <form id="form{{$doct->id}}" action="{{ route('doctor.destroy',$doct->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="btn p-0" type="submit" onclick="return confirm('are You confirm?')"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
                             </form>
-                        </td> --}}
+                        </td>
                     </tr>
                     @empty
                     <td colspan="8" class="text-center">There is no docteor</td>

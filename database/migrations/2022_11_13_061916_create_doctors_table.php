@@ -24,6 +24,7 @@ return new class extends Migration
 			$table->text('biography');
 			$table->string('specialist');
 			$table->text('education');
+			$table->double('fees');
 			$table->integer('status')->default(1);
 			$table->integer('created_by')->nullable();
 			$table->integer('updated_by')->nullable();

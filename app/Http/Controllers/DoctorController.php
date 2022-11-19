@@ -72,6 +72,7 @@ class DoctorController extends Controller
             $doct->biography=$request->biography;
             $doct->specialist=$request->specialist;
             $doct->education=$request->edu;
+            $doct->fees=$request->fees;
             $doct->status=$request->status;
             $doct->save();
             return redirect('doctor');
@@ -101,7 +102,10 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        //
+        $blood=Blood::get(['id','blood_name']);
+        $depart=Department::get(['id','name','status']);
+        $deg=Designation::get(['id','desig_name','status']);
+        return view('doctor.edit',compact(['doctor','blood','depart','deg']));
     }
 
     /**
@@ -113,7 +117,41 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        //
+        try{
+            // dd($request);
+            $employ=new Employee;
+            if($request->hasFile('image')){
+                $imageName = rand(111,999).time().'.'.$request->image->extension();
+                $request->image->move(public_path('uploads/employee'), $imageName);
+                $employ->picture=$imageName;
+            }
+            $employ->role_id=2;
+            $employ->name=$request->fullName;
+            $employ->email=$request->email;
+            $employ->phone=$request->contact;
+            $employ->gender=$request->gender;
+            $employ->birth_date=$request->birthdate;
+            $employ->blood_id=$request->blood;
+            $employ->address=$request->Address;
+            $employ->save();
+
+            $insertedId = $employ->id;
+
+            $doct=new Doctor;
+            $doct->employee_id=$insertedId;
+            $doct->department_id=$request->department;
+            $doct->designation_id=$request->designation;
+            $doct->biography=$request->biography;
+            $doct->specialist=$request->specialist;
+            $doct->education=$request->edu;
+            $doct->fees=$request->fees;
+            $doct->status=$request->status;
+            $doct->save();
+            return redirect('doctor');
+        }catch (Exception $e){
+            dd($e);
+            return back()->withInput();
+        }
     }
 
     /**
@@ -124,6 +162,7 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        //
+        $doctor->delete();
+        return redirect()->back();
     }
 }
