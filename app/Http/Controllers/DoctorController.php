@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blood;
+use App\Models\Doctor;
+use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
-use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Exception;
 
 class DoctorController extends Controller
 {
@@ -42,7 +44,39 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            // dd($request);
+            $employ=new Employee;
+            // if($request->hasFile('image')){
+            //     $imageName = rand(111,999).time().'.'.$request->image->extension();
+            //     $request->image->move(public_path('uploads/employee'), $imageName);
+            //     $employ->picture=$imageName;
+            // }
+            $employ->role_id=2;
+            $employ->name=$request->fullName;
+            $employ->email=$request->email;
+            $employ->phone=$request->contact;
+            $employ->gender=$request->gender;
+            $employ->birth_date=$request->birthdate;
+            $employ->address=$request->Address;
+            $employ->save();
+
+            $insertedId = $employ->id;
+
+            $doct=new Doctor;
+            $doct->employee_id=$insertedId;
+            $doct->department_id=$request->department;
+            $doct->designation_id=$request->designation;
+            $doct->biography=$request->biography;
+            $doct->specialist=$request->specialist;
+            $doct->education=$request->edu;
+            $doct->status=$request->status;
+            $doct->save();
+            return redirect('doctor');
+        }catch (Exception $e){
+            return back()->withInput();
+        }
+
     }
 
     /**
