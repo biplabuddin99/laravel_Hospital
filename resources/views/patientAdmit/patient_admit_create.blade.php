@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="name">Patient Name <span style="color:red" >* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="name" value="{{ Request::old('name') }}" required>
+                            <input type="text" class="form-control" id="name" name="patientName" value="{{ Request::old('patientName') }}" required>
                           </div>
                             <label class="control-label col-sm-4" for="email">Email<span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
@@ -77,11 +77,11 @@
                           </div><br>
                           <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="radio" name="sex" value="1" checked id="m"> Male
+                            <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
                             &nbsp;
-                            <input type="radio" name="sex" value="2" id="f"> Female
+                            <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
                             &nbsp;
-                            <input type="radio" name="sex" value="3" id="c"> Common
+                            <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
                           </div>
                         </div>
                     </div>    
@@ -135,9 +135,9 @@
                                   <div class="col-sm-8">
                                     <input type="text" class="form-control" id="mother_name" name="mother_name"  required>
                                   </div>	
-                                    <label class="control-label col-sm-4" for="hous_name">Husband Name :</label>
+                                    <label class="control-label col-sm-4" for="husband_name">Husband Name :</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="hous_name" name="hous_name">
+                                    <input type="text" class="form-control" id="husband_name" name="husband_name">
                                   </div>	
                                     <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">

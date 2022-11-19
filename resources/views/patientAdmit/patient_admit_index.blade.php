@@ -37,6 +37,7 @@
 														<th scope="col">Problem</th>
 														<th scope="col">Reference</th>
 														<th scope="col">Room No</th>
+														<th scope="col">Status</th>
 														<th scope="col">Action</th>
 													</tr>
 												</thead>
@@ -45,25 +46,25 @@
                             @forelse($patient_admit as $pa)
                             <tr>
                               <th>{{ ++$loop->index }}</th>
-                              <td>{{ $p->name }}</td>
-                              <td>{{ $p->fatherName }}</td>
-                              <td>{{ $p->doctor_ref }}</td>
-                              <td>{{ $p->admit_date }}</td>
-                              <td>{{ $p->guardian }}</td>
-                              <td>{{ $p->problem }}</td>
-                              <td>{{ $p->reference }}</td>
-                              <td>{{ $p->room }}</td>
-                              <td>@if($p->status==1) Active @else Inactive @endif</td>
+                              <td>{{ $pa->name }}</td>
+                              <td>{{ $pa->father_name }}</td>
+                              <td>{{ $pa->doctor_ref }}</td>
+                              <td>{{ $pa->admit_date }}</td>
+                              <td>{{ $pa->guardian }}</td>
+                              <td>{{ $pa->problem }}</td>
+                              <td>{{ $pa->doctor_ref }}</td>
+                              <td>{{ $pa->room }}</td>
+                              <td>@if($pa->status==1) Active @else Inactive @endif</td>
                               <td class="d-flex">
-                                <a href="{{ route('patient.edit',$p->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('patientAdmit.edit',$pa->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 &nbsp;
-                                <form id="form{{$p->id}}" action="{{ route('patient.destroy',$p->id) }}" method="POST">
+                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->id) }}" method="POST">
                                   @csrf
                                   @method('delete')
                                   <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
                               </form>
                             </td>
-                            </tr>
+                          </tr>
                                 @empty
                             <tr>
                               <td scope="col" colspan="12" style="text-align:center">No data found</td>
