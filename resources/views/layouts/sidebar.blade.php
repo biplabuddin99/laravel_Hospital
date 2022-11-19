@@ -25,7 +25,7 @@
             </a>
           </li>
           <li>
-            <a href="components-badges.html">
+            <a href="{{ route('doctor.create') }}">
               <i class="bi bi-circle"></i><span>Add Doctor</span>
             </a>
           </li>

@@ -19,6 +19,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
+
         $doctors=Doctor::paginate(10);
         return view('doctor.index',compact('doctors'));
     }
@@ -47,17 +48,18 @@ class DoctorController extends Controller
         try{
             // dd($request);
             $employ=new Employee;
-            // if($request->hasFile('image')){
-            //     $imageName = rand(111,999).time().'.'.$request->image->extension();
-            //     $request->image->move(public_path('uploads/employee'), $imageName);
-            //     $employ->picture=$imageName;
-            // }
+            if($request->hasFile('image')){
+                $imageName = rand(111,999).time().'.'.$request->image->extension();
+                $request->image->move(public_path('uploads/employee'), $imageName);
+                $employ->picture=$imageName;
+            }
             $employ->role_id=2;
             $employ->name=$request->fullName;
             $employ->email=$request->email;
             $employ->phone=$request->contact;
             $employ->gender=$request->gender;
             $employ->birth_date=$request->birthdate;
+            $employ->blood_id=$request->blood;
             $employ->address=$request->Address;
             $employ->save();
 
@@ -74,6 +76,7 @@ class DoctorController extends Controller
             $doct->save();
             return redirect('doctor');
         }catch (Exception $e){
+            dd($e);
             return back()->withInput();
         }
 

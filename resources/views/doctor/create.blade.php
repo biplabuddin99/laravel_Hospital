@@ -9,6 +9,17 @@
                 <div class="box box-info">
                     <div class="panel panel-default">
 
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
                         <div class="panel-heading"><a href="{{route('doctor.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Doctor List </a></div>
 
                         <div class="panel-body">
@@ -85,12 +96,12 @@
                                     <textarea name="biography" id="biography" cols="30" class="form-control" rows="5">{{old('biography')}}</textarea>
                                 </div>
                                 </div>
-                                {{-- <div class="form-group mt-3">
+                                <div class="form-group mt-3">
                                     <label class="control-label col-sm-3" for="image">Picture :</label>
                                     <div class="col-sm-9">
                                         <input type="file" class="form-control-file" name="image" >
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 {{-- <div class="form-group">
                                     <label class="control-label col-sm-3" for="image">Image :</label>
