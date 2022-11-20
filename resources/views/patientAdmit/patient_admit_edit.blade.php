@@ -47,8 +47,9 @@
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('patientAdmit.store') }}" method="POST">
+    <form action="{{ route('patientAdmit.update',$pAdmit->admit_id) }}" method="POST">
       @csrf
+      @method('patch')
         <div class="card">
           <div class="card-body m-2">
 
@@ -57,15 +58,15 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="name">Patient Name <span style="color:red" >* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="patientName" value="{{ Request::old('patientName') }}" required>
+                            <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName',$pAdmit->name) }}" required>
                           </div>
                             <label class="control-label col-sm-4" for="email">Email<span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="email" class="form-control" id="email" name="email" value="{{ Request::old('email') }}" >
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email',,$pAdmit->name) }}" >
                           </div>
                             <label class="control-label col-sm-4" for="phone">Phone <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
                           </div><br>
                           <label class="control-label col-sm-4" for="picture">Picture :</label>
                           <div class="col-sm-8">
@@ -215,75 +216,3 @@
   @endsection
 
 
-  <script type="text/javascript" src="{{asset('public/js/jquery.min.js')}}"></script>
-  <script>
-    $(document).ready(function(){
-      $('#search_p').click(function(){
-        var patient_id = $('#patient_id').val();
-        $.ajax({
-          url:'{{ url('patient/search') }}',
-          type: 'GET',
-          data: {'id':patient_id},
-          success: function(data){
-            //console.log(data);
-            if(data){
-              $('#checkExist').val(data[0].id);
-              $('#name').val(data[0].name);
-              $('#email').val(data[0].email);
-              $('#phone').val(data[0].phone);
-              $('#present_add').val(data[0].present_address);
-              $('#permanent_address').val(data[0].permanent_address);
-              $('#picture').val(data[0].picture);
-              $('#birthdate').val(data[0].birth_date);
-              if(data[0].sex==1){
-                $('#m').attr('checked', true);
-              } else if(data[0].sex==2){
-                $('#f').attr('checked', true);
-              } else if(data[0].sex==2){
-                $('#c').attr('checked', true);
-              } else{
-              }
-              
-              var bloodGroup = data[0].blood_id;
-              $('#blood option').each(function(){
-                var a = $(this).val();
-                if(bloodGroup == a){
-                  $(this).attr('selected', true);
-                }
-              });
-            }
-          }
-        });
-      });
-      
-      $('#room_cat_id').on('change', function(){
-        var room_cat_id = $(this).val();
-        //console.log(room_cat_id)
-        $.ajax({
-          url:'{{ url('patient/room_list') }}',
-          type: 'GET',
-          data: {'id': room_cat_id},
-          
-          success: function(data){//console.log(data);
-            if(data){
-              $('#room_no').html('');
-              for(var a in data){
-                $('#room_no').append("<option value='"+data[a]['room_list_id']+"'>"+data[a]['room_no']+"</option>");
-              }
-            }
-            
-            
-          }
-        });
-      });
-      
-      
-      
-    });
-  
-  
-  
-  
-  
-  </script>
-  

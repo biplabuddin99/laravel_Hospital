@@ -13,7 +13,7 @@
                 </ol>
               </nav>
             </div><!-- End Page Title -->
-            <div class="panel-heading"><a href="{{route('patientAdmit.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Admit Patient </a></div>
+            <div class="panel-heading"><a href="{{ route('patientAdmit.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Admit Patient </a></div>
 
         <section class="section">
               <div class="row">
@@ -56,9 +56,9 @@
                               <td>{{ $pa->room }}</td>
                               <td>@if($pa->status==1) Active @else Inactive @endif</td>
                               <td class="d-flex">
-                                <a href="{{ route('patientAdmit.edit',$pa->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 &nbsp;
-                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->id) }}" method="POST">
+                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->admit_id) }}" method="POST">
                                   @csrf
                                   @method('delete')
                                   <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
