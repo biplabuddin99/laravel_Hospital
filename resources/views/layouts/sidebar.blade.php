@@ -30,7 +30,7 @@
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
+            <a href="{{ route('doctor.index') }}">
               <i class="bi bi-circle"></i><span>List Doctor</span>
             </a>
           </li>
