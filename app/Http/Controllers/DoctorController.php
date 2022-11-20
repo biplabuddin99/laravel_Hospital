@@ -75,7 +75,7 @@ class DoctorController extends Controller
             $doct->fees=$request->fees;
             $doct->status=$request->status;
             $doct->save();
-            return redirect('doctor');
+            return back();
         }catch (Exception $e){
             dd($e);
             return back()->withInput();
@@ -115,11 +115,11 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, Doctor $doctor,Employee $employee)
     {
         try{
             // dd($request);
-            $employ=new Employee;
+            $employ=$employee;
             if($request->hasFile('image')){
                 $imageName = rand(111,999).time().'.'.$request->image->extension();
                 $request->image->move(public_path('uploads/employee'), $imageName);
@@ -137,7 +137,7 @@ class DoctorController extends Controller
 
             $insertedId = $employ->id;
 
-            $doct=new Doctor;
+            $doct=$doctor;
             $doct->employee_id=$insertedId;
             $doct->department_id=$request->department;
             $doct->designation_id=$request->designation;
