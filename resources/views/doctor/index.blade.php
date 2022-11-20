@@ -59,6 +59,9 @@
                         <td>{{ $doct->employee->email }}</td>
                         <td>{{ $doct->employee->phone }}</td>
                          <td class="d-flex">
+                          <a class="text-success" style="padding-right:8px" href="{{route('doctor.show',$doct['id'])}}">
+                            <i class="ace-icon fa fa-eye bigger-130"></i>
+                            </a>
                             <a href="{{ route('doctor.edit',$doct->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                              <form id="form{{$doct->id}}" action="{{ route('doctor.destroy',$doct->id) }}" method="POST">
                                 @csrf
@@ -74,7 +77,7 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              {{ $doctors->links() }}
+              {{-- {{ $doctors->links() }} --}}
             </div>
           </div>
 
