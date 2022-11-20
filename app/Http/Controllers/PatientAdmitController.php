@@ -43,7 +43,12 @@ class PatientAdmitController extends Controller
             $pa->name=$request->patientName;
             $pa->email=$request->email;
             $pa->phone=$request->phone;
-            $pa->picture=$request->picture;
+
+            if($request->hasFile('picture')){
+                $imageName = rand(111,999).time().'.'.$request->picture->extension();
+                $request->picture->move(public_path('uploads/patientAdmit'), $imageName);
+                $pa->picture=$imageName;
+            }
             $pa->dob=$request->birth_date;
             $pa->gender=$request->patientGender;
             $pa->father_name=$request->father_name;
@@ -107,7 +112,11 @@ class PatientAdmitController extends Controller
             $pa->name=$request->patientName;
             $pa->email=$request->email;
             $pa->phone=$request->phone;
-            $pa->picture=$request->picture;
+            if($request->hasFile('picture')){
+                $imageName = rand(111,999).time().'.'.$request->picture->extension();
+                $request->picture->move(public_path('uploads/patientAdmit'), $imageName);
+                $pa->picture=$imageName;
+            }
             $pa->dob=$request->birth_date;
             $pa->gender=$request->patientGender;
             $pa->father_name=$request->father_name;

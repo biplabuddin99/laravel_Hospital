@@ -30,6 +30,7 @@
 													<tr>
 														<th scope="col">#SL</th>
 														<th scope="col">Patient Name</th>
+														<th scope="col">Picture</th>
 														<th scope="col">Father Name</th>
 														<th scope="col">Reference Doctor</th>
 														<th scope="col">Admit_date</th>
@@ -47,6 +48,13 @@
                             <tr>
                               <th>{{ ++$loop->index }}</th>
                               <td>{{ $pa->name }}</td>
+                              <td> 
+                                  @if($pa['picture'] == '')
+                                    <i class="fa fa-wheelchair" style="font-size:50px;"></i>
+                                  @else
+                                    <img width="50px" src="{{ asset('uploads/patientAdmit/'.$pa->picture) }}" alt="No image">
+                                  @endif 
+                              </td>
                               <td>{{ $pa->father_name }}</td>
                               <td>{{ $pa->doctor_ref }}</td>
                               <td>{{ $pa->admit_date }}</td>
