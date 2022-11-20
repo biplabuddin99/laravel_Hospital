@@ -12,6 +12,19 @@
             <div class="card-body">
               <h5 class="card-title">Add New Patient</h5>
 
+
+              <div class="panel-heading"><a href="{{route('patient.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Patient List </a></div>
+                  @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+              <br>
+
               <!-- Horizontal Form -->
               <form action="{{ route('patient.store') }}" method="POST">
                 @csrf

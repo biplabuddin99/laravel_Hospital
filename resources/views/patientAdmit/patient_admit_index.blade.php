@@ -17,73 +17,72 @@
 
         <section class="section">
               <div class="row">
-
                 <div class="col-lg-12">
-
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">Admited Patient</h5>
 
-                      <!-- Table with stripped rows -->
-                      <table class="table table-striped">
-												<thead>
-													<tr>
-														<th scope="col">#SL</th>
-														<th scope="col">Patient Name</th>
-														<th scope="col">Picture</th>
-														<th scope="col">Father Name</th>
-														<th scope="col">Reference Doctor</th>
-														<th scope="col">Admit_date</th>
-														<th scope="col">Guardian</th>
-														<th scope="col">Problem</th>
-														<th scope="col">Reference</th>
-														<th scope="col">Room No</th>
-														<th scope="col">Status</th>
-														<th scope="col">Action</th>
-													</tr>
-												</thead>
-
-												<tbody>
-                            @forelse($patient_admit as $pa)
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped">
+                          <thead>
                             <tr>
-                              <th>{{ ++$loop->index }}</th>
-                              <td>{{ $pa->name }}</td>
-                              <td> 
-                                  @if($pa['picture'] == '')
-                                    <i class="fa fa-wheelchair" style="font-size:50px;"></i>
-                                  @else
-                                    <img width="50px" src="{{ asset('uploads/patientAdmit/'.$pa->picture) }}" alt="No image">
-                                  @endif 
-                              </td>
-                              <td>{{ $pa->father_name }}</td>
-                              <td>{{ $pa->doctor_ref }}</td>
-                              <td>{{ $pa->admit_date }}</td>
-                              <td>{{ $pa->guardian }}</td>
-                              <td>{{ $pa->problem }}</td>
-                              <td>{{ $pa->doctor_ref }}</td>
-                              <td>{{ $pa->room }}</td>
-                              <td>@if($pa->status==1) Active @else Inactive @endif</td>
-                              <td class="d-flex">
-                                <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                &nbsp;
-                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->admit_id) }}" method="POST">
-                                  @csrf
-                                  @method('delete')
-                                  <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
-                              </form>
-                            </td>
-                          </tr>
-                                @empty
-                            <tr>
-                              <td scope="col" colspan="12" style="text-align:center">No data found</td>
+                              <th scope="col">#SL</th>
+                              <th scope="col">Patient Name</th>
+                              <th scope="col">Picture</th>
+                              <th scope="col">Father Name</th>
+                              <th scope="col">Reference Doctor</th>
+                              <th scope="col">Admit_date</th>
+                              <th scope="col">Guardian</th>
+                              <th scope="col">Problem</th>
+                              <th scope="col">Reference</th>
+                              <th scope="col">Room No</th>
+                              <th scope="col">Status</th>
+                              <th scope="col">Action</th>
                             </tr>
-                                @endforelse
-										    </tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-        </section>
+                          </thead>
 
-  @endsection
+                          <tbody>
+                              @forelse($patient_admit as $pa)
+                              <tr>
+                                <th>{{ ++$loop->index }}</th>
+                                <td>{{ $pa->name }}</td>
+                                <td> 
+                                    @if($pa['picture'] == '')
+                                      <i class="fa fa-wheelchair" style="font-size:50px;"></i>
+                                    @else
+                                      <img width="50px" src="{{ asset('uploads/patientAdmit/'.$pa->picture) }}" alt="No image">
+                                    @endif 
+                                </td>
+                                <td>{{ $pa->father_name }}</td>
+                                <td>{{ $pa->doctor_ref }}</td>
+                                <td>{{ $pa->admit_date }}</td>
+                                <td>{{ $pa->guardian }}</td>
+                                <td>{{ $pa->problem }}</td>
+                                <td>{{ $pa->doctor_ref }}</td>
+                                <td>{{ $pa->room }}</td>
+                                <td>@if($pa->status==1) Active @else Inactive @endif</td>
+                                <td class="d-flex">
+                                  <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                  &nbsp;
+                                  <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->admit_id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
+                                </form>
+                              </td>
+                            </tr>
+                                  @empty
+                              <tr>
+                                <td scope="col" colspan="12" style="text-align:center">No data found</td>
+                              </tr>
+                                  @endforelse
+                          </tbody>
+                        </table>
+								    </div>
+							   </div>
+						    </div>
+					    </div>
+        </section>
+  </main>
+
+@endsection

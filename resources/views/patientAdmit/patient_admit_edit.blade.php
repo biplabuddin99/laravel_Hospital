@@ -7,7 +7,18 @@
   
   <div class="col-lg-12">
     <h5 class="card-title">Admit Patient</h5>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
+
+        <div class="panel-heading"><a href="{{route('patientAdmit.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Admitted Patient List </a></div>
               <!-- ======= Patient ID Modal ======== -->
               <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
