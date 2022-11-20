@@ -47,8 +47,9 @@
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('patientAdmit.store') }}" method="POST">
+    <form action="{{ route('patientAdmit.update',$pAdmit->admit_id) }}" method="POST">
       @csrf
+      @method('patch')
         <div class="card">
           <div class="card-body m-2">
 
@@ -57,31 +58,35 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="name">Patient Name <span style="color:red" >* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="patientName" value="{{ Request::old('patientName') }}" required>
+                            <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName',$pAdmit->name) }}" required>
                           </div>
                             <label class="control-label col-sm-4" for="email">Email<span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="email" class="form-control" id="email" name="email" value="{{ Request::old('email') }}" >
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email',$pAdmit->email) }}" >
                           </div>
                             <label class="control-label col-sm-4" for="phone">Phone <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $pAdmit->phone) }}" required>
                           </div><br>
                           <label class="control-label col-sm-4" for="picture">Picture :</label>
+                          
+                          <div class="col-md-offset-3 col-md-9">
+                            <img src="{{ asset('uploads/patientAdmit/'.$pAdmit->picture) }}" alt="no image" width="150" height="200" style="margin-bottom:20px;" id="img"/>
+                          </div>
                           <div class="col-sm-8">
                             <input type="file" class="form-control-file" id="picture" name="picture">
                           </div><br>
                           <label class="control-label col-sm-4" for="birthdate">Date of Birth <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="date" class="form-control" id="birthdate" name="birth_date">
+                            <input type="date" class="form-control" id="birthdate" name="birth_date" value="{{ old('birth_date', $pAdmit->dob) }}">
                           </div><br>
                           <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
+                            <input type="radio" value="1" {{ $pAdmit->gender=='1' ? 'checked':'' }} name="patientGender"> Male
                             &nbsp;
-                            <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
+                            <input type="radio" value="2" {{ $pAdmit->gender=='2' ? 'checked':'' }} name="patientGender"> Female
                             &nbsp;
-                            <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
+                            <input type="radio" value="3" {{ $pAdmit->gender=='3' ? 'checked':'' }} name="patientGender"> Other <br>
                           </div>
                         </div>
                     </div>    
@@ -91,19 +96,23 @@
                         <div class="form-group">
                             <label class="control-label" for="present_add">Present Address <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
-                                <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
+                                <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required>{{ old('present_address', $pAdmit->present_add) }}</textarea>
                               </div>
                             <label class="control-label" for="permanent_add">Permanent Address <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
-                                <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required></textarea>
+                                <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required>{{ old('permanent_address', $pAdmit->permanent_add) }}</textarea>
                               </div>
                                 <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <select class="form-control" id="blood" name="blood" required>
-                                  <option>-- select --</option>
-                                    {{-- @foreach($bl as $b) 
-                                      <option value="{{$b->blood_id}}">{{$b->blood_name}}</option>
-                                    @endforeach --}}
+                                  <option value="A+" {{ $pAdmit->blood=="A+" ? "selected":""}}>A+</option>
+                                  <option value="A-" {{ $pAdmit->blood=="A-" ? "selected":""}}>A-</option>
+                                  <option value="B+" {{ $pAdmit->blood=="B+" ? "selected":""}}>B+</option>
+                                  <option value="B-" {{ o$pAdmit->blood=="B-" ? "selected":""}}>B-</option>
+                                  <option value="O+" {{ $pAdmit->blood=="O+" ? "selected":""}}>O+</option>
+                                  <option value="O-" {{ $pAdmit->blood=="O-" ? "selected":""}}>O-</option>
+                                  <option value="AB+" {{ $pAdmit->blood=="AB+" ? "selected":""}}>AB+</option>
+                                  <option value="AB-" {{ $pAdmit->blood=="AB-" ? "selected":""}}>AB-</option>
                                 </select>
                               </div>
                         </div>
@@ -125,27 +134,27 @@
                               <div class="form-group">
                                     <label class="control-label col-sm-4" for="admit_date">Date of Admit <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="date" class="form-control" id="admit_date" name="admit_date">
+                                    <input type="date" class="form-control" id="admit_date" name="admit_date" value="{{ old('admit_date', $pAdmit->admit_date) }}">
                                   </div>
                                     <label class="control-label col-sm-4" for="father_name">Father Name <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="father_name" name="father_name"  required>
+                                    <input type="text" class="form-control" id="father_name" name="father_name" value="{{ old('father_name', $pAdmit->father_name) }}"  required>
                                 </div>
                                     <label class="control-label col-sm-4" for="mother_name">Mother Name <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="mother_name" name="mother_name"  required>
+                                    <input type="text" class="form-control" id="mother_name" name="mother_name" value="{{ old('mother_name', $pAdmit->mother_name) }}"  required>
                                   </div>	
                                     <label class="control-label col-sm-4" for="husband_name">Husband Name :</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="husband_name" name="husband_name">
+                                    <input type="text" class="form-control" id="husband_name" name="husband_name" value="{{ old('husband_name', $pAdmit->husband_name) }}">
                                   </div>	
                                     <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" required>
+                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref', $pAdmit->doctor_ref) }}" required>
                                   </div>
-                                  <label class="control-label col-sm-4" for="gurdian_name">Gurdian Name :</label>
+                                  <label class="control-label col-sm-4" for="guardian_name">Guardian Name :</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="gurdian_name" name="gurdian_name" >
+                                  <input type="text" class="form-control" id="guardian_name" name="guardian_name" value="{{ old('guardian_name', $pAdmit->guardian) }}">
                                 </div>
                                 </div>
                               </div>
@@ -154,17 +163,17 @@
                           <div class="col-md-6 sm-6">
                                 <label class="control-label col-sm-4" for="marital_status">Marital Status <span style="color:red">* </span>:</label>
                                 <div class="col-sm-8">
-                                  <input type="radio" name="marital_status" value="1"> Married
+                                  <input type="radio" name="marital_status" value="1" {{ $pAdmit->marital_status=='1' ? 'checked':'' }}> Married
                                   &nbsp;
-                                  <input type="radio" name="marital_status" value="2"> Unmarried
+                                  <input type="radio" name="marital_status" value="2" {{ $pAdmit->marital_status=='2' ? 'checked':'' }}> Unmarried
                                 </div>
                                     <label class="control-label col-sm-4" for="relation">Relation <span style="color:red" > </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="relation" name="relation" >
+                                    <input type="text" class="form-control" id="relation" name="relation" value="{{ old('relation', $pAdmit->relation) }}">
                                   </div>
                                     <label class="control-label" for="problem">Patient Problem <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <textarea name="problem" id="problem" class="form-control"required></textarea>
+                                    <textarea name="problem" id="problem" class="form-control"required>{{ old('problem', $pAdmit->problem) }}</textarea>
                                   </div>
                                     <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
@@ -213,77 +222,28 @@
  
     
   @endsection
-
-
-  <script type="text/javascript" src="{{asset('public/js/jquery.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('public/assets/js/jquery.min.js')}}"></script>
   <script>
-    $(document).ready(function(){
-      $('#search_p').click(function(){
-        var patient_id = $('#patient_id').val();
-        $.ajax({
-          url:'{{ url('patient/search') }}',
-          type: 'GET',
-          data: {'id':patient_id},
-          success: function(data){
-            //console.log(data);
-            if(data){
-              $('#checkExist').val(data[0].id);
-              $('#name').val(data[0].name);
-              $('#email').val(data[0].email);
-              $('#phone').val(data[0].phone);
-              $('#present_add').val(data[0].present_address);
-              $('#permanent_address').val(data[0].permanent_address);
-              $('#picture').val(data[0].picture);
-              $('#birthdate').val(data[0].birth_date);
-              if(data[0].sex==1){
-                $('#m').attr('checked', true);
-              } else if(data[0].sex==2){
-                $('#f').attr('checked', true);
-              } else if(data[0].sex==2){
-                $('#c').attr('checked', true);
-              } else{
-              }
-              
-              var bloodGroup = data[0].blood_id;
-              $('#blood option').each(function(){
-                var a = $(this).val();
-                if(bloodGroup == a){
-                  $(this).attr('selected', true);
-                }
-              });
-            }
+  
+    /*==========change image before upload========*/
+     function showMyImage(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          var imageType = /picture.*/;
+          if (!file.type.match(imageType)) {
+            continue;
           }
-        });
-      });
-      
-      $('#room_cat_id').on('change', function(){
-        var room_cat_id = $(this).val();
-        //console.log(room_cat_id)
-        $.ajax({
-          url:'{{ url('patient/room_list') }}',
-          type: 'GET',
-          data: {'id': room_cat_id},
-          
-          success: function(data){//console.log(data);
-            if(data){
-              $('#room_no').html('');
-              for(var a in data){
-                $('#room_no').append("<option value='"+data[a]['room_list_id']+"'>"+data[a]['room_no']+"</option>");
-              }
-            }
-            
-            
-          }
-        });
-      });
-      
-      
-      
-    });
-  
-  
-  
-  
-  
-  </script>
-  
+          var img=document.getElementById("img");
+          img.file = file;
+          var reader = new FileReader();
+          reader.onload = (function(aImg) {
+            return function(e) {
+              aImg.src = e.target.result;
+            };
+          })(img);
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
+

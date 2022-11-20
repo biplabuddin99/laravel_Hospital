@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PatientAdmit;
 use Illuminate\Http\Request;
+use Exception; 
 
 class PatientAdmitController extends Controller
 {
@@ -42,7 +43,12 @@ class PatientAdmitController extends Controller
             $pa->name=$request->patientName;
             $pa->email=$request->email;
             $pa->phone=$request->phone;
-            $pa->picture=$request->picture;
+
+            if($request->hasFile('picture')){
+                $imageName = rand(111,999).time().'.'.$request->picture->extension();
+                $request->picture->move(public_path('uploads/patientAdmit'), $imageName);
+                $pa->picture=$imageName;
+            }
             $pa->dob=$request->birth_date;
             $pa->gender=$request->patientGender;
             $pa->father_name=$request->father_name;
@@ -75,7 +81,7 @@ class PatientAdmitController extends Controller
      * @param  \App\Models\PatientAdmit  $patientAdmit
      * @return \Illuminate\Http\Response
      */
-    public function show(PatientAdmit $patientAdmit)
+    public function show(PatientAdmit $patientadmit)
     {
         //
     }
@@ -86,9 +92,10 @@ class PatientAdmitController extends Controller
      * @param  \App\Models\PatientAdmit  $patientAdmit
      * @return \Illuminate\Http\Response
      */
-    public function edit(PatientAdmit $patientAdmit)
+    public function edit($id)
     {
-        return view('patientAdmit.patient_admit_edit', compact('patient_admit'));
+        $pAdmit=PatientAdmit::findOrFail($id);
+        return view('patientAdmit.patient_admit_edit', compact('pAdmit'));
     }
 
     /**
@@ -101,11 +108,15 @@ class PatientAdmitController extends Controller
     public function update(Request $request, PatientAdmit $patientAdmit)
     {
         try{
-            $pa=new PatientAdmit;
+            $pa=$patientAdmit;
             $pa->name=$request->patientName;
             $pa->email=$request->email;
             $pa->phone=$request->phone;
-            $pa->picture=$request->picture;
+            if($request->hasFile('picture')){
+                $imageName = rand(111,999).time().'.'.$request->picture->extension();
+                $request->picture->move(public_path('uploads/patientAdmit'), $imageName);
+                $pa->picture=$imageName;
+            }
             $pa->dob=$request->birth_date;
             $pa->gender=$request->patientGender;
             $pa->father_name=$request->father_name;

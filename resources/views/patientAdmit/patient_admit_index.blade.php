@@ -13,7 +13,7 @@
                 </ol>
               </nav>
             </div><!-- End Page Title -->
-            <div class="panel-heading"><a href="{{route('patientAdmit.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Admit Patient </a></div>
+            <div class="panel-heading"><a href="{{ route('patientAdmit.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Admit Patient </a></div>
 
         <section class="section">
               <div class="row">
@@ -30,6 +30,7 @@
 													<tr>
 														<th scope="col">#SL</th>
 														<th scope="col">Patient Name</th>
+														<th scope="col">Picture</th>
 														<th scope="col">Father Name</th>
 														<th scope="col">Reference Doctor</th>
 														<th scope="col">Admit_date</th>
@@ -47,6 +48,13 @@
                             <tr>
                               <th>{{ ++$loop->index }}</th>
                               <td>{{ $pa->name }}</td>
+                              <td> 
+                                  @if($pa['picture'] == '')
+                                    <i class="fa fa-wheelchair" style="font-size:50px;"></i>
+                                  @else
+                                    <img width="50px" src="{{ asset('uploads/patientAdmit/'.$pa->picture) }}" alt="No image">
+                                  @endif 
+                              </td>
                               <td>{{ $pa->father_name }}</td>
                               <td>{{ $pa->doctor_ref }}</td>
                               <td>{{ $pa->admit_date }}</td>
@@ -56,9 +64,9 @@
                               <td>{{ $pa->room }}</td>
                               <td>@if($pa->status==1) Active @else Inactive @endif</td>
                               <td class="d-flex">
-                                <a href="{{ route('patientAdmit.edit',$pa->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 &nbsp;
-                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->id) }}" method="POST">
+                                <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->admit_id) }}" method="POST">
                                   @csrf
                                   @method('delete')
                                   <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
