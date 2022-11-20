@@ -58,7 +58,7 @@ class PatientAdmitController extends Controller
             $pa->doctor_ref=$request->doctor_ref;
             $pa->problem=$request->problem;
             $pa->admit_date=$request->admit_date;
-            $pa->guardian=$request->gurdian_name;
+            $pa->guardian=$request->guardian_name;
             $pa->relation=$request->relation;
             $pa->emg_condition=$request->patient_emrg;
             $pa->blood=$request->blood;
@@ -126,7 +126,7 @@ class PatientAdmitController extends Controller
             $pa->doctor_ref=$request->doctor_ref;
             $pa->problem=$request->problem;
             $pa->admit_date=$request->admit_date;
-            $pa->guardian=$request->gurdian_name;
+            $pa->guardian=$request->guardian_name;
             $pa->relation=$request->relation;
             $pa->emg_condition=$request->patient_emrg;
             $pa->blood=$request->blood;

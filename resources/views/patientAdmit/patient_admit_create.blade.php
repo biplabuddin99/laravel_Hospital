@@ -47,7 +47,7 @@
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('patientAdmit.store') }}" method="POST">
+    <form action="{{ route('patientAdmit.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
         <div class="card">
           <div class="card-body m-2">

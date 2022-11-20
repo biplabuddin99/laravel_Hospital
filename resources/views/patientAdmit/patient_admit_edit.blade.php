@@ -47,7 +47,7 @@
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('patientAdmit.update',$pAdmit->admit_id) }}" method="POST">
+    <form action="{{ route('patientAdmit.update',$pAdmit->admit_id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('patch')
         <div class="card">
@@ -108,7 +108,7 @@
                                   <option value="A+" {{ $pAdmit->blood=="A+" ? "selected":""}}>A+</option>
                                   <option value="A-" {{ $pAdmit->blood=="A-" ? "selected":""}}>A-</option>
                                   <option value="B+" {{ $pAdmit->blood=="B+" ? "selected":""}}>B+</option>
-                                  <option value="B-" {{ o$pAdmit->blood=="B-" ? "selected":""}}>B-</option>
+                                  <option value="B-" {{ $pAdmit->blood=="B-" ? "selected":""}}>B-</option>
                                   <option value="O+" {{ $pAdmit->blood=="O+" ? "selected":""}}>O+</option>
                                   <option value="O-" {{ $pAdmit->blood=="O-" ? "selected":""}}>O-</option>
                                   <option value="AB+" {{ $pAdmit->blood=="AB+" ? "selected":""}}>AB+</option>

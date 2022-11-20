@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('present_add');
             $table->string('permanent_add');
             $table->string('blood');
-            $table->dateTime('admit_date');
+            $table->string('admit_date');
             $table->string('father_name');
             $table->string('mother_name');
             $table->string('husband_name');
