@@ -97,7 +97,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('death.index') }}">
               <i class="bi bi-circle"></i><span>Death Report</span>
             </a>
           </li>

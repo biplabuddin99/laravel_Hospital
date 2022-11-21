@@ -9,15 +9,15 @@
 		<div class="row">
 			<!-- left column -->
 				<div class="col-md-12">
-					<div class="title">Birth Report</div>
+					<div class="title">Death Report</div>
 					<div class="box box-info">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<div class="btn-group">
 							{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
-									<a href="{{route('birth.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Birth Report </a>
+									<a href="{{route('death.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Death Report </a>
 							{{-- @endif	 --}}
-									<a href="{{route('birth.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Child List</a>
+									<a href="{{route('death.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Death Patient List</a>
 									
 									<a href="#" class="btn btn-md btn-danger print_btn"><i class="fa fa-print"></i></a>
 									
@@ -26,27 +26,27 @@
 							 <div class="panel-body">
 								<fieldset>
 								<div style="text-align:center;margin-top:30px;">
-									<h1 style="font-weight:bold;color:#207fdd">Birth Report</h1>
+									<h1 style="font-weight:bold;color:#207fdd">Death Report</h1>
 									<center style="margin-top: 50px;margin-bottom:50px;">
 													<table>
                             <tr>
-                              <th style="float:right; padding-right: 40px;text-align:right"><h3>Child Name :</h3></th>
-															<td style="text-align:left;font-weight:bold"><h3> {{ $birth->name }}</h3></td>
+                              <th style="float:right; padding-right: 40px;text-align:right"><h3>Patient Name :</h3></th>
+															<td style="text-align:left;font-weight:bold"><h3> {{ $death->name }}</h3></td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Father's Name :</th>
-															<td style="text-align:left">{{ $birth->father_name }}</td>
+															<td style="text-align:left">{{ $death->father_name }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Mother's Name :</th>
-															<td style="text-align:left">{{ $birth->mother_name }}</td>
+															<td style="text-align:left">{{ $death->mother_name }}</td>
 														</tr>
 														<tr>
-															<th style="float:right; padding-right: 40px;text-align:right">Child Gender :</th>
+															<th style="float:right; padding-right: 40px;text-align:right">Gender :</th>
 															<td style="text-align:left">
-																@if($birth->gender==1)
+																@if($death->gender==1)
 																	{{"Male"}}
-																@elseif($birth->gender==2)
+																@elseif($death->gender==2)
 																	{{"Female"}}
 																@else
 																	{{"Common"}}
@@ -55,23 +55,23 @@
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Date of Birth :</th>
-															<td style="text-align:left">{{ $birth->dob }}</td>
+															<td style="text-align:left">{{ $death->dob }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Blood Group :</th>
-															<td style="text-align:left">{{ $birth->blood }}</td>
+															<td style="text-align:left">{{ $death->blood }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Reference Doctor :</th>
-															<td style="text-align:left">{{ $birth->doctor_ref }}</td>
+															<td style="text-align:left">{{ $death->doctor_ref }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Address :</th>
-															<td style="text-align:left">{{ $birth->address }}</td>
+															<td style="text-align:left">{{ $death->address }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Created Date :</th>
-															<td class=text-left>{{$birth->created_at}}</td>
+															<td class=text-left>{{$death->created_at}}</td>
 														</tr>
 													</table>
 

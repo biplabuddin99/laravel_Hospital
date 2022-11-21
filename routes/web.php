@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\BirthController;
+use App\Http\Controllers\DeathController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,6 @@ Route::resource('shift',ShiftController::class);
 
 //birth
 Route::resource('birth',BirthController::class);
+
+//death
+Route::resource('death',DeathController::class);
