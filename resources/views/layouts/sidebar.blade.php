@@ -74,18 +74,23 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Birth Certificate</span>
+            <a href="{{ route('birth.index') }}">
+              <i class="bi bi-circle"></i><span>Birth Report</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="bi bi-circle"></i><span>Death Certificate</span>
+              <i class="bi bi-circle"></i><span>Death Report</span>
             </a>
           </li>
           <li>
             <a href="#">
               <i class="bi bi-circle"></i><span>Operation Schedule</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Hospital Test Catagory</span>
             </a>
           </li>
           <li>
