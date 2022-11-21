@@ -53,4 +53,4 @@ Route::resource('patient',PatientController::class);
 Route::resource('patientAdmit',PatientAdmitController::class);
 
 //schedule
-Route::resource('shift',ShiftController::class);
+Route::resource('shift',ShiftController::class); 
