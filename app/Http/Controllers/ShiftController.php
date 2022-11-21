@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shift;
+use Exception;
 use Illuminate\Http\Request;
 
 class ShiftController extends Controller
@@ -14,7 +15,8 @@ class ShiftController extends Controller
      */
     public function index()
     {
-        //
+        $shif=Shift::paginate(10);
+        return view('shift.index',compact('shif'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('shift.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+        // dd($request);
+        $shift= new Shift;
+        $shift->name=$request->ShiftName;
+        $shift->start=$request->start_time;
+        $shift->end=$request->end_time;
+        $shift->status=1;
+        $shift->save();
+        return redirect(route('shift.index'));
+        }catch(Exception $e){
+            dd($e);
+            return back()->withInput();
+        }
     }
 
     /**
@@ -57,7 +71,7 @@ class ShiftController extends Controller
      */
     public function edit(Shift $shift)
     {
-        //
+        return view('shift.edit',compact('shift'));
     }
 
     /**
@@ -69,7 +83,19 @@ class ShiftController extends Controller
      */
     public function update(Request $request, Shift $shift)
     {
-        //
+        try{
+            // dd($request);
+            $s=$shift;
+            $s->name=$request->ShiftName;
+            $s->start=$request->start_time;
+            $s->end=$request->end_time;
+            $s->status=1;
+            $s->save();
+            return redirect(route('shift.index'));
+            }catch(Exception $e){
+                dd($e);
+                return back()->withInput();
+            }
     }
 
     /**
@@ -80,6 +106,7 @@ class ShiftController extends Controller
      */
     public function destroy(Shift $shift)
     {
-        //
+        // $shift->delete();
+        // return redirect()->back();
     }
 }
