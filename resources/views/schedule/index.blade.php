@@ -13,11 +13,11 @@
 					<div class="title">Manage Schedule</div>
 					<div class="box box-info">
 						<div class="panel panel-default">
-						{{-- @if(Auth::user()->employ_func->role->role_id == 17)
-							<div class="panel-heading">
+						{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
+							<div class="panel-heading mb-3">
 								<a href="{{route('schedule.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Schedule </a>
 							</div>
-						@endif --}}
+						{{-- @endif --}}
 							<div class="panel-body">
 								<!-- div.dataTables_borderWrap -->
 										<div>
@@ -29,61 +29,61 @@
 														<th class="hidden-480">Available Day</th>
 														<th class="hidden-480">Available Time</th>
 														<th class="hidden-480">Status</th>
-														@if(Auth::user()->employ_func->role->role_id == 17)
+														{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
 														<th>Action</th>
-														@endif
+														{{-- @endif --}}
 													</tr>
 												</thead>
 
-												<tbody>
-												
-												@forelse($data as $d)
-													<tr>
-														<td>{{$i++}}</td>
-														<td>
-															{{'Dr. '.$d['employ_basic']['first_name'] .' '. $d['employ_basic']['last_name']}}
-														</td>
-														<td>
-															{{$d['day_func']['day_name']}}
-														</td>
-														
-														<td>
-															{{$d['shift_func']['start']. '  to  ' .$d['shift_func']['end_time']}}
-														</td>
-														<td>
-															@if($d['status']==1)
-																{{"Active"}}
-															@else
-																{{"Inactive"}}
-															@endif
-															
-															
-														</td>
-														@if(Auth::user()->employ_func->role->role_id == 17)
+                                            <tbody>
 
-														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
-																<form action="{{route('schedule.destroy',$d['schedule_id'])}}" method="post">
-																	<input type="hidden" name="_method" value="delete" />
-																	<input type="hidden" name="_token" value="{{Session::token()}}" />
-																	
-																	<!--<a href="{{route('schedule.edit',$d['schedule_id'])}}" class="edit btn btn-sm btn-primary">
-																		<i class="fa fa-edit bigger-130"></i>
-																	</a>-->
-																	
-																	<button class="edit btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">
-																		<i class="ace-icon fa fa-trash-o bigger-130"></i>
-																	</button>
-																</form>
-															</div>
-														</td>
-														@endif
-													</tr>
-											@empty
-												<tr>
-													<td scope="col" colspan="6">No data found</td>
-												</tr>
-											@endforelse
+                                                    @forelse($sched as $sch)
+                                                        <tr>
+                                                            <td>{{ ++$loop->index}}</td>
+                                                            <td>
+                                                                {{'Dr. '. $sch->employee->name }}
+                                                            </td>
+                                                            <td>
+                                                                {{$sch['day']['name']}}
+                                                            </td>
+
+                                                            <td>
+                                                                {{$sch['shift']['start']. '  to  ' .$sch['shift']['end']}}
+                                                            </td>
+                                                            <td>
+                                                                @if($sch['status']==1)
+                                                                    {{"Active"}}
+                                                                @else
+                                                                    {{"Inactive"}}
+                                                                @endif
+
+
+                                                            </td>
+                                                            {{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
+
+                                                            <td>
+                                                                <div class="hidden-sm hidden-xs action-buttons">
+                                                                    <form action="{{route('schedule.destroy',$sch['id'])}}" method="post">
+                                                                        <input type="hidden" name="_method" value="delete" />
+                                                                        <input type="hidden" name="_token" value="{{Session::token()}}" />
+
+                                                                        <!--<a href="{{route('schedule.edit',$sch['id'])}}" class="edit btn btn-sm btn-primary">
+                                                                            <i class="fa fa-edit bigger-130"></i>
+                                                                        </a>-->
+
+                                                                        <button class="edit btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">
+                                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                            {{-- @endif --}}
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td scope="col" colspan="6" class="text-center">No data found</td>
+                                                        </tr>
+                                                    @endforelse
 										</tbody>
 									</table>
 								</div>

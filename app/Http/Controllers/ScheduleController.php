@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Days;
+use App\Models\Role;
 use App\Models\Schedule;
+use App\Models\Shift;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -14,7 +17,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $sched=Schedule::paginate(10);
+        return view('schedule.index',compact('sched'));
     }
 
     /**
@@ -24,7 +28,10 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $role=Role::all();
+        $day=Days::all();
+        $shift=Shift::all();
+        return view('schedule.create',compact(['role','day','shift']));
     }
 
     /**

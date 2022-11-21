@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BirthController;
 use App\Http\Controllers\DeathController;
 
@@ -56,6 +57,7 @@ Route::resource('patientAdmit',PatientAdmitController::class);
 
 //schedule
 Route::resource('shift',ShiftController::class);
+Route::resource('schedule',ScheduleController::class);
 
 
 //birth
