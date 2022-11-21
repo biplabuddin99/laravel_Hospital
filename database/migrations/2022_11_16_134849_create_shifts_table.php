@@ -19,8 +19,8 @@ return new class extends Migration
                 $table->string('start');
                 $table->string('end');
                 $table->integer('status')->default(1);
-                $table->integer('created_by');
-                $table->integer('updated_by');
+                $table->integer('created_by')->nullable();
+                $table->integer('updated_by')->nullable();
                 $table->timestamps();
             });
 

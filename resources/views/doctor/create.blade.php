@@ -5,7 +5,7 @@
 		<div class="row">
 			<!-- left column -->
             <div class="col-md-12">
-                <div class="title">Add New Doctor</div>
+                <h3 class="title">Add New Doctor</h3>
                 <div class="box box-info">
                     <div class="panel panel-default">
 
@@ -175,13 +175,10 @@
                                         <input type="radio" name="status" value="0" {{old('status') == '0' ? 'checked' : ''}}> Inactive
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9 change-btn">
-                                        <button type="reset" class="btn btn-primary">Reset</button>
-                                        <span class="btn or">or</span>
-                                        <button type="submit" class="btn btn-success save-btn">Save</button>
-                                    </div>
+                                <div class="form-group mt-3">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <span class="btn or">or</span>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
                             </form>
 

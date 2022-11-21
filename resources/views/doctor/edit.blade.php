@@ -17,7 +17,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                     @endif
 
 
                         <div class="panel-heading"><a href="{{route('doctor.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Doctor List </a></div>
@@ -173,12 +173,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9 change-btn">
-                                        <button type="reset" class="btn btn-primary">Reset</button>
-                                        <span class="btn or">or</span>
-                                        <button type="submit" class="btn btn-success save-btn">Save</button>
-                                    </div>
+                                <div class="form-group mt-3">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <span class="btn or">or</span>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
                             </form>
 
