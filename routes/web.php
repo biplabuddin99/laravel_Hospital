@@ -53,3 +53,7 @@ Route::resource('patientAdmit',PatientAdmitController::class);
 
 //schedule
 Route::resource('shift',ShiftController::class);
+
+
+//birth
+Route::resource('birth',BirthController::class);
