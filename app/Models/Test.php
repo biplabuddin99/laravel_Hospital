@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
-use App\Models\Test;
+use App\Models\TestCategory;
 
-class TestCategory extends Model
+class Test extends Model
 {
     use HasFactory,softDeletes;
 
 
-    public function test()
+
+    public function test_category()
 	{
-		return $this->hasMany(Test::class);
+		return $this->belongsTo(TestCategory::class,'test_category_id','id');
 	}
 }

@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('test_categories', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('test_category_id');
+            $table->foreign('test_category_id')->references('id')->on('test_categories')->onDelete('cascade');
             $table->string('name');
+            $table->string('price');
+            $table->string('description');
+			
 			$table->integer('status')->default(1);
 			$table->integer('created_by')->nullable();
 			$table->integer('updated_by')->nullable();

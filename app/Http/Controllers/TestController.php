@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TestCategory;
+use App\Models\Test;
 use Illuminate\Http\Request;
 use Exception;
+use App\Models\TestCategory;
 
-class TestCategoryController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class TestCategoryController extends Controller
      */
     public function index()
     {
-        $testcat=TestCategory::all();
-        return view('testCategory.index',compact('testcat'));
+        $test=Test::all();
+        return view('test.index',compact('test'));
     }
 
     /**
@@ -26,7 +27,8 @@ class TestCategoryController extends Controller
      */
     public function create()
     {
-        return view('testCategory.create');
+        $testCategory=TestCategory::get(['id','testCategoryName']);
+        return view('test.create', compact('testCategory'));
     }
 
     /**
@@ -38,11 +40,14 @@ class TestCategoryController extends Controller
     public function store(Request $request)
     {
         try{
-        $testcat=new TestCategory;
-        $testcat->name=$request->testCategoryName;
-        $testcat->status=$request->status;
-        $testcat->save();
-        return redirect(route('testCategory.index'));
+        $t=new Test;
+        $t->testCategory=$insertedId;
+        $t->name=$request->name;
+        $t->price=$request->price;
+        $t->description=$request->description;
+        $t->status=$request->status;
+        $t->save();
+        return redirect(route('test.index'));
             
         }catch(Exception $e){
             return back()->withInput();
@@ -52,10 +57,10 @@ class TestCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TestCategory  $testCategory
+     * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function show(TestCategory $testCategory)
+    public function show(Test $test)
     {
         //
     }
@@ -63,29 +68,34 @@ class TestCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\testCategory  $testCategory
+     * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function edit(TestCategory $testCategory)
+    public function edit(Test $test)
     {
-        return view('testCategory.edit',compact('testCategory'));
+        $testCategory=TestCategory::get(['id','testCategoryName']);
+        return view('test.edit',compact('test','testCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TestCategory  $testCategory
+     * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TestCategory $testCategory)
+    public function update(Request $request, Test $test)
     {
         try{
-        $testcat=$testCategory;
-        $testcat->name=$request->testCategoryName;
-        $testcat->status=$request->status;
-        $testcat->save();
-        return redirect(route('testCategory.index'));
+        $t=$test;
+        $t->testCategory=$insertedId;
+        $t->name=$request->name;
+        $t->price=$request->price;
+        $t->description=$request->description;
+
+        $t->status=$request->status;
+        $t->save();
+        return redirect(route('test.index'));
 
         }catch(Exception $e){
             return back()->withInput();
@@ -95,12 +105,12 @@ class TestCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TestCategory  $testCategory
+     * @param  \App\Models\Test $test
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestCategory $testCategory)
+    public function destroy(Test $test)
     {
-        $testCategory->delete();
+        $test->delete();
         return redirect()->back();
     }
 }

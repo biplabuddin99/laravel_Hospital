@@ -130,7 +130,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('test.index') }}">
               <i class="bi bi-circle"></i><span>Hospital Test</span>
             </a>
           </li>

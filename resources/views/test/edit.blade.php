@@ -8,16 +8,30 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Add New Test Category</h5>
+              <h5 class="card-title">Edit Test</h5>
+
+              <div class="panel-heading"><a href="{{route('test.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Test List </a></div>
 
               <!-- Horizontal Form -->
-              <form action="{{ route('testCategory.update',$testCategory->id) }}" method="POST">
+              <form action="{{ route('test.update',$test->id) }}" method="POST">
                 @csrf
                 @method('patch')
                 <div class="row mb-3">
-                  <label for="name" class="col-sm-2 col-form-label">Test Category Name:</label>
+                  <label for="name" class="col-sm-2 col-form-label">Test Category:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="testCategoryName" value="{{ $testCategory->name }}">
+                    <input type="text" class="form-control" id="name" name="testCategoryName" >
+                  </div>
+                  <label for="name" class="col-sm-2 col-form-label">Test Name:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $test->name }}">
+                  </div>
+                  <label for="price" class="col-sm-2 col-form-label">Price:</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" id="price" name="price" value="{{ $test->price }}">
+                  </div>
+                  <label for="desc" class="col-sm-2 col-form-label">Description:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="desc" name="description" value="{{ $test->description }}">
                   </div>
                 </div>
                 <fieldset class="row mb-3">
