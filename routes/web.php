@@ -70,3 +70,4 @@ Route::resource('death',DeathController::class);
 
 //room
 Route::resource('roomCategory',RoomCategoryController::class);
+ 

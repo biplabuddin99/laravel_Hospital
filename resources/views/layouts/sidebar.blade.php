@@ -85,6 +85,24 @@
           </li>
         </ul>
       </li>
+      {{-- room --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#room-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Room Manager</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="room-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('roomCategory.index') }}">
+              <i class="bi bi-circle"></i><span>Room Category</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Manage Room</span>
+            </a>
+          </li>
+        </ul>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">

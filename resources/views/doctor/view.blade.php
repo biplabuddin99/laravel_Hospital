@@ -140,8 +140,8 @@
 	</section>
 
 
-<script type="text/javascript"  src="{{asset('public/js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('public/js/jquery.PrintArea.js')}}"></script>
+<script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/jquery.PrintArea.js')}}"></script>
 <script>
      $(document).ready(function(){
 		
