@@ -6,6 +6,7 @@
   
   
   <div class="col-lg-12">
+    <h5 class="card-title">Operation</h5>
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -17,7 +18,7 @@
         @endif
 
 
-        <div class="panel-heading"><a href="{{route('death.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Death List </a></div>
+        <div class="panel-heading"><a href="{{route('operation.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Operation List </a></div>
 
               <!-- ======= Patient ID Modal ======== -->
               <div class="modal fade" id="myModal" role="dialog">
@@ -58,67 +59,84 @@
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('death.update', $death->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('operation.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-      @method('patch')
         <div class="card">
           <div class="card-body m-3">
-            <h3>Death Report Edit</h3><br>
 
               <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="name">Patient Name <span style="color:red" >* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName', $death->name) }}" required>
+                            <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName') }}" required>
                           </div>
                           <label class="control-label col-sm-4" for="father_name">Father Name <span style="color:red" >* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="father_name" name="father_name" value="{{ old('father_name', $death->father_name) }}"  required>
+                            <input type="text" class="form-control" id="father_name" name="father_name" value="{{ old('father_name') }}"  required>
                         </div>
                             <label class="control-label col-sm-4" for="mother_name">Mother Name <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="mother_name" name="mother_name" value="{{ old('mother_name', $death->mother_name) }}" required>
+                            <input type="text" class="form-control" id="mother_name" name="mother_name" value="{{ old('mother_name') }}" required>
                           </div>	
                           <label class="control-label col-sm-4" for="birthdate">Date of Birth <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="date" class="form-control" id="birthdate" name="birth_date" value="{{ old('birth_date', $death->dob) }}">
+                            <input type="date" class="form-control" id="birthdate" name="birth_date" value="{{ old('birth_date') }}">
                           </div>
                           <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="radio" value="1" {{ $death->gender=='1' ? 'checked':'' }} name="patientGender"> Male
+                            <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
                             &nbsp;
-                            <input type="radio" value="2" {{ $death->gender=='2' ? 'checked':'' }} name="patientGender"> Female
+                            <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
                             &nbsp;
-                            <input type="radio" value="3" {{ $death->gender=='3' ? 'checked':'' }} name="patientGender"> Other <br>
+                            <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
+                          </div>
+                          <label class="control-label col-sm-4" for="operation_date">Operation Date <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <input type="date" class="form-control" id="operation_date" name="operation_date" value="{{ old('operation_date') }}">
+                          </div>
+                          <label class="control-label col-sm-4" for="ot_no">OT No <span style="color:red">* </span>:</label>
+                          <div class="col-sm-8">
+                            <select class="form-control" id="ot_no" name="ot_no" required>
+                              <option value="">Select OT</option>
+                              <option value="OT NO-101" {{ old('ot_no')=='OT NO-101' ? 'selected':''}}>OT NO-101</option>
+                              <option value="OT NO-102"{{ old('ot_no')=='OT NO-102' ? 'selected':''}}>OT NO-102</option>
+                              <option value="OT NO-103"{{ old('ot_no')=='OT NO-103' ? 'selected':''}}>OT NO-103</option>
+                              <option value="OT NO-104"{{ old('ot_no')=='OT NO-104' ? 'selected':''}}>OT NO-104</option>
+                              <option value="OT NO-105"{{ old('ot_no')=='OT NO-105' ? 'selected':''}}>OT NO-105</option>
+                            </select>
                           </div>
                         </div>
                     </div>    
-                    
+     
                         
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="address"> Address <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
-                                <textarea name="address" id="address" cols="30" class="form-control" rows="5" required>{{ old('address', $death->address) }}</textarea>
+                                <textarea name="address" id="address" cols="30" class="form-control" rows="5" required>{{ old('address') }}</textarea>
                               </div>
                                 <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <select class="form-control" id="blood" name="blood" required>
                                   <option value="">Select Blood Group</option>
-                                  <option value="A+"{{ $death->blood=='A+' ? 'selected':''}}>A+</option>
-                                  <option value="A-"{{ $death->blood=='A-' ? 'selected':''}}>A-</option>
-                                  <option value="B+"{{ $death->blood=='B+' ? 'selected':''}}>B+</option>
-                                  <option value="B-"{{ $death->blood=='B-' ? 'selected':''}}>B-</option>
-                                  <option value="O+"{{ $death->blood=='O+' ? 'selected':''}}>O+</option>
-                                  <option value="O-"{{ $death->blood=='O-' ? 'selected':''}}>O-</option>
-                                  <option value="AB+"{{ $death->blood=='AB+' ? 'selected':''}}>AB+</option>
-                                  <option value="AB-"{{ $death->blood=='AB-' ? 'selected':''}}>AB-</option>
+                                  <option value="A+" {{ old('blood')=='A+' ? 'selected':''}}>A+</option>
+                                  <option value="A-"{{ old('blood')=='A-' ? 'selected':''}}>A-</option>
+                                  <option value="B+"{{ old('blood')=='B+' ? 'selected':''}}>B+</option>
+                                  <option value="B-"{{ old('blood')=='B-' ? 'selected':''}}>B-</option>
+                                  <option value="O+"{{ old('blood')=='O+' ? 'selected':''}}>O+</option>
+                                  <option value="O-"{{ old('blood')=='O-' ? 'selected':''}}>O-</option>
+                                  <option value="AB+"{{ old('blood')=='AB+' ? 'selected':''}}>AB+</option>
+                                  <option value="AB-"{{ old('blood')=='AB-' ? 'selected':''}}>AB-</option>
                                 </select>
                               </div>
                               <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref', $death->doctor_ref) }}" required>
+                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                  </div>
+                              <label class="control-label col-sm-4" for="description">Description <span style="color:red" >* </span>:</label>
+                                  <div class="col-sm-8">
+                                    <textarea type="text" class="form-control" id="description" name="description"  required>{{ old('description') }}</textarea>
                                   </div>
                         </div>
                     </div>

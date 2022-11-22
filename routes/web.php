@@ -13,8 +13,8 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BirthController;
 use App\Http\Controllers\DeathController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\RoomCategoryController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +68,9 @@ Route::resource('birth',BirthController::class);
 //death
 Route::resource('death',DeathController::class);
 
+//operation
+Route::resource('operation',OperationController::class);
+
+
 //room
 Route::resource('roomCategory',RoomCategoryController::class);
- 
