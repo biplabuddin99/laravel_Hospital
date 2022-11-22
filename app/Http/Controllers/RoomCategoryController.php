@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\RoomCategory;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Queue\RedisQueue;
 
 class RoomCategoryController extends Controller
 {
@@ -36,11 +38,17 @@ class RoomCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         $roomcat=new RoomCategory;
         $roomcat->name=$request->roomCategoryName;
         $roomcat->status=$request->status;
         $roomcat->save();
         return redirect(route('roomCategory.index'));
+        }catch(Exception $e){
+            dd($e);
+            return back()->withInput();
+
+        }
     }
 
     /**
@@ -74,11 +82,15 @@ class RoomCategoryController extends Controller
      */
     public function update(Request $request, RoomCategory $roomCategory)
     {
+        try{
         $roomcat=$roomCategory;
         $roomcat->name=$request->roomCategoryName;
         $roomcat->status=$request->status;
         $roomcat->save();
         return redirect(route('roomCategory.index'));
+        }catch(Exception $e){
+            return back()->withInput();
+        }
     }
 
     /**

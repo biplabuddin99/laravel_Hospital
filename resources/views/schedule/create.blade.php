@@ -138,7 +138,7 @@
             $.ajax({
 
                 type:'get',
-                url:'{!!URL::to('schedule/show')!!}',
+                url:'{!!URL::to('schedule/index')!!}',
                 data:{'id':id},
 
                 success:function(data){
@@ -149,7 +149,7 @@
 
                     for(var i=0;i<data.length;i++)
                     {
-                        op += '<option value="'+data[i].employ_id+'">'+data[i].first_name+ ' ' +data[i].last_name+'</option>';
+                        op += '<option value="'+data[i].id+'">'+data[i].name'</option>';
                     }
 
                     $('#u_name').html('');
