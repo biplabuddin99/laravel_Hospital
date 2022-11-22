@@ -120,7 +120,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('operation.index') }}">
               <i class="bi bi-circle"></i><span>Operation Schedule</span>
             </a>
           </li>
