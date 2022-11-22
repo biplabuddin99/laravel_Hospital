@@ -127,19 +127,19 @@
     <!-- /.row -->
 </section>
 <!-- jQuery 3 -->
-<script type="text/javascript"  src="{{asset('public/assets/js/jquery.min.js')}}"></script>
+<script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#role').on('change', function(){
             //console.log('this is change');
-            var role_id = $(this).val();
+            var id = $(this).val();
             var div = $(this).parent();
             var op = '';
             $.ajax({
 
                 type:'get',
                 url:'{!!URL::to('schedule/show')!!}',
-                data:{'id':role_id},
+                data:{'id':id},
 
                 success:function(data){
                     //console.log('success');

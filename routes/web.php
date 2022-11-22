@@ -13,7 +13,6 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BirthController;
 use App\Http\Controllers\DeathController;
-use App\Http\Controllers\OperationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +65,3 @@ Route::resource('birth',BirthController::class);
 
 //death
 Route::resource('death',DeathController::class);
-
-//operation
-Route::resource('operation', OperationController::class);

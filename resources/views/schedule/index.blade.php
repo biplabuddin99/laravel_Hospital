@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Shift')
+@section('title','Schedule')
 
 @section('content')
 <main id="main" class="main">
