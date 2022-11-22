@@ -125,7 +125,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('testCategory.index') }}">
               <i class="bi bi-circle"></i><span>Hospital Test Catagory</span>
             </a>
           </li>
