@@ -58,7 +58,7 @@
                         <td>{{ $doct->designation->desig_name }}</td>
                         <td>{{ $doct->employee->email }}</td>
                         <td>{{ $doct->employee->phone }}</td>
-                         <td class="d-flex">
+                         <td class="d-flex p-0 m-0">
                           <a class="text-success" style="padding-right:8px" href="{{route('doctor.show',$doct['id'])}}">
                             <i class="ace-icon fa fa-eye bigger-130"></i>
                             </a>
