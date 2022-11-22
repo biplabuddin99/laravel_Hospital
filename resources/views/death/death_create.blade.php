@@ -6,7 +6,7 @@
   
   
   <div class="col-lg-12">
-    <h5 class="card-title">Death child</h5>
+    <h5 class="card-title">Death</h5>
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -18,7 +18,7 @@
         @endif
 
 
-        <div class="panel-heading"><a href="{{route('death.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Death Child List </a></div>
+        <div class="panel-heading"><a href="{{route('death.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Death List </a></div>
 
               <!-- ======= Patient ID Modal ======== -->
               <div class="modal fade" id="myModal" role="dialog">
