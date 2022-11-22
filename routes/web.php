@@ -66,10 +66,5 @@ Route::resource('birth',BirthController::class);
 //death
 Route::resource('death',DeathController::class);
 
-//death
-Route::resource('death',DeathController::class);
-
-
-
-//operation
-Route::resource('operation',DeathController::class);
+//room
+Route::resource('roomCategory',RoomCategoryController::class);
