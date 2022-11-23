@@ -11,7 +11,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Doctor</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa fa-user-md"></i><span>Doctor</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -40,55 +40,78 @@
        <!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Patients Table</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('patient.index') }}">
-              <i class="bi bi-circle"></i><span>Patients List</span>
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="fa fa-wheelchair"></i><span>Patients Table</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-          </li>
-          <li>
-            <a href="{{ route('patientAdmit.index') }}">
-              <i class="bi bi-circle"></i><span>Admit Patient</span>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('patient.index') }}">
+                    <i class="bi bi-circle"></i><span>Patients List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('patientAdmit.index') }}">
+                    <i class="bi bi-circle"></i><span>Admit Patient</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
+            <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#shedule-nav" data-bs-toggle="collapse" href="#">
+                <i class="fa fa-calendar"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
+            <ul id="shedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                <a href="{{ route('shift.index') }}">
+                    <i class="bi bi-circle"></i><span>Manage Shift</span>
+                </a>
+                </li>
+                <li>
+                <a href="{{ route('schedule.index') }}">
+                    <i class="bi bi-circle"></i><span>Manage Schedule</span>
+                </a>
+                </li>
+            </ul>
+            </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <i class="fa fa-pencil-square-o"></i><span>Appointment</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('appoint.index') }}">
+                <i class="bi bi-circle"></i><span>Appointment List</span>
+                </a>
+            </li>
+            </ul>
+        </li>
+
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Appointment</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-users"></i><span>Human Resources</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ route('appoint.index') }}">
-              <i class="bi bi-circle"></i><span>Appointment List</span>
-            </a>
+            {{-- <a href="{{ route('employee.index') }}">
+              <i class="bi bi-circle"></i><span>Employee List</span>
+            </a> --}}
+            <a href="{{route('employee.show',6)}}"><i class="fa fa-list"></i><span> Accountant List </span></a>
+          </li>
+          <li>
+            <a href="{{route('employee.show',5)}}"><i class="fa fa-list"></i><span> Laboratorist List </span></a>
+          </li>
+          <li>
+            <a href="{{route('employee.show',3)}}"><i class="fa fa-list"></i><span> Nurse List </span></a>
+          </li>
+          <li>
+            <a href="{{route('employee.show',4)}}"><i class="fa fa-list"></i> <span>Reciptionist List</span> </a>
           </li>
         </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#shedule-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="shedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('shift.index') }}">
-              <i class="bi bi-circle"></i><span>Manage Shift</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('schedule.index') }}">
-              <i class="bi bi-circle"></i><span>Manage Schedule</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+      </li><!-- End Icons Nav -->
       {{-- room --}}
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#room-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Room Manager</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa fa-bed"></i><span>Room Manager</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="room-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -97,7 +120,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('roomList.index') }}">
               <i class="bi bi-circle"></i><span>Manage Room</span>
             </a>
           </li>
@@ -136,29 +159,6 @@
           </li>
         </ul>
       </li><!-- End Charts Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('employee.index') }}">
-              <i class="bi bi-circle"></i><span>Employee List</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
 

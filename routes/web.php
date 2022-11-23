@@ -11,6 +11,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoomListController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\AppointmentController;
@@ -30,9 +31,10 @@ use App\Http\Controllers\TestCategoryController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
+Route::resource('dashboard', DashboardController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,6 +43,8 @@ Route::get('/dashboard', function () {
 // authentication
 Route::get('/', [UserController::class, 'userLoginForm'])->name('userlogin');
 Route::post('/', [UserController::class, 'userLoginCheck'])->name('userlogin');
+Route::get('logout', [UserController::class, 'logOut'])->name('logout');
+
 Route::get('register', [UserController::class, 'signUpForm'])->name('userstore');
 Route::post('register', [UserController::class, 'userRegistrationStore'])->name('userstore');
 
@@ -51,6 +55,7 @@ Route::resource('doctor',DoctorController::class);
 
 //employee
 Route::resource('employee',EmployeeController::class);
+// Route::get('profile/{id}',EmployeeController::class,'profile');
 
 
 //Appoint route

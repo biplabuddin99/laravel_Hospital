@@ -84,4 +84,11 @@ class UserController extends Controller
                 ]
             );
     }
+
+    public function logOut()
+    {
+        // $userId = Crypt::decrypt(session()->get('userId'));
+        request()->session()->flush();
+        return redirect('/');
+    }
 }

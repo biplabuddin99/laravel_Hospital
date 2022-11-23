@@ -129,6 +129,13 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
+
+    public function profile($id)
+	{
+		$data = Employee::findOrFail($id);
+		return view('employee.view',compact('data'));
+	}
+
     public function destroy(Employee $employee)
     {
         $employee->delete();

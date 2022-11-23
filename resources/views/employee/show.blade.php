@@ -18,7 +18,7 @@
 					</div>
 					<div class="box box-info">
 						<div class="panel panel-default">
-							<div class="panel-heading"><a href="{{route('employee.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Employee </a></div>
+							<div class="panel-heading mb-3"><a href="{{route('employee.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Employee </a></div>
 							<div class="panel-body">
 								<!-- div.dataTables_borderWrap -->
 										<div>
