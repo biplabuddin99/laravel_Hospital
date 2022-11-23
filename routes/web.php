@@ -91,6 +91,12 @@ Route::resource('roomList',RoomListController::class);
 
 //test-cat
 Route::resource('testCategory',TestCategoryController::class);
-
 //test
 Route::resource('test',TestController::class);
+
+//invoice
+		/*====================invoice Sector ==============*/
+		// Route::get('test/search',InvoiceTestController::class,'getpatient');
+		// Route::get('test/get_test',InvoiceTestController::class,'get_test');
+		// Route::get('test/get_test_price',InvoiceTestController::class,'get_test_price');
+		// Route::resource('invoiceTest',InvoiceTestController::class);
