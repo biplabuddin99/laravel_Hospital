@@ -1,22 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\PatientController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\PatientAdmitController;
-use App\Http\Controllers\ShiftController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BirthController;
 use App\Http\Controllers\DeathController;
+use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\TestCategoryController;
-use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,7 @@ Route::resource('operation',OperationController::class);
 
 //room
 Route::resource('roomCategory',RoomCategoryController::class);
+Route::resource('roomList',RoomListController::class);
 
 //test-cat
 Route::resource('testCategory',TestCategoryController::class);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('patient_id')->nullable();
+            $table->string('patient_id')->nullable();
             $table->string('name');
             $table->string('age');
             $table->string('phone');
