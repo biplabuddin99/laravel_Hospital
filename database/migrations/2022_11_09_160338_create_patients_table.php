@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('patient_id');
             $table->string('name');
             $table->string('age');
             $table->string('phone');
@@ -24,6 +25,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('problem')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

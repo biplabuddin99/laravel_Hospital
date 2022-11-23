@@ -11,7 +11,7 @@
               <h5 class="card-title">Edit Test</h5>
 
               <div class="panel-heading"><a href="{{route('test.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Test List </a></div>
-
+              <br>
               <!-- Horizontal Form -->
               <form action="{{ route('test.update',$test->id) }}" method="POST">
                 @csrf
@@ -19,7 +19,15 @@
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Test Category:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="testCategoryName" >
+                    <select class="form-control" name="testCategory" id="" required>
+                      <option value="">Select Category</option>
+                      @forelse($testCategory as $tc)
+
+                      <option value="{{ $tc->id }}" {{ $test->test_category_id == $tc->id ? 'selected' : ''}}>{{ $tc->name }}</option>
+                      @empty 
+                      <option value="">No Data Found</option>
+                      @endforelse
+                    </select>
                   </div>
                   <label for="name" class="col-sm-2 col-form-label">Test Name:</label>
                   <div class="col-sm-10">

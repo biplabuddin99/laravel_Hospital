@@ -9,9 +9,18 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Add New Test Category</h5>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
               <div class="panel-heading"><a href="{{route('testCategory.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Test Category List </a></div>
-
+              <br>
               <!-- Horizontal Form -->
               <form action="{{ route('testCategory.store') }}" method="POST">
                 @csrf

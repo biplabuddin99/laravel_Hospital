@@ -15,6 +15,6 @@ class Test extends Model
 
     public function test_category()
 	{
-		return $this->belongsTo(TestCategory::class,'test_category_id','id');
+		return $this->belongsTo(TestCategory::class, 'test_category_id', 'id');
 	}
 }

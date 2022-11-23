@@ -27,8 +27,8 @@ class TestController extends Controller
      */
     public function create()
     {
-        $testCategory=TestCategory::get(['id','testCategoryName']);
-        return view('test.create', compact('testCategory'));
+        $testcat=TestCategory::get(['id','name']);
+        return view('test.create', compact('testcat'));
     }
 
     /**
@@ -41,15 +41,17 @@ class TestController extends Controller
     {
         try{
         $t=new Test;
-        $t->testCategory=$insertedId;
+        $t->test_category_id=$request->testCategory;
         $t->name=$request->name;
         $t->price=$request->price;
         $t->description=$request->description;
         $t->status=$request->status;
         $t->save();
         return redirect(route('test.index'));
-            
+        
+        
         }catch(Exception $e){
+            //dd($e);
             return back()->withInput();
         }
     }
@@ -73,14 +75,14 @@ class TestController extends Controller
      */
     public function edit(Test $test)
     {
-        $testCategory=TestCategory::get(['id','testCategoryName']);
+        $testCategory=TestCategory::get(['id','name']);
         return view('test.edit',compact('test','testCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
@@ -88,7 +90,7 @@ class TestController extends Controller
     {
         try{
         $t=$test;
-        $t->testCategory=$insertedId;
+        $t->test_category_id=$request->testCategory;
         $t->name=$request->name;
         $t->price=$request->price;
         $t->description=$request->description;

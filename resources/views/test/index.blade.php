@@ -42,7 +42,7 @@
                     @forelse ($test as $t)
                     <tr>
                         <th scope="row">{{ ++$loop->index }}</th>
-                        <td>{{ $t->testCategory }}</td>
+                        <td>{{ $t->test_category->name }}</td>
                         <td>{{ $t->name }}</td>
                         <td>{{ $t->price }}</td>
                         <td>{{ $t->description }}</td>
