@@ -79,7 +79,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('shift.index') }}">
+            <a href="{{ route('schedule.index') }}">
               <i class="bi bi-circle"></i><span>Manage Schedule</span>
             </a>
           </li>

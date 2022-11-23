@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Days;
+use App\Models\Employee;
 use App\Models\Role;
 use App\Models\Schedule;
 use App\Models\Shift;
+use Exception;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -42,7 +44,25 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            if($request->day_id){
+                foreach($request->day_id as $key => $value){
+                    $data = new Schedule;
+                    $data->employee_id = $request->u_name;
+                    $data->day_id = $request->day_id[$key];
+                    $data->shift_id = $request->shift_id[$key];
+                    $data->status = $request->status;
+                    $data->save();
+                } 
+                return redirect(route('schedule.index'))->with("data saved");
+            }else{
+                return back()->withInput()->with("please try again");
+            }
+           
+        }catch(Exception $e){
+            dd($e);
+            return back()->withInput();
+        }
     }
 
     /**
@@ -51,9 +71,10 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show(Request $request)
     {
-        //
+        $data = Employee::where('role_id',$request->id)->get();
+		return response()->json($data);
     }
 
     /**
@@ -87,6 +108,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+        return redirect()->back();
     }
 }

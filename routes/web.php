@@ -60,6 +60,7 @@ Route::resource('patientAdmit',PatientAdmitController::class);
 //schedule
 Route::resource('shift',ShiftController::class);
 Route::resource('schedule',ScheduleController::class);
+Route::get('/scheduleget', [ScheduleController::class, 'show'])->name('scheduleget');
 
 
 //birth

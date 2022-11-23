@@ -75,8 +75,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $role_id=$id;
-        $employee=Employee::all();
-        // $employee=Employee::where($role_id)->get();
+        $employee=Employee::where('role_id',$id)->get();
         return view('employee.show',compact('employee','role_id'));
     }
 
