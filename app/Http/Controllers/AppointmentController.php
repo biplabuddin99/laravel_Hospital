@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Department;
+use App\Models\Patient;
+use App\Models\Schedule;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -26,26 +29,69 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-
-        {
+    public function create(){
         $depart = department::where('status',1)->orderBy('id','asc')->get();
         return view('appointment.appoint_create')->with('department',$depart);
-        
+    }
 
-    
-    
+    public function get_patient(Request $request)
+	{
+		$data = Patient::where('patient_id',$request->id)->get();
+		return $data;
+	}
 
+    public function getEmploy(Request $request)
+	{
+		$data = Doctor::where('department_id',$request->id)->get();
+		$html ='';
+		foreach($data as $row)
+		{
+			$html .='<option value='.$row->employee_id.'>'.'Dr. '.$row->employee->name.'</option>';
+		}
+		return $html;
+	}
+
+    public function getSchedule(Request $request)
+	{
+		$data = Schedule::where('employee_id',$request->id)->get();
+		$html ='';
+		foreach($data as $row)
+		{
+			$html .='<div><i class="fa fa-calendar"></i> '.$row->day->name.' ['.$row->shift->start.' to '.$row->shift->end.']</div>';
+				  
+		}
+		return $html;
+	}
+
+    public function getSerial(Request $request)
+	{
+		/*get day as saturday,sunday*/
+        $date_now = new \DateTime();
+        $date2    = new \DateTime($request->dat);
+        if($date_now <= $date2){
+            $day = date('l',strtotime($request->dat));
+            $dayId = \App\Models\Days::where('name',$day)->first();
+            $d = $dayId->id;
+            $data = Schedule::where('employee_id',$request->id)->where('day_id',$d)->count();
+            
+            if($data <= 0)
+            {
+                return 'daYnotfind';
+            }else{
+                $row = Appointment::whereRaw('employee_id = ? and appoint_date = ?', [$request->id, $request->dat])->get();
+                if($row == '')
+                {
+                    return 'rownotfind';
+                }else
+                {
+                    return $row;
+                }
+                
+            }
+        }else{
+            return 'daYnotfind';
         }
-
-
-    // $nextSerial=1;
-    // $lastSerial = Appointment::whereDate('appoint_date',date('y-m-d'))->max('serial');
-    // if($lastSerial){
-    // 	$nextSerial=$lastSerial+1;
-    // }
-    // return view('appointment.appoint_create', compact('nextSerial'));
-    
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -63,7 +109,7 @@ class AppointmentController extends Controller
             $app->problem=$request->patientProblem;
             $app->appoint_date=$request->appoint_date;
             $app->serial=$request->serial;
-            $app->approve=$request->approve;
+            $app->status=1;
             $app->save();
             return redirect(route('appoint.index'));
 

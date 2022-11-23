@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('patient_id');
+            $table->integer('patient_id')->nullable();
             $table->string('name');
             $table->string('age');
             $table->string('phone');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('gender');
-            $table->string('blood');
+            $table->string('blood')->nullable();
             $table->string('address')->nullable();
             $table->string('problem')->nullable();
             $table->integer('status')->default(1);

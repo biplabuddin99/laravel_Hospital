@@ -52,19 +52,15 @@ class PatientController extends Controller
             $p->save();
 
                 //===insert patient id===//
-            $a = $p->id;
-            $ran = RAND(1000,9999);
-            $patient_id = 'PA-'.$a.$ran;
-            //echo $patient_id;
-            $mo = Patient::find($a);
-            $mo->patient_id = $patient_id;
-            $mo->save();
+ 
+            $p->patient_id= 'PA-'.$p->id.RAND(1000,9999);
+            $p->save();
 		
             return redirect(route('patient.index'));
 
 
         }catch(Exception $e){
-            //dd($e);
+            dd($e);
             return back()->withInput();
         }
     }

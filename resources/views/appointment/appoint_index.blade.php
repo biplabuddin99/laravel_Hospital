@@ -31,7 +31,6 @@
                         <tr>
                           <th scope="col">SL.No</th>
                           <th scope="col">Patient Id</th>
-                          <th scope="col">Department</th>
                           <th scope="col">Doctor Name</th>
                           <th scope="col">Serial No</th>
                           <th scope="col">Phone</th>
@@ -45,13 +44,12 @@
                           @forelse ($appoint as $app)
                           <tr>
                               <th>{{ $app->patient_id }}</th>
-                              <td>{{ $app->name }}</td>
-                              <td>{{ $app->department }}</td>
-                              <td>{{ $app->doctor }}</td>
-                              <td>{{ $app->sl_no }}</td>
+                              <td>{{ $app->patient?->patient_id }}</td>
+                              <td>{{ $app->employee?->name }}</td>
+                              <td>{{ $app->serial }}</td>
                               <td>{{ $app->phone }}</td>
                               <td>{{ $app->problem }}</td>
-                              <td>{{ $app->date }}</td>
+                              <td>{{ $app->appoint_date }}</td>
                               <td>@if($app->status==1) Active @else Inactive @endif</td>
                               <td class="d-flex">
                                   <a href="{{ route('appoint.edit',$app->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>

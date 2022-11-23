@@ -54,6 +54,10 @@ Route::resource('employee',EmployeeController::class);
 
 //Appoint route
 Route::resource('appoint',AppointmentController::class);
+Route::get('/getPatient', [AppointmentController::class, 'get_patient'])->name('app.getPatient');
+Route::get('/getEmploy', [AppointmentController::class, 'getEmploy'])->name('app.getEmploy');
+Route::get('/getSchedule', [AppointmentController::class, 'getSchedule'])->name('app.getSchedule');
+Route::get('/getSerial', [AppointmentController::class, 'getSerial'])->name('app.getSerial');
 
 //Patient route
 Route::resource('patient',PatientController::class);
