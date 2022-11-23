@@ -58,15 +58,15 @@
                         <td>{{ $doct->designation->desig_name }}</td>
                         <td>{{ $doct->employee->email }}</td>
                         <td>{{ $doct->employee->phone }}</td>
-                         <td class="d-flex p-0 m-0">
-                          <a class="text-success" style="padding-right:8px" href="{{route('doctor.show',$doct['id'])}}">
+                         <td class="d-flex">
+                          <a class="text-success " style="padding-right:8px" href="{{route('doctor.show',$doct['id'])}}">
                             <i class="ace-icon fa fa-eye bigger-130"></i>
                             </a>
-                            <a href="{{ route('doctor.edit',$doct->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('doctor.edit',$doct->id) }}" class=""><i class="fa-solid fa-pen-to-square"></i></a>
                              <form id="form{{$doct->id}}" action="{{ route('doctor.destroy',$doct->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="btn p-0" type="submit" onclick="return confirm('are You confirm?')"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
+                                <button class="btn p-0  " type="submit" onclick="return confirm('are You confirm?')"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
                             </form>
                         </td>
                     </tr>

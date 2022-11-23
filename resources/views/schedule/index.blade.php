@@ -71,7 +71,7 @@
                                                                             <i class="fa fa-edit bigger-130"></i>
                                                                         </a>-->
 
-                                                                        <button class="edit btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">
+                                                                        <button class="edit btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete
                                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                                         </button>
                                                                     </form>
