@@ -15,6 +15,8 @@ use App\Http\Controllers\BirthController;
 use App\Http\Controllers\DeathController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\RoomCategoryController;
+use App\Http\Controllers\TestCategoryController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +77,9 @@ Route::resource('operation',OperationController::class);
 
 //room
 Route::resource('roomCategory',RoomCategoryController::class);
+
+//test-cat
+Route::resource('testCategory',TestCategoryController::class);
+
+//test
+Route::resource('test',TestController::class);

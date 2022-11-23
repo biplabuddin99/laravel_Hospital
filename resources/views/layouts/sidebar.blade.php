@@ -120,17 +120,17 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('operation.index') }}">
               <i class="bi bi-circle"></i><span>Operation Schedule</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('testCategory.index') }}">
               <i class="bi bi-circle"></i><span>Hospital Test Catagory</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('test.index') }}">
               <i class="bi bi-circle"></i><span>Hospital Test</span>
             </a>
           </li>
