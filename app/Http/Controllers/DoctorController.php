@@ -167,7 +167,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         $doctor->delete();
-        Toastr::warning('Doctor Delete Successfully!');
+        Toastr::warning('Doctor Delete Permanently!');
         return redirect()->back();
     }
 }

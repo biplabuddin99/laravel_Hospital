@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
-use App\Models\Department;
+use Exception;
+use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Schedule;
-use App\Models\Doctor;
+use App\Models\Department;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
-use Exception;
+use Brian2694\Toastr\Facades\Toastr;
 
 class AppointmentController extends Controller
 {
@@ -58,7 +59,7 @@ class AppointmentController extends Controller
 		foreach($data as $row)
 		{
 			$html .='<div><i class="fa fa-calendar"></i> '.$row->day->name.' ['.$row->shift->start.' to '.$row->shift->end.']</div>';
-				  
+
 		}
 		return $html;
 	}
@@ -73,7 +74,7 @@ class AppointmentController extends Controller
             $dayId = \App\Models\Days::where('name',$day)->first();
             $d = $dayId->id;
             $data = Schedule::where('employee_id',$request->id)->where('day_id',$d)->count();
-            
+
             if($data <= 0)
             {
                 return 'daYnotfind';
@@ -86,7 +87,7 @@ class AppointmentController extends Controller
                 {
                     return $row;
                 }
-                
+
             }
         }else{
             return 'daYnotfind';
@@ -159,8 +160,10 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy($id)
     {
-        //
+        Appointment::findOrFail($id)->delete();
+        Toastr::warning('Appointment Deleted Permanently!');
+        return redirect()->back();
     }
 }

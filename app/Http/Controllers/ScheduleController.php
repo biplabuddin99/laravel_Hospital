@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Days;
-use App\Models\Employee;
-use App\Models\Role;
-use App\Models\Schedule;
-use App\Models\Shift;
 use Exception;
+use App\Models\Days;
+use App\Models\Role;
+use App\Models\Shift;
+use App\Models\Employee;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ScheduleController extends Controller
 {
@@ -53,12 +54,13 @@ class ScheduleController extends Controller
                     $data->shift_id = $request->shift_id[$key];
                     $data->status = $request->status;
                     $data->save();
-                } 
+                    Toastr::success('Schedule Created Successfully!');
+                }
                 return redirect(route('schedule.index'))->with("data saved");
             }else{
                 return back()->withInput()->with("please try again");
             }
-           
+
         }catch(Exception $e){
             dd($e);
             return back()->withInput();
@@ -109,6 +111,7 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();
+        Toastr::warning('Schedule Deleted Permanently!');
         return redirect()->back();
     }
 }

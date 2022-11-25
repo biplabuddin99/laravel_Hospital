@@ -16,7 +16,7 @@
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="DepartmentName">
+                    <input type="text" class="form-control" id="name" name="DepartmentName" value="{{ old('DepartmentName') }}">
                     @if($errors->has('DepartmentName'))
                       <span class="text-danger"> {{ $errors->first('DepartmentName') }}</span>
                     @endif
@@ -25,7 +25,7 @@
                 <div class="row mb-3">
                   <label for="description" class="col-sm-2 col-form-label">Description:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="DepartmentDescription" cols="30" class="form-control" rows="5" id="description"></textarea>
+                    <textarea type="text" name="DepartmentDescription" cols="30" class="form-control" rows="5" id="description">{{ old('DepartmentDescription') }}</textarea>
                     @if($errors->has('DepartmentDescription'))
                       <span class="text-danger"> {{ $errors->first('DepartmentDescription') }}</span>
                     @endif

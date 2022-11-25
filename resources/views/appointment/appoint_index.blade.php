@@ -43,7 +43,7 @@
                       <tbody>
                           @forelse ($appoint as $app)
                           <tr>
-                              <th>{{ $app->patient_id }}</th>
+                              <th>{{ ++$loop->index }}</th>
                               <td>{{ $app->patient?->patient_id }}</td>
                               <td>{{ $app->employee?->name }}</td>
                               <td>{{ $app->serial }}</td>

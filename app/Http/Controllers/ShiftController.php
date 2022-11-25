@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shift;
 use Exception;
+use App\Models\Shift;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ShiftController extends Controller
 {
@@ -45,6 +46,7 @@ class ShiftController extends Controller
         $shift->end=$request->end_time;
         $shift->status=1;
         $shift->save();
+        Toastr::success('Shift Created Successfully!');
         return redirect(route('shift.index'));
         }catch(Exception $e){
             dd($e);
@@ -91,6 +93,7 @@ class ShiftController extends Controller
             $s->end=$request->end_time;
             $s->status=1;
             $s->save();
+            Toastr::info('Shift Updated Successfully!');
             return redirect(route('shift.index'));
             }catch(Exception $e){
                 dd($e);

@@ -17,13 +17,19 @@
                 <div class="row mb-3">
                   <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" value="{{ $department->name }}" name="dep_name">
+                    <input type="text" class="form-control" id="name" value="{{ old('dep_name',$department->name) }}" name="DepartmentName">
+                    @if($errors->has('DepartmentName'))
+                    <span class="text-danger"> {{ $errors->first('DepartmentName') }}</span>
+                  @endif
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="description" class="col-sm-2 col-form-label">Description:</label>
                   <div class="col-sm-10">
-                    <textarea type="text" name="dep_description" cols="30" class="form-control" rows="5" id="description">{{ $department->description }}</textarea>
+                    <textarea type="text" name="DepartmentDescription" cols="30" class="form-control" rows="5" id="description">{{ $department->description }}</textarea>
+                    @if($errors->has('DepartmentDescription'))
+                    <span class="text-danger"> {{ $errors->first('DepartmentDescription') }}</span>
+                    @endif
                   </div>
                 </div>
                 <fieldset class="row mb-3">

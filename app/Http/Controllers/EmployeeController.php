@@ -142,7 +142,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        Toastr::warning('Employee Deleted Successfully!');
+        Toastr::warning('Employee Deleted Permanently!');
         return redirect()->back();
     }
 }

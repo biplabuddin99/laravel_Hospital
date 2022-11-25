@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\doctor\DepartmentRequest;
+use App\Http\Requests\doctor\DepartmentUpdateRequest;
 
 class DepartmentController extends Controller
 {
@@ -87,14 +88,14 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentUpdateRequest $request, Department $department)
     {
         try{
-            $departments=$department;
-            $department->name=$request->dep_name;
-            $department->description=$request->dep_description;
-            $department->status=$request->status;
-            if($departments->save());
+            $dep=$department;
+            $dep->name=$request->DepartmentName;
+            $dep->description=$request->DepartmentDescription;
+            $dep->status=$request->status;
+            if($dep->save());
             Toastr::info('Department Update Successfully!');
             return redirect(route('department.index'));
 
@@ -113,7 +114,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        Toastr::warning('Department Delete Successfully!');
+        Toastr::warning('Department Deleted Permanently!');
         return redirect()->back();
     }
 }

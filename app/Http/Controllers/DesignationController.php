@@ -6,6 +6,8 @@ use Exception;
 use App\Models\Designation;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Requests\doctor\DesignationCreateRequest;
+use App\Http\Requests\doctor\DesignationUpdateRequest;
 
 class DesignationController extends Controller
 {
@@ -36,7 +38,7 @@ class DesignationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DesignationCreateRequest $request)
     {
         try{
             $des=new Designation;
@@ -83,7 +85,7 @@ class DesignationController extends Controller
      * @param  \App\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Designation $designation)
+    public function update(DesignationUpdateRequest $request, Designation $designation)
     {
                 try{
             $desupdate=$designation;
@@ -108,7 +110,7 @@ class DesignationController extends Controller
     public function destroy(Designation $designation)
     {
         $designation->delete();
-        Toastr::warning('Designation Deleted Successfully!');
+        Toastr::warning('Designation Deleted Permanently!');
         return redirect()->back();
     }
 }
