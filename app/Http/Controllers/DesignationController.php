@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Designation;
 use Illuminate\Http\Request;
-use Exception;
+use Brian2694\Toastr\Facades\Toastr;
 
 class DesignationController extends Controller
 {
@@ -43,6 +44,7 @@ class DesignationController extends Controller
             $des->desig_des=$request->DesignationDescription;
             $des->status=$request->status;
             $des->save();
+            Toastr::success('Designation created Successfully!');
             return redirect(route('designation.index'));
             // dd($request);
         }
@@ -89,6 +91,7 @@ class DesignationController extends Controller
             $desupdate->desig_des=$request->DesignationDescription;
             $desupdate->status=$request->status;
             if($desupdate->save());
+            Toastr::info('Designation Updated Successfully!');
             return redirect(route('designation.index'));
 
         }catch(Exception $e){
@@ -105,6 +108,7 @@ class DesignationController extends Controller
     public function destroy(Designation $designation)
     {
         $designation->delete();
+        Toastr::warning('Designation Deleted Successfully!');
         return redirect()->back();
     }
 }

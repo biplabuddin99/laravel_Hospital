@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    
+
 <main id="main" class="main">
 
             <div class="pagetitle">
@@ -65,7 +65,7 @@
                                   <form id="form{{$d->id}}" action="{{ route('operation.destroy',$d->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
+                                    <button class="btn p-0 show_confirm" data-toggle="tooltip" type="submit"><i class='bi bi-trash' style='color: red'></i></a></button>
                                 </form>
                                 <a style="padding-right:8px" href="{{ route('operation.show',$d->id) }}">
 																	<i class="fa fa-eye"></i>

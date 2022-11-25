@@ -3,7 +3,7 @@
       &copy; Copyright <strong><span>Hospital Management</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      
+
       Designed by <a href="">WDPF R50 Group --B</a>
     </div>
   </footer><!-- End Footer -->
@@ -22,6 +22,14 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
+
+  {{-- tostr --}}
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  {!! Toastr::message() !!}
+
+  {{-- sweet alert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.14/dist/sweetalert2.all.min.js"></script>
 
 </body>
 

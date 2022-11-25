@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
 use Exception;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\doctor\DepartmentRequest;
 
 class DepartmentController extends Controller
@@ -45,6 +46,7 @@ class DepartmentController extends Controller
             $dep->description=$request->DepartmentDescription;
             $dep->status=$request->status;
             $dep->save();
+            Toastr::success('Department Created Successfully!');
             return redirect(route('department.index'));
             // dd($request);
         }
@@ -93,6 +95,7 @@ class DepartmentController extends Controller
             $department->description=$request->dep_description;
             $department->status=$request->status;
             if($departments->save());
+            Toastr::info('Department Update Successfully!');
             return redirect(route('department.index'));
 
         }catch(Exception $e){
@@ -110,6 +113,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
+        Toastr::warning('Department Delete Successfully!');
         return redirect()->back();
     }
 }

@@ -67,7 +67,7 @@
 																	</a>
 
 																@if(Auth::user()->employ_func->role->role_id == 17)
-																	<button class="edit btn btn-sm btn-danger"  type="submit" onclick="return confirm('Are you sure?')">
+																	<button class="edit btn btn-sm btn-danger show_confirm" data-toggle="tooltip"  type="submit">
 																		<i class="ace-icon fa fa-trash-o"></i>
 																	</button>
 																@endif

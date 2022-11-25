@@ -66,7 +66,7 @@
                              <form id="form{{$doct->id}}" action="{{ route('doctor.destroy',$doct->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="btn p-0  " type="submit" onclick="return confirm('are You confirm?')"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
+                                <button class="btn p-0 show_confirm" data-toggle="tooltip" type="submit"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
                             </form>
                         </td>
                     </tr>
@@ -92,5 +92,4 @@
     </section>
 
   </main>
-
 @endsection

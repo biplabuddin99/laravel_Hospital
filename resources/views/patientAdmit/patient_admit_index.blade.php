@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    
+
 <main id="main" class="main">
 
             <div class="pagetitle">
@@ -46,12 +46,12 @@
                               <tr>
                                 <th>{{ ++$loop->index }}</th>
                                 <td>{{ $pa->name }}</td>
-                                <td> 
+                                <td>
                                     @if($pa['picture'] == '')
                                       <i class="fa fa-wheelchair" style="font-size:50px;"></i>
                                     @else
                                       <img width="50px" src="{{ asset('uploads/patientAdmit/'.$pa->picture) }}" alt="No image">
-                                    @endif 
+                                    @endif
                                 </td>
                                 <td>{{ $pa->father_name }}</td>
                                 <td>{{ $pa->doctor_ref }}</td>
@@ -67,7 +67,7 @@
                                   <form id="form{{$pa->id}}" action="{{ route('patientAdmit.destroy',$pa->admit_id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn p-0" type="submit" onclick="return confirm('Are you confirm to Delete?')"><i class='bi bi-trash' style='color: red'></i></a></button>
+                                    <button class="btn p-0 show_confirm" data-toggle="tooltip" type="submit"><i class='bi bi-trash' style='color: red'></i></a></button>
                                 </form>
                               </td>
                             </tr>

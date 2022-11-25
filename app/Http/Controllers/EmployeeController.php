@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Blood;
-use App\Models\Role;
 use Exception;
+use App\Models\Role;
+use App\Models\Blood;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class EmployeeController extends Controller
 {
@@ -60,6 +61,7 @@ class EmployeeController extends Controller
             $employee->picture=$imageName;
         }
         $employee->save();
+        Toastr::success('Employee Created Successfully!');
         return redirect(route('employee.index'));
             }catch (Exception $e){
             return back()->withInput();
@@ -117,6 +119,7 @@ class EmployeeController extends Controller
             $employee->picture=$imageName;
         }
         $employee->save();
+        Toastr::info('Employee Updated Successfully!');
         return redirect(route('employee.index'));
             }catch (Exception $e){
             return back()->withInput();
@@ -139,6 +142,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
+        Toastr::warning('Employee Deleted Successfully!');
         return redirect()->back();
     }
 }

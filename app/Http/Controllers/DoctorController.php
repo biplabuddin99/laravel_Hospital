@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Blood;
 use App\Models\Doctor;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
 use Illuminate\Http\Request;
-use Exception;
+use Brian2694\Toastr\Facades\Toastr;
 
 class DoctorController extends Controller
 {
@@ -75,6 +76,7 @@ class DoctorController extends Controller
             $doct->fees=$request->fees;
             $doct->status=$request->status;
             $doct->save();
+            Toastr::success('Doctor Created Successfully!');
             return back();
         }catch (Exception $e){
             dd($e);
@@ -148,6 +150,7 @@ class DoctorController extends Controller
             $doct->fees=$request->fees;
             $doct->status=$request->status;
             $doct->save();
+            Toastr::info('Doctor Updated Successfully!');
             return redirect('doctor');
         }catch (Exception $e){
             dd($e);
@@ -164,6 +167,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         $doctor->delete();
+        Toastr::warning('Doctor Delete Successfully!');
         return redirect()->back();
     }
 }
