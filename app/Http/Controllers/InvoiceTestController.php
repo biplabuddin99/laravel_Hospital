@@ -7,6 +7,7 @@ use App\Models\Patient;
 use App\Models\InvoiceTest;
 use App\Models\TestCategory;
 use Illuminate\Http\Request;
+use App\Models\Test;
 
 class InvoiceTestController extends Controller
 {
@@ -30,8 +31,7 @@ class InvoiceTestController extends Controller
     public function create()
     {
         $testcategory=TestCategory::all();
-        $blood=Blood::all();
-        return view('testinvoice.create',compact(['testcategory','blood']));
+        return view('testinvoice.create',compact('testcategory'));
     }
 
     /**
@@ -42,7 +42,30 @@ class InvoiceTestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        		// patient basic model work
+
+		if($request->checkExist == 0){
+			$data = new InvoiceTest;
+			$data->name = $request->FullName;
+			$data->age = $request->patientAge;
+			$data->address = $request->Fulladdress;
+			$data->phone = $request->contactNumber;
+			$data->gender = $request->gender;
+			$data->blood = $request->bloodGroup;
+			//print_r($data);
+			$data->save();
+			// insert patient id
+			$a = $data->id;
+			$ran = RAND(1000,9999);
+			$patient_id = 'PA-'.$a.$ran;
+			//echo $patient_id;
+			$mo = Patient::find($a);
+			$mo->patient_id = $patient_id;
+			$mo->save();
+			$save_id = $data->id;
+		}else{
+			$save_id = $request->checkExist;
+		}
     }
 
     /**
@@ -94,5 +117,15 @@ class InvoiceTestController extends Controller
         $get_patient=Patient::where('patient_id',$request->id)->get();
         return $get_patient;
 
-}
+    }
+    public function get_test(Request $request)
+    {
+        $get_test = Test::where('test_category_id',$request->id)->get();
+        return $get_test;
+    }
+
+    public function get_test_price(Request $request){
+		$get_test = Test::find($request->id);
+		return $get_test;
+	}
 }

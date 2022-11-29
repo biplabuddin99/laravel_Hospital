@@ -15,7 +15,7 @@
 								<form class="form-horizontal" method="post" action="{{route('invoiceTest.store')}}">
                                     @csrf
                                     @method('POST')
-								{{-- <input type="hidden" name="_token" value="{{Session::token()}}" /> --}}
+								<input type="hidden" name="_token" value="{{Session::token()}}" />
 								<input type="hidden" name="checkExist" id="checkExist" value="0" />
 								{{-- <input type="hidden" name="cr_name" value="{{Auth::user()->employ_func->employ_id}}" /> --}}
 
@@ -52,16 +52,16 @@
 										</div>
 
 									<div class="row">
-										<div class="col-4 float-end">
-											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+										<div class="">
+											<button type="button" class="btn btn-primary float-end" data-toggle="modal" data-target="#myModal" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
 										</div>
 									</div>
                                     <div class="row">
 
                                             <div class="col-md-6 col-sm-6">
-                                                <div class="">
-                                                    <label class="control-label col-sm-2" for="FullName">Full Name:</label>
-                                                <div class="col-sm-10">
+                                                <div class="m-3">
+                                                    <label class="control-label col-sm-4" for="FullName">Full Name:</label>
+                                                <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="fname" name="FullName" value="{{ old('FullName') }}" required>
                                                 </div>
                                             </div>
@@ -78,39 +78,49 @@
                                             </div>
 
                                             <div class="m-3">
-                                                <label class="control-label col-sm-2" for="present_add">Address:</label>
+                                                <label class="control-label col-sm-2" for="Fulladdress">Address:</label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
+                                                    <textarea name="Fulladdress" id="Fulladdress" cols="30" class="form-control" rows="5" required></textarea>
                                                 </div>
                                             </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
-                                                <div class="">
+                                                <div class="m-3">
                                                     <label class="control-label col-sm-5" for="phone">Phone:</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+                                                    <input type="text" class="form-control" id="phone" name="contactNumber" value="{{ old('phone') }}" required>
                                                 </div>
                                             </div>
 
                                             <div class="m-3">
-                                                    <label class="control-label col-sm-2" for="sex">Gender:</label>
+                                                    <label class="control-label col-sm-2" for="gender">Gender:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="radio" name="sex" value="1" checked id="m"> Male
+                                                    <input type="radio" name="gender" value="1" checked id="m"> Male
                                                     &nbsp;
-                                                    <input type="radio" name="sex" value="2" id="f"> Female
+                                                    <input type="radio" name="gender" value="2" id="f"> Female
                                                     &nbsp;
-                                                    <input type="radio" name="sex" value="3" id="c"> Common
+                                                    <input type="radio" name="gender" value="3" id="c"> Common
                                                 </div>
                                             </div>
                                             <div class="m-3">
-                                                    <label class="control-label col-sm-5" for="blood">Blood Group:</label>
-                                                <div class="col-sm-7">
-                                                    <select class="form-control" id="blood" name="blood" required>
-                                                        <option>-- select --</option>
-                                                        @foreach($blood as $b)
-                                                            <option value="{{$b->blood_id}}">{{$b->blood_name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <label for="blood" class="col-sm-2 col-form-label">Blood:</label>
+                                                <div class="col-sm-10">
+                                                  <select class="form-control" name="patientBlood" id="blood">
+                                                    <option value="">Select Blood Group</option>
+                                                    <option value="A+" {{ old('patientBlood')=='A+' ? 'selected':''}}>A+</option>
+                                                    <option value="A-"{{ old('patientBlood')=='A-' ? 'selected':''}}>A-</option>
+                                                    <option value="B+"{{ old('patientBlood')=='B+' ? 'selected':''}}>B+</option>
+                                                    <option value="B-"{{ old('patientBlood')=='B-' ? 'selected':''}}>B-</option>
+                                                    <option value="O+"{{ old('patientBlood')=='O+' ? 'selected':''}}>O+</option>
+                                                    <option value="O-"{{ old('patientBlood')=='O-' ? 'selected':''}}>O-</option>
+                                                    <option value="AB+"{{ old('patientBlood')=='AB+' ? 'selected':''}}>AB+</option>
+                                                    <option value="AB-"{{ old('patientBlood')=='AB-' ? 'selected':''}}>AB-</option>
+                                                  </select>
+                                                  @if($errors->has('patientBlood'))
+                                                <span class="text-danger">
+                                                  {{ $errors->first('patientBlood') }}
+                                                </span>
+                                                @endif
                                                 </div>
                                             </div>
                                             </div>
@@ -141,8 +151,8 @@
 																	<select class="form-control inv_cat_id dont-select-me" onchange="get_test(this)">
 																			<option value="0"> -- Invest Category -- </option>
 
-																			@foreach($testcategory as $rc)
-																				<option value="{{$rc->inv_cat_id}}">{{$rc->inv_cat_name}}</option>
+																			@foreach($testcategory as $tc)
+																				<option value="{{$tc->id}}">{{$tc->name}}</option>
 																			@endforeach
 																	</select>
 																</td>
@@ -251,24 +261,20 @@
 					//console.log(data);
 					if(data){
 						$('#checkExist').val(data[0].id);
-						$('#fname').val(data[0].first_name);
-						$('#age').val(data[0].last_name);
-						$('#email').val(data[0].email);
+						$('#fname').val(data[0].name);
+						$('#age').val(data[0].age);
 						$('#phone').val(data[0].phone);
-						$('#present_add').val(data[0].present_address);
-						$('#permanent_address').val(data[0].permanent_address);
-						$('#picture').val(data[0].picture);
-						$('#birthdate').val(data[0].birth_date);
-						if(data[0].sex==1){
+						$('#Fulladdress').val(data[0].address);
+						if(data[0].gender==1){
 							$('#m').attr('checked', true);
-						} else if(data[0].sex==2){
+						} else if(data[0].gender==2){
 							$('#f').attr('checked', true);
-						} else if(data[0].sex==2){
+						} else if(data[0].gender==3){
 							$('#c').attr('checked', true);
 						} else{
 						}
 
-						var bloodGroup = data[0].blood_id;
+						var bloodGroup = data[0].id;
 						$('#blood option').each(function(){
 							var a = $(this).val();
 							if(bloodGroup == a){
@@ -311,6 +317,7 @@
 function get_test(v){
 			$(v).parent('td').siblings('td').find('select').html('');
 			$.ajax({
+
 				url:'{{ url('test/get_test') }}',
 				type: 'GET',
 				data: {'id': $(v).val()},
@@ -320,7 +327,7 @@ function get_test(v){
 						console.log(data);
 						$(v).parent('td').siblings('td').find('select').append("<option value=''> -- Investigation Name -- </option>");
 						for(var i in data)
-						$(v).parent('td').siblings('td').find('select').append("<option value='"+data[i].inv_list_id+"'>"+data[i].invest_name+"</option>");
+						$(v).parent('td').siblings('td').find('select').append("<option value='"+data[i].id+"'>"+data[i].name+"</option>");
 					}
 
 
