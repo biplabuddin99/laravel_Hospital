@@ -75,12 +75,24 @@
             </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="fa fa-pencil-square-o"></i><span>Appointment</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="fa fa-pencil-square"></i><span>Appointment</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
                 <a href="{{ route('appoint.index') }}">
                 <i class="bi bi-circle"></i><span>Appointment List</span>
+                </a>
+            </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#account-nav" data-bs-toggle="collapse" href="#">
+                <i class="fa fa-money-bill"></i><span>Account Manager</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="account-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('invoiceTest.index') }}">
+                <i class="bi bi-circle"></i><span>Invoice List</span>
                 </a>
             </li>
             </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blood;
+use App\Models\Patient;
 use App\Models\InvoiceTest;
 use App\Models\TestCategory;
 use Illuminate\Http\Request;
@@ -88,4 +89,10 @@ class InvoiceTestController extends Controller
     {
         //
     }
+
+    public function getpatient(Request $request){
+        $get_patient=Patient::where('patient_id',$request->id)->get();
+        return $get_patient;
+
+}
 }

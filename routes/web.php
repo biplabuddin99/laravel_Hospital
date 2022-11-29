@@ -19,6 +19,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\TestCategoryController;
+use App\Http\Controllers\InvoiceTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,4 +100,4 @@ Route::resource('test',TestController::class);
 		// Route::get('test/search',InvoiceTestController::class,'getpatient');
 		// Route::get('test/get_test',InvoiceTestController::class,'get_test');
 		// Route::get('test/get_test_price',InvoiceTestController::class,'get_test_price');
-		// Route::resource('invoiceTest',InvoiceTestController::class);
+		Route::resource('invoiceTest',InvoiceTestController::class);

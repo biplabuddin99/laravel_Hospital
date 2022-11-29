@@ -10,9 +10,9 @@
 					<div class="title">Invoice List</div>
 					<div class="box box-info">
 						<div class="panel panel-default">
-						@if(Auth::user()->employ_func->role->role_id == 17)
-							<div class="panel-heading"><a href="{{route('test.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Invoice </a></div>
-						@endif
+						{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
+							<div class="panel-heading mb-3"><a href="{{route('invoiceTest.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add Invoice </a></div>
+						{{-- @endif --}}
 							<div class="panel-body">
 								<!-- div.dataTables_borderWrap -->
 										<div>
@@ -59,18 +59,18 @@
 																	<input type="hidden" name="_method" value="delete" />
 																	<input type="hidden" name="_token" value="{{Session::token()}}" />
 
-																	<a class="edit btn btn-sm btn-success" style="padding-right:8px" href="{{route('test.show',$l->test_id)}}">
+																	<a class="edit btn btn-sm btn-success" style="padding-right:8px" href="{{route('invoiceTest.show',$l->test_id)}}">
 																	<i class="ace-icon fa fa-eye"></i>
 																	</a>
-																	<a class="edit btn btn-sm btn-primary" style="padding-right:8px" href="{{route('test.edit',$l->test_id)}}">
+																	<a class="edit btn btn-sm btn-primary" style="padding-right:8px" href="{{route('invoiceTest.edit',$l->test_id)}}">
 																	<i class="ace-icon fa fa-edit"></i>
 																	</a>
 
-																@if(Auth::user()->employ_func->role->role_id == 17)
+																{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
 																	<button class="edit btn btn-sm btn-danger show_confirm" data-toggle="tooltip"  type="submit">
 																		<i class="ace-icon fa fa-trash-o"></i>
 																	</button>
-																@endif
+																{{-- @endif --}}
 																</form>
 															</div>
 														</td>
