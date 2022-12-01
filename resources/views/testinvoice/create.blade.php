@@ -13,8 +13,8 @@
 							<div class="panel-heading mb-3"><a href="{{route('invoiceTest.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Invoice List </a></div>
 							<div class="panel-body">
 								<form class="form-horizontal" method="post" action="{{route('invoiceTest.store')}}">
-                                    @csrf
-                                    @method('POST')
+									@csrf
+									@method('POST')
 								<input type="hidden" name="_token" value="{{Session::token()}}" />
 								<input type="hidden" name="checkExist" id="checkExist" value="0" />
 								{{-- <input type="hidden" name="cr_name" value="{{Auth::user()->employ_func->employ_id}}" /> --}}
@@ -52,68 +52,78 @@
 										</div>
 
 									<div class="row">
-										<div class="col-4 float-end">
-											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+										<div class="">
+											<button type="button" class="btn btn-primary float-end" data-toggle="modal" data-target="#myModal" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
 										</div>
 									</div>
-                                    <div class="row">
+									<div class="row">
 
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="">
-                                                    <label class="control-label col-sm-2" for="FullName">Full Name:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="fname" name="FullName" value="{{ old('FullName') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="m-3">
-                                                <label for="age" class="col-sm-2 col-form-label">Age:</label>
-                                                <div class="col-sm-10">
-                                                <input type="text" name="patientAge" class="form-control" id="age" value="{{ old('patientAge') }}">
-                                                @if($errors->has('patientAge'))
-                                                    <span class="text-danger">
-                                                    {{ $errors->first('patientAge') }}
-                                                    </span>
-                                                    @endif
-                                                </div>
-                                            </div>
+											<div class="col-md-6 col-sm-6">
+													<div class="m-3">
+															<label class="control-label" for="FullName">Full Name:</label>
+													<div class="col-sm-10">
+															<input type="text" class="form-control" id="fname" name="FullName" value="{{ old('FullName') }}" required>
+													</div>
+											</div>
+											<div class="m-3">
+													<label for="age" class="col-form-label">Age:</label>
+													<div class="col-sm-10">
+													<input type="text" name="patientAge" class="form-control" id="age" value="{{ old('patientAge') }}">
+													@if($errors->has('patientAge'))
+															<span class="text-danger">
+															{{ $errors->first('patientAge') }}
+															</span>
+															@endif
+													</div>
+											</div>
 
-                                            <div class="m-3">
-                                                <label class="control-label col-sm-2" for="present_add">Address:</label>
-                                                <div class="col-sm-10">
-                                                    <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="">
-                                                    <label class="control-label col-sm-5" for="phone">Phone:</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
-                                                </div>
-                                            </div>
+											<div class="m-3">
+													<label class="control-label" for="present_add">Address:</label>
+													<div class="col-sm-10">
+															<textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
+													</div>
+											</div>
+											</div>
+										<div class="col-md-6 col-sm-6">
+												<div class="m-3">
+														<label class="control-label col-sm-5" for="phone">Phone:</label>
+												<div class="col-sm-7">
+														<input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+												</div>
+										</div>
 
-                                            <div class="m-3">
-                                                    <label class="control-label col-sm-2" for="sex">Gender:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="radio" name="sex" value="1" checked id="m"> Male
-                                                    &nbsp;
-                                                    <input type="radio" name="sex" value="2" id="f"> Female
-                                                    &nbsp;
-                                                    <input type="radio" name="sex" value="3" id="c"> Common
-                                                </div>
-                                            </div>
-                                            <div class="m-3">
-                                                    <label class="control-label col-sm-5" for="blood">Blood Group:</label>
-                                                <div class="col-sm-7">
-                                                    <select class="form-control" id="blood" name="blood" required>
-                                                        <option>-- select --</option>
-                                                        @foreach($blood as $b)
-                                                            <option value="{{$b->blood_id}}">{{$b->blood_name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            </div>
+										<div class="m-3">
+														<label class="control-label" for="sex">Gender:</label>
+												<div class="col-sm-10">
+														<input type="radio" name="sex" value="1" checked id="m"> Male
+														&nbsp;
+														<input type="radio" name="sex" value="2" id="f"> Female
+														&nbsp;
+														<input type="radio" name="sex" value="3" id="c"> Common
+												</div>
+										</div>
+										<div class="m-3">
+											<label for="blood" class="col-form-label">Blood:</label>
+											<div class="">
+												<select class="form-control" name="patientBlood" id="blood">
+													<option value="">Select Blood Group</option>
+													<option value="A+" {{ old('patientBlood')=='A+' ? 'selected':''}}>A+</option>
+													<option value="A-"{{ old('patientBlood')=='A-' ? 'selected':''}}>A-</option>
+													<option value="B+"{{ old('patientBlood')=='B+' ? 'selected':''}}>B+</option>
+													<option value="B-"{{ old('patientBlood')=='B-' ? 'selected':''}}>B-</option>
+													<option value="O+"{{ old('patientBlood')=='O+' ? 'selected':''}}>O+</option>
+													<option value="O-"{{ old('patientBlood')=='O-' ? 'selected':''}}>O-</option>
+													<option value="AB+"{{ old('patientBlood')=='AB+' ? 'selected':''}}>AB+</option>
+													<option value="AB-"{{ old('patientBlood')=='AB-' ? 'selected':''}}>AB-</option>
+												</select>
+												@if($errors->has('patientBlood'))
+											<span class="text-danger">
+												{{ $errors->first('patientBlood') }}
+											</span>
+											@endif
+											</div>
+										</div>
+										</div>
 
 									</div>
 									<!--########### Patient Test inforMation ############### -->
@@ -139,7 +149,7 @@
 																			<option value="0"> -- Invest Category -- </option>
 
 																			@foreach($testcategory as $rc)
-																				<option value="{{$rc->inv_cat_id}}">{{$rc->inv_cat_name}}</option>
+																				<option value="{{$rc->id}}">{{$rc->name}}</option>
 																			@endforeach
 																	</select>
 																</td>
