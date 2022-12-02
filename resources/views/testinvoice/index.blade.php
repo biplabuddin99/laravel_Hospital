@@ -36,7 +36,7 @@
 
 												@forelse($invoice as $l)
 													<tr>
-														<td>{{$i++}}</td>
+														<td>{{ ++$loop->index }}</td>
 														<td>{{$l->created_at->todatestring()}}</td>
 														<td>{{$l->patient->patient_id}}</td>
 														<td>{{$l->total}}</td>
@@ -53,26 +53,18 @@
 																{{"0.00"}}
 															@endif
 														</td>
-														<td>
-															<div style="font-size:10px;">
-																<form action="{{route('test.destroy',$l->test_id)}}" method="post">
-																	<input type="hidden" name="_method" value="delete" />
-																	<input type="hidden" name="_token" value="{{Session::token()}}" />
-
-																	<a class="edit btn btn-sm btn-success" style="padding-right:8px" href="{{route('invoiceTest.show',$l->test_id)}}">
-																	<i class="ace-icon fa fa-eye"></i>
-																	</a>
-																	<a class="edit btn btn-sm btn-primary" style="padding-right:8px" href="{{route('invoiceTest.edit',$l->test_id)}}">
-																	<i class="ace-icon fa fa-edit"></i>
-																	</a>
-
-																{{-- @if(Auth::user()->employ_func->role->role_id == 17) --}}
-																	<button class="edit btn btn-sm btn-danger show_confirm" data-toggle="tooltip"  type="submit">
-																		<i class="ace-icon fa fa-trash-o"></i>
-																	</button>
-																{{-- @endif --}}
-																</form>
-															</div>
+														<td class="d-flex">
+                                                            <a class="text-success " style="padding-right:8px" href="{{route('invoiceTest.show',$l->id)}}">
+                                                                <i class="ace-icon fa fa-eye bigger-130"></i>
+                                                            </a>
+                                                                <a href="{{ route('invoiceTest.edit',$l->id) }}" class=""><i class="fa-solid fa-pen-to-square"></i>
+                                                                </a>
+                                                            <form action="{{route('invoiceTest.destroy',$l->id)}}" method="post">
+                                                                <input type="hidden" name="_method" value="delete" />
+                                                                <input type="hidden" name="_token" value="{{Session::token()}}" />
+                                                                <button class="btn p-0 show_confirm" data-toggle="tooltip" type="submit"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
+                                                            {{-- @endif --}}
+                                                            </form>
 														</td>
 													</tr>
 											@empty

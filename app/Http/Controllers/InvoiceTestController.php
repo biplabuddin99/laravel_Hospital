@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Test;
 use App\Models\Blood;
 use App\Models\Patient;
 use App\Models\InvoiceTest;
 use App\Models\TestCategory;
 use Illuminate\Http\Request;
-use App\Models\Test;
+use App\Models\InvoiceTestDetail;
+use Brian2694\Toastr\Facades\Toastr;
 
 class InvoiceTestController extends Controller
 {
@@ -45,13 +47,13 @@ class InvoiceTestController extends Controller
         		// patient basic model work
 
 		if($request->checkExist == 0){
-			$data = new InvoiceTest;
+			$data = new Patient;
 			$data->name = $request->FullName;
 			$data->age = $request->patientAge;
-			$data->address = $request->Fulladdress;
+			$data->address = $request->fullAdress;
 			$data->phone = $request->contactNumber;
 			$data->gender = $request->gender;
-			$data->blood = $request->bloodGroup;
+			$data->blood = $request->patientBlood;
 			//print_r($data);
 			$data->save();
 			// insert patient id
@@ -66,6 +68,16 @@ class InvoiceTestController extends Controller
 		}else{
 			$save_id = $request->checkExist;
 		}
+
+        $test_new = new InvoiceTest;
+		// $test_new->patient_id = $save_id;
+		// $test_new->vat = $vat;
+		// $test_new->discount = $discount;
+		// $test_new->total = $request->total;
+		// $test_new->paid = $request->paid;
+		// $test_new->paid_status = $paid_status;
+		// $test_new->created_by = $request->cr_name;
+		// $test_new->save();
     }
 
     /**
@@ -74,9 +86,11 @@ class InvoiceTestController extends Controller
      * @param  \App\Models\InvoiceTest  $invoiceTest
      * @return \Illuminate\Http\Response
      */
-    public function show(InvoiceTest $invoiceTest)
+    public function show($id)
     {
-        //
+        $data = InvoiceTest::findOrFail($id);
+		$test_d=InvoiceTestDetail::where('test_id',$id)->get();
+		return view('testinvoice.show',compact('data','test_d'));
     }
 
     /**
@@ -87,7 +101,8 @@ class InvoiceTestController extends Controller
      */
     public function edit(InvoiceTest $invoiceTest)
     {
-        //
+		$test_d=InvoiceTestDetail::all();
+		return view('testinvoice.edit',compact('invoiceTest','test_d'));
     }
 
     /**
@@ -110,8 +125,13 @@ class InvoiceTestController extends Controller
      */
     public function destroy(InvoiceTest $invoiceTest)
     {
-        //
+        $invoiceTest->delete();
+        Toastr::warning('Invoice Deleted Permanently!');
+        return redirect()->back();
     }
+
+
+
 
     public function getpatient(Request $request){
         $get_patient=Patient::where('patient_id',$request->id)->get();

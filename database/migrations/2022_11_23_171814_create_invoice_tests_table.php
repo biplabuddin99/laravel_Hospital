@@ -22,8 +22,8 @@ return new class extends Migration
 			$table->double('total', 8, 2);
 			$table->double('paid', 8, 2);
 			$table->integer('paid_status');
-			$table->integer('created_by');
-			$table->integer('updated_by');
+			$table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
 			$table->softDeletes();
             $table->timestamps();
         });

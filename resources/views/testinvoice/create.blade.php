@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Shift')
+@section('title','Invoice')
 
 @section('content')
 <main id="main" class="main">
@@ -262,7 +262,6 @@
 						$('#patientAge').val(data[0].age);
 						$('#fullAdress').val(data[0].address);
 						$('#contactNumber').val(data[0].phone);
-						$('#Fulladdress').val(data[0].address);
 						$('#patientBlood').val(data[0].blood);
 						if(data[0].gender==1){
 							$('#m').attr('checked', true);
