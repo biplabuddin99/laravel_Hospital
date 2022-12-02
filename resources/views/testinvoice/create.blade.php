@@ -62,7 +62,7 @@
 													<div class="m-3">
 															<label class="control-label" for="FullName">Full Name:</label>
 													<div class="col-sm-10">
-															<input type="text" class="form-control" id="fname" name="FullName" value="{{ old('FullName') }}" required>
+															<input type="text" class="form-control" id="FullName" name="FullName" value="{{ old('FullName') }}" required>
 													</div>
 											</div>
 											<div class="m-3">
@@ -78,34 +78,34 @@
 											</div>
 
 											<div class="m-3">
-													<label class="control-label" for="present_add">Address:</label>
+													<label class="control-label" for="fullAdress">Address:</label>
 													<div class="col-sm-10">
-															<textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required></textarea>
+															<textarea name="fullAdress" id="fullAdress" cols="30" class="form-control" rows="5" required></textarea>
 													</div>
 											</div>
 											</div>
 										<div class="col-md-6 col-sm-6">
 												<div class="m-3">
-														<label class="control-label col-sm-5" for="phone">Phone:</label>
+														<label class="control-label col-sm-5" for="contactNumber">Phone:</label>
 												<div class="col-sm-7">
-														<input type="text" class="form-control" id="phone" name="phone" value="{{ Request::old('phone') }}" required>
+														<input type="text" class="form-control" id="contactNumber" name="contactNumber" value="{{ old('contactNumber') }}" required>
 												</div>
 										</div>
 
 										<div class="m-3">
-														<label class="control-label" for="sex">Gender:</label>
+														<label class="control-label" for="gender">Gender:</label>
 												<div class="col-sm-10">
-														<input type="radio" name="sex" value="1" checked id="m"> Male
+														<input type="radio" name="gender" value="1" checked id="m"> Male
 														&nbsp;
-														<input type="radio" name="sex" value="2" id="f"> Female
+														<input type="radio" name="gender" value="2" id="f"> Female
 														&nbsp;
-														<input type="radio" name="sex" value="3" id="c"> Common
+														<input type="radio" name="gender" value="3" id="c"> Common
 												</div>
 										</div>
 										<div class="m-3">
 											<label for="blood" class="col-form-label">Blood:</label>
 											<div class="">
-												<select class="form-control" name="patientBlood" id="blood">
+												<select class="form-control" name="patientBlood" id="patientBlood">
 													<option value="">Select Blood Group</option>
 													<option value="A+" {{ old('patientBlood')=='A+' ? 'selected':''}}>A+</option>
 													<option value="A-"{{ old('patientBlood')=='A-' ? 'selected':''}}>A-</option>
@@ -258,11 +258,12 @@
 					//console.log(data);
 					if(data){
 						$('#checkExist').val(data[0].id);
-						$('#fname').val(data[0].first_name);
-						$('#age').val(data[0].last_name);
-						$('#email').val(data[0].email);
-						$('#phone').val(data[0].phone);
+						$('#FullName').val(data[0].name);
+						$('#patientAge').val(data[0].age);
+						$('#fullAdress').val(data[0].address);
+						$('#contactNumber').val(data[0].phone);
 						$('#Fulladdress').val(data[0].address);
+						$('#patientBlood').val(data[0].blood);
 						if(data[0].gender==1){
 							$('#m').attr('checked', true);
 						} else if(data[0].gender==2){
@@ -272,13 +273,6 @@
 						} else{
 						}
 
-						var bloodGroup = data[0].id;
-						$('#blood option').each(function(){
-							var a = $(this).val();
-							if(bloodGroup == a){
-								$(this).attr('selected', true);
-							}
-						});
 					}
 				}
 			});
