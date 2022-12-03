@@ -14,46 +14,40 @@
 							<div class="panel-body">
 								<form class="form-horizontal" method="post" action="{{route('invoiceTest.store')}}">
 									@csrf
-									@method('POST')
-								<input type="hidden" name="_token" value="{{Session::token()}}" />
 								<input type="hidden" name="checkExist" id="checkExist" value="0" />
 								{{-- <input type="hidden" name="cr_name" value="{{Auth::user()->employ_func->employ_id}}" /> --}}
 
 
 									<!-- ======= Patient ID Modal ======== -->
-										<div class="modal fade" id="myModal" role="dialog">
-										<div class="modal-dialog">
-
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Patient Id</h4>
-											</div>
-											<div class="modal-body">
-												<div class="form-group">
-													<div class="col-md-12 ">
-															<label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
-														<div class="col-md-6">
-															<input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
-															<span class="">
-
-															</span>
+										<div class="modal fade" id="patientId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Patient Id</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<div class="form-group">
+															<div class="row ">
+																	<label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
+																<div class="col-md-6">
+																	<input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
+																	<span class="">
+		
+																	</span>
+																</div>
+															</div>
 														</div>
-														<button class="btn btn-secondary" id="search_p" type="button" data-dismiss="modal">Search Patient</button>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" id="search_p" data-bs-dismiss="modal">Search Patient</button>
 													</div>
 												</div>
 											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
 										</div>
-										</div>
-
 									<div class="row">
 										<div class="">
-											<button type="button" class="btn btn-primary float-end" data-toggle="modal" data-target="#myModal" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+											<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#patientId" style="margin-right:33px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
 										</div>
 									</div>
 									<div class="row">
@@ -68,7 +62,7 @@
 											<div class="m-3">
 													<label for="age" class="col-form-label">Age:</label>
 													<div class="col-sm-10">
-													<input type="text" name="patientAge" class="form-control" id="age" value="{{ old('patientAge') }}">
+													<input type="text" name="patientAge" class="form-control" id="patientAge" value="{{ old('patientAge') }}">
 													@if($errors->has('patientAge'))
 															<span class="text-danger">
 															{{ $errors->first('patientAge') }}
@@ -93,8 +87,8 @@
 										</div>
 
 										<div class="m-3">
-														<label class="control-label" for="gender">Gender:</label>
-												<div class="col-sm-10">
+														<label class="control-label col-sm-5" for="gender">Gender:</label>
+												<div class="col-sm-7">
 														<input type="radio" name="gender" value="1" checked id="m"> Male
 														&nbsp;
 														<input type="radio" name="gender" value="2" id="f"> Female
@@ -251,7 +245,7 @@
 			$('#search_p').click(function(){
 			var patient_id = $('#patient_id').val();
 			$.ajax({
-				url:'{{ url('patient/search') }}',
+				url:'{{ route("inv.getpatient") }}',
 				type: 'GET',
 				data: {'id':patient_id},
 				success: function(data){
@@ -306,46 +300,37 @@
 	});
 
 function get_test(v){
-			$(v).parent('td').siblings('td').find('select').html('');
-			$.ajax({
-
-				url:'{{ url('test/get_test') }}',
-				type: 'GET',
-				data: {'id': $(v).val()},
-
-				success: function(data){
-					if(data){
-						console.log(data);
-						$(v).parent('td').siblings('td').find('select').append("<option value=''> -- Investigation Name -- </option>");
-						for(var i in data)
-						$(v).parent('td').siblings('td').find('select').append("<option value='"+data[i].id+"'>"+data[i].name+"</option>");
-					}
-
-
-				}
-			});
-}
-function get_price(v){
-	$(v).parent('td').siblings('td').find('.price').html('');
+	$(v).parent('td').siblings('td').find('select').html('');
 	$.ajax({
-		url:'{{ url('test/get_test_price') }}',
+		url:'{{route("inv.get_test")}}',
 		type: 'GET',
 		data: {'id': $(v).val()},
 
 		success: function(data){
 			if(data){
-
+				$(v).parent('td').siblings('td').find('select').append("<option value=''> -- Investigation Name -- </option>");
+				for(var i in data)
+				$(v).parent('td').siblings('td').find('select').append("<option value='"+data[i].id+"'>"+data[i].name+"</option>");
+			}
+		}
+	});
+}
+function get_price(v){
+	$(v).parent('td').siblings('td').find('.price').html('');
+	$.ajax({
+		url:'{{ route("inv.get_test_price") }}',
+		type: 'GET',
+		data: {'id': $(v).val()},
+		success: function(data){
+			if(data){
 				$(v).parent('td').siblings('td').find('.price').val(data.price);
 				var total = 0;
-			$('.price').each(function(){
-
-				total += parseFloat($(this).val());
-				$('#total').val(total.toFixed(2));
-				$('#grand_total').val(total.toFixed(2));
-			});
+				$('.price').each(function(){
+					total += parseFloat($(this).val());
+					$('#total').val(total.toFixed(2));
+					$('#grand_total').val(total.toFixed(2));
+				});
 			}
-
-
 		}
 	});
 }
@@ -361,18 +346,15 @@ function get_price(v){
 		var discount = $('#discount').val();
 		$('#grand_total').val(((parseFloat(total)+parseFloat(vat)-parseFloat(discount))).toFixed(2));
 	}
-	function get_due(){
-		 var grand_total =$('#grand_total').val();
 
+	function get_due(){
+		var grand_total =$('#grand_total').val();
 		var paid =$('#paid').val();
 		var due = ((parseFloat(grand_total)-parseFloat(paid))).toFixed(2);
-
-		if (due < 1){
+		if (due < 1)
 			due = 0;
-		}
 		$('#due').val(due).toFixed(2);
 	}
-
 
 </script>
 </main>

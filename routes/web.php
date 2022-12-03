@@ -97,6 +97,7 @@ Route::resource('test',TestController::class);
 
 //invoice
 		/*====================invoice Sector ==============*/
-		// Route::get('test/search',InvoiceTestController::class,'getpatient');
-		// Route::get('test/get_test_price',InvoiceTestController::class,'get_test_price');
+		Route::get('/inv/search',[InvoiceTestController::class,'getpatient'])->name('inv.getpatient');
+		Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
+		Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
 		Route::resource('invoiceTest',InvoiceTestController::class);
