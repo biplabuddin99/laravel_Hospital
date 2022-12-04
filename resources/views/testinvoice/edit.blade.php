@@ -12,27 +12,27 @@
 						<div class="panel panel-default">
 							<div class="panel-heading"><a href="{{route('invoiceTest.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Invoice List </a></div>
 							<div class="panel-body">
-								<form class="form-horizontal" method="post" action="{{route('invoiceTest.update',$invoiceTest->id)}}">
+								<form class="form-horizontal" method="post" action="{{route('invoiceTest.update',$data->id)}}">
 									@csrf
 									@method('patch')
 
 								{{-- <input type="hidden" name="_method" value="PATCH" />
 								<input type="hidden" name="_token" value="{{Session::token()}}" /> --}}
 
-									<input type="hidden" name="test_id" value="{{$invoiceTest->id}}"/>
-									<input type="hidden" name="patient_id" value="{{$invoiceTest->patient_id}}" />
+									<input type="hidden" name="test_id" value="{{$data->id}}"/>
+									<input type="hidden" name="patient_id" value="{{$data->patient_id}}" />
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="m-3">
                                                 <label class="control-label" for="FullName">Full Name:</label>
                                             <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="FullName" name="FullName" value="{{ old('FullName',$invoiceTest->patient->name) }}" required readonly>
+                                                    <input type="text" class="form-control" id="FullName" name="FullName" value="{{ old('FullName',$data->patient->name) }}" required readonly>
                                             </div>
                                         </div>
                                         <div class="m-3">
                                                 <label for="age" class="col-form-label">Age:</label>
                                                 <div class="col-sm-10">
-                                                <input type="text" name="patientAge" class="form-control" id="age" value="{{ old('patientAge',$invoiceTest->patient->age) }}" readonly>
+                                                <input type="text" name="patientAge" class="form-control" id="age" value="{{ old('patientAge',$data->patient->age) }}" readonly>
                                                 @if($errors->has('patientAge'))
                                                         <span class="text-danger">
                                                         {{ $errors->first('patientAge') }}
@@ -44,7 +44,7 @@
                                         <div class="m-3">
                                                 <label class="control-label" for="fullAdress">Address:</label>
                                                 <div class="col-sm-10">
-                                                        <textarea name="fullAdress" id="fullAdress" cols="30" class="form-control" rows="5" required readonly>{{ $invoiceTest->patient->address }}</textarea>
+                                                        <textarea name="fullAdress" id="fullAdress" cols="30" class="form-control" rows="5" required readonly>{{ $data->patient->address }}</textarea>
                                                 </div>
                                         </div>
                                    </div>
@@ -52,18 +52,18 @@
                                         <div class="m-3">
                                                 <label class="control-label col-sm-5" for="contactNumber">Phone:</label>
                                             <div class="col-sm-7">
-                                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="{{ old('contactNumber',$invoiceTest->patient->phone) }}" required  readonly>
+                                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="{{ old('contactNumber',$data->patient->phone) }}" required  readonly>
                                             </div>
                                         </div>
 
                                         <div class="m-3">
                                                         <label class="control-label" for="gender">Gender:</label>
                                                 <div class="col-sm-10">
-                                                        <input type="radio" name="gender" value="1"{{$invoiceTest->patient->gender == '1' ? 'checked' : ''}} id="m" readonly> Male
+                                                        <input type="radio" name="gender" value="1"{{$data->patient->gender == '1' ? 'checked' : ''}} id="m" readonly> Male
                                                         &nbsp;
-                                                        <input type="radio" name="gender" value="2" {{$invoiceTest->patient->gender == '2' ? 'checked' : ''}}  id="f" readonly> Female
+                                                        <input type="radio" name="gender" value="2" {{$data->patient->gender == '2' ? 'checked' : ''}}  id="f" readonly> Female
                                                         &nbsp;
-                                                        <input type="radio" name="gender" value="3" {{$invoiceTest->patient->gender == '3' ? 'checked' : ''}}  id="c" readonly> Common
+                                                        <input type="radio" name="gender" value="3" {{$data->patient->gender == '3' ? 'checked' : ''}}  id="c" readonly> Common
                                                 </div>
                                         </div>
                                         <div class="m-3">
@@ -71,14 +71,14 @@
                                             <div class="">
                                                 <select class="form-control" name="patientBlood" id="patientBlood">
                                                     <option value="">Select Blood Group</option>
-                                                    <option value="A+" {{ old('patientBlood',$invoiceTest->patient->blood)=='A+' ? 'selected':''}}>A+</option>
-                                                    <option value="A-"{{ old('patientBlood',$invoiceTest->patient->blood)=='A-' ? 'selected':''}}>A-</option>
-                                                    <option value="B+"{{ old('patientBlood',$invoiceTest->patient->blood)=='B+' ? 'selected':''}}>B+</option>
-                                                    <option value="B-"{{ old('patientBlood',$invoiceTest->patient->blood)=='B-' ? 'selected':''}}>B-</option>
-                                                    <option value="O+"{{ old('patientBlood',$invoiceTest->patient->blood)=='O+' ? 'selected':''}}>O+</option>
-                                                    <option value="O-"{{ old('patientBlood',$invoiceTest->patient->blood)=='O-' ? 'selected':''}}>O-</option>
-                                                    <option value="AB+"{{ old('patientBlood',$invoiceTest->patient->blood)=='AB+' ? 'selected':''}}>AB+</option>
-                                                    <option value="AB-"{{ old('patientBlood',$invoiceTest->patient->blood)=='AB-' ? 'selected':''}}>AB-</option>
+                                                    <option value="A+" {{ old('patientBlood',$data->patient->blood)=='A+' ? 'selected':''}}>A+</option>
+                                                    <option value="A-"{{ old('patientBlood',$data->patient->blood)=='A-' ? 'selected':''}}>A-</option>
+                                                    <option value="B+"{{ old('patientBlood',$data->patient->blood)=='B+' ? 'selected':''}}>B+</option>
+                                                    <option value="B-"{{ old('patientBlood',$data->patient->blood)=='B-' ? 'selected':''}}>B-</option>
+                                                    <option value="O+"{{ old('patientBlood',$data->patient->blood)=='O+' ? 'selected':''}}>O+</option>
+                                                    <option value="O-"{{ old('patientBlood',$data->patient->blood)=='O-' ? 'selected':''}}>O-</option>
+                                                    <option value="AB+"{{ old('patientBlood',$data->patient->blood)=='AB+' ? 'selected':''}}>AB+</option>
+                                                    <option value="AB-"{{ old('patientBlood',$data->patient->blood)=='AB-' ? 'selected':''}}>AB-</option>
                                                 </select>
                                                 @if($errors->has('patientBlood'))
                                             <span class="text-danger">
@@ -113,7 +113,7 @@
 														<tr class="bg-info">
 															<td colspan="3"></td>
 															<th class="text-right">Total</th>
-															<th><input type="text" name="total" id="total" class="form-control" readonly required placeholder="Total"  value="{{$invoiceTest->total}}"></th>
+															<th><input type="text" name="total" id="total" class="form-control" readonly required placeholder="Total"  value="{{$data->total}}"></th>
 															<td></td>
 														</tr>
 														<tr>
@@ -121,10 +121,10 @@
 															<td>
 																<div class="input-group">
 																  <div class="input-group-addon">%</div>
-																  <input type="text" id="vatParcent" required   class="form-control"name="vat" value="{{($invoiceTest->vat/$invoiceTest->total)*100}}" onKeyup="vat_discount()">
+																  <input type="text" id="vatParcent" required   class="form-control"name="vat" value="{{($data->vat/$data->total)*100}}" onKeyup="vat_discount()" readonly>
 																</div>
 															</td>
-															<td><input type="text" id="vat" required class="vatDiscount paidDue form-control" placeholder="Vat" value="{{$invoiceTest->vat}}" ></td>
+															<td><input type="text" id="vat" required class="vatDiscount paidDue form-control" placeholder="Vat" value="{{$data->vat}}" readonly></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -132,29 +132,29 @@
 															<td>
 																<div class="input-group">
 																  <div class="input-group-addon">%</div>
-																  <input type="text"name="discount"  id="discountParcent" required class=" form-control" value="{{($invoiceTest->discount/$invoiceTest->total)*100}}" onKeyup="vat_discount()" >
+																  <input type="text"name="discount"  id="discountParcent" required class=" form-control" value="{{($data->discount/$data->total)*100}}" onKeyup="vat_discount()" readonly >
 																</div>
 															</td>
 
-															<td><input type="text" required id="discount" class="vatDiscount paidDue form-control" placeholder="Discount"  value="{{$invoiceTest->discount}}" ></td>
+															<td><input type="text" required id="discount" class="vatDiscount paidDue form-control" placeholder="Discount"  value="{{$data->discount}}" readonly></td>
 															<td></td>
 														</tr>
 														<tr class="bg-success">
 															<td colspan="3"></td>
 															<th class="text-right">Grand Total</th>
-															<th><input type="text" name="grand_total" readonly required  id="grand_total" class="paidDue form-control" placeholder="Grand Total" value="{{($invoiceTest->total+$invoiceTest->vat)-$invoiceTest->discount}}" onKeyup="vat_discount()" ></th>
+															<th><input type="text" name="grand_total" readonly required  id="grand_total" class="paidDue form-control" placeholder="Grand Total" value="{{($data->total+$data->vat)-$data->discount}}" onKeyup="vat_discount()" ></th>
 															<td></td>
 														</tr>
 														<tr>
 															<td colspan="3"></td>
 															<th class="text-right">Paid</th>
-															<td><input type="text" name="paid" id="paid_id" class="paid_id form-control" required placeholder="Paid"  value="{{$invoiceTest->paid}}"></td>
+															<td><input type="text" name="paid" id="paid_id" class="paid_id form-control" required placeholder="Paid"  value="{{$data->paid}}"></td>
 															<td></td>
 														</tr>
 														<tr class="bg-danger">
 															<td colspan="3"></td>
 															<th class="text-right">Due</th>
-															<td><input type="text" name="due" id="due" class="paidDue form-control" required placeholder="Due" value="{{($invoiceTest->total+$invoiceTest->vat-$invoiceTest->discount)-$invoiceTest->paid}}"></td>
+															<td><input type="text" name="due" id="due" class="paidDue form-control" required placeholder="Due" value="{{($data->total+$data->vat-$data->discount)-$data->paid}}"></td>
 															<td></td>
 														</tr>
 													</table>

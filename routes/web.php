@@ -59,7 +59,7 @@ Route::resource('employee',EmployeeController::class);
 // Route::get('profile/{id}',EmployeeController::class,'profile');
 
 
-//Appoint route
+/*====================Appointment Sector ==============*/
 Route::resource('appoint',AppointmentController::class);
 Route::get('/getPatient', [AppointmentController::class, 'get_patient'])->name('app.getPatient');
 Route::get('/getEmploy', [AppointmentController::class, 'getEmploy'])->name('app.getEmploy');
@@ -70,7 +70,7 @@ Route::get('/getSerial', [AppointmentController::class, 'getSerial'])->name('app
 Route::resource('patient',PatientController::class);
 Route::resource('patientAdmit',PatientAdmitController::class);
 
-//schedule
+/*====================schedule Sector ==============*/
 Route::resource('shift',ShiftController::class);
 Route::resource('schedule',ScheduleController::class);
 Route::get('/scheduleget', [ScheduleController::class, 'show'])->name('scheduleget');
@@ -86,18 +86,16 @@ Route::resource('death',DeathController::class);
 Route::resource('operation',OperationController::class);
 
 
-//room
+/*====================Room Sector ==============*/
 Route::resource('roomCategory',RoomCategoryController::class);
 Route::resource('roomList',RoomListController::class);
 
-//test-cat
+/*====================Test Sector ==============*/
 Route::resource('testCategory',TestCategoryController::class);
-//test
 Route::resource('test',TestController::class);
 
-//invoice
-		/*====================invoice Sector ==============*/
-		Route::get('/inv/search',[InvoiceTestController::class,'getpatient'])->name('inv.getpatient');
-		Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
-		Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
-		Route::resource('invoiceTest',InvoiceTestController::class);
+/*====================invoice Sector ==============*/
+Route::get('/inv/search',[InvoiceTestController::class,'getpatient'])->name('inv.getpatient');
+Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
+Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
+Route::resource('invoiceTest',InvoiceTestController::class);

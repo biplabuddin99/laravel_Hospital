@@ -72,8 +72,8 @@ class InvoiceTestController extends Controller
                 $save_id = $request->checkExist;
             }
 
-        
-            
+
+
             /*-------for total field---------*/
             $price = 0;
             $inv_list_id = $request->inv_list_id;
@@ -81,20 +81,20 @@ class InvoiceTestController extends Controller
                 $data = Test::find($li_id);
                 $price += $data->price;
             }
-            
+
             $vat = ($request->vat/100)*$price;
             $discount = ($request->discount/100)*$price;
-            
+
             /*----if grand total and paid are equal paid status will be 0---*/
             $grand_total = (int)(($price+$vat)-$discount); // make it decimal less
-            
+
             $paid_status = 0;
-            
+
             if($request->paid == $grand_total){
                 $paid_status = 1;
             }
-            
-        
+
+
             // InvoiceTest summary
             $test_new = new InvoiceTest;
             $test_new->patient_id = $save_id;
@@ -106,7 +106,7 @@ class InvoiceTestController extends Controller
             $test_new->created_by = Session::get('userId');
             $test_new->updated_by = Session::get('userId');
             $test_new->save();
-            
+
             foreach($inv_list_id as $id){
                 $details = new InvoiceTestDetail;
                 $details->invoice_test_id = $test_new->id;
@@ -142,10 +142,11 @@ class InvoiceTestController extends Controller
      * @param  \App\Models\InvoiceTest  $invoiceTest
      * @return \Illuminate\Http\Response
      */
-    public function edit(InvoiceTest $invoiceTest)
+    public function edit($id)
     {
-		$test_d=InvoiceTestDetail::all();
-		return view('testinvoice.edit',compact('invoiceTest','test_d'));
+        $data=InvoiceTest::findOrFail($id);
+		$test_d=InvoiceTestDetail::where('invoice_test_id',$id)->get();
+		return view('testinvoice.edit',compact('data','test_d'));
     }
 
     /**
@@ -155,9 +156,18 @@ class InvoiceTestController extends Controller
      * @param  \App\Models\InvoiceTest  $invoiceTest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InvoiceTest $invoiceTest)
+    public function update(Request $request,$id)
     {
-        //
+        $data = InvoiceTest::findOrFail($id);
+		$data->paid = $request->paid;
+		$data->paid_status = 0;
+
+		if($request->paid == (int)($request->grand_total)){
+			$data->paid_status = 1;
+		}
+		$data->save();
+        Toastr::success('Invoice Updated Successfully!');
+        return redirect('invoiceTest');
     }
 
     /**
