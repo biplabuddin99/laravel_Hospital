@@ -41,6 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php echo $doctors ?>
                     @forelse ($doctors as $doct)
                     <tr>
                         <th scope="row">{{ ++$loop->index }}</th>
@@ -54,8 +55,16 @@
 
                         </td>
                         <td>{{ $doct->employee->name }}</td>
+                        @if($doct->department_id=='' )
+                        <td>no department</td>
+                        @else                       
                         <td>{{ $doct->department->name }}</td>
+                        @endif
+                        @if($doct->designation_id =='' )
+                        <td>no designation</td>
+                        @else
                         <td>{{ $doct->designation->desig_name }}</td>
+                        @endif
                         <td>{{ $doct->employee->email }}</td>
                         <td>{{ $doct->employee->phone }}</td>
                          <td class="d-flex">

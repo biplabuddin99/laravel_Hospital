@@ -37,12 +37,14 @@
 
                 <div class="card-body">
                   <h5 class="card-title">Appointment <span>| Today</span></h5>
-                  {{-- @forelse ($ad_patient as $inv) --}}
-                  {{-- <span class="count-number">{{$inv->id->count()}}</span> --}}
-{{-- 
+                  {{-- <div><span class="count-number">{{$doc->count('id')}}</span></div> --}}
+
+                  
+                   {{-- @forelse ($ad_patient as $inv) 
+                  <span class="count-number">{{$inv->id->count()}}</span> 
                   @empty
                       no
-                  @endforelse --}}
+                  @endforelse  --}}
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

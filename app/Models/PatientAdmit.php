@@ -18,12 +18,12 @@ class PatientAdmit extends Model
     protected $primaryKey = 'admit_id';
 
 
-        public function get_patient()
-	{
-		return $this->belongsTo(Patient::class);
-	}
-        public function get_room()
-	{
-		return $this->belongsTo(Room::class);
-	}
+			public function get_patient()
+			{
+				return $this->belongsTo(Patient::class);
+			}
+			public function get_room()
+			{
+				return $this->belongsTo(Room::class);
+			}
 }
