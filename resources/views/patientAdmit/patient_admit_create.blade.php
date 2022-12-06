@@ -238,7 +238,7 @@
     $('#room_cat_id').on('change', function(){
 			var room_cat_id = $(this).val();
 			//console.log(room_cat_id)
-			$.ajax({
+			$.ajax({ 
 				url:'{{route("room.get_room")}}',
 				type: 'GET',
 				data: {'id': room_cat_id},
