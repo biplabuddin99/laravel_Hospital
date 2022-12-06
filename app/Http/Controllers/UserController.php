@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\auth\RegisterRequest;
 use App\Http\Traits\ResponseTrait;
 
+
 class UserController extends Controller
 {
     use ResponseTrait;
@@ -75,11 +76,11 @@ class UserController extends Controller
                 [
                     'userId'=>$user->id,
                     'userName'=>$user->name,
+                    'roleID' =>$user->role->id,
                     'userPhoneNumber'=>$user->contact_no,
                     'role' => encrypt($user->role->role),
-                    'identity'=>$user->role->identity,
+                    'roleIdentity'=>$user->role->identify,
                     'language'=>$user->language,
-                    'companyId'=>$user->companyId,
                     'image'=>$user->image?$user->image:'no-image.png'
                 ]
             );
@@ -89,6 +90,6 @@ class UserController extends Controller
     {
         // $userId = Crypt::decrypt(session()->get('userId'));
         request()->session()->flush();
-        return redirect('/');
+        return redirect('/')->with($this->resMessageHtml(false,'error','Successfully Logout!'));
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -35,11 +36,6 @@ use App\Http\Controllers\InvoiceTestController;
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // });
-Route::resource('dashboard', DashboardController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('admin.dashboard');
 
 // authentication
 Route::get('/', [UserController::class, 'userLoginForm'])->name('userlogin');
@@ -49,53 +45,64 @@ Route::get('logout', [UserController::class, 'logOut'])->name('logout');
 Route::get('register', [UserController::class, 'signUpForm'])->name('userstore');
 Route::post('register', [UserController::class, 'userRegistrationStore'])->name('userstore');
 
-// Doctor route
-Route::resource('department',DepartmentController::class);
-Route::resource('designation',DesignationController::class);
-Route::resource('doctor',DoctorController::class);
-
-//employee
-Route::resource('employee',EmployeeController::class);
-// Route::get('profile/{id}',EmployeeController::class,'profile');
 
 
-/*====================Appointment Sector ==============*/
-Route::resource('appoint',AppointmentController::class);
-Route::get('/getPatient', [AppointmentController::class, 'get_patient'])->name('app.getPatient');
-Route::get('/getEmploy', [AppointmentController::class, 'getEmploy'])->name('app.getEmploy');
-Route::get('/getSchedule', [AppointmentController::class, 'getSchedule'])->name('app.getSchedule');
-Route::get('/getSerial', [AppointmentController::class, 'getSerial'])->name('app.getSerial');
+Route::group(['middleware' => AdminMiddleware::class], function () {
+    Route::prefix('admin')->group(function () {
 
-//Patient route
-Route::resource('patient',PatientController::class);
-Route::resource('patientAdmit',PatientAdmitController::class);
+        Route::resource('dashboard', DashboardController::class);
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('admin.dashboard');
+        // Doctor route
+        Route::resource('department',DepartmentController::class);
+        Route::resource('designation',DesignationController::class);
+        Route::resource('doctor',DoctorController::class);
 
-/*====================schedule Sector ==============*/
-Route::resource('shift',ShiftController::class);
-Route::resource('schedule',ScheduleController::class);
-Route::get('/scheduleget', [ScheduleController::class, 'show'])->name('scheduleget');
-
-
-//birth
-Route::resource('birth',BirthController::class);
-
-//death
-Route::resource('death',DeathController::class);
-
-//operation
-Route::resource('operation',OperationController::class);
+        //employee
+        Route::resource('employee',EmployeeController::class);
+        // Route::get('profile/{id}',EmployeeController::class,'profile');
 
 
-/*====================Room Sector ==============*/
-Route::resource('roomCategory',RoomCategoryController::class);
-Route::resource('roomList',RoomListController::class);
+        /*====================Appointment Sector ==============*/
+        Route::resource('appoint',AppointmentController::class);
+        Route::get('/getPatient', [AppointmentController::class, 'get_patient'])->name('app.getPatient');
+        Route::get('/getEmploy', [AppointmentController::class, 'getEmploy'])->name('app.getEmploy');
+        Route::get('/getSchedule', [AppointmentController::class, 'getSchedule'])->name('app.getSchedule');
+        Route::get('/getSerial', [AppointmentController::class, 'getSerial'])->name('app.getSerial');
 
-/*====================Test Sector ==============*/
-Route::resource('testCategory',TestCategoryController::class);
-Route::resource('test',TestController::class);
+        //Patient route
+        Route::resource('patient',PatientController::class);
+        Route::resource('patientAdmit',PatientAdmitController::class);
 
-/*====================invoice Sector ==============*/
-Route::get('/inv/search',[InvoiceTestController::class,'getpatient'])->name('inv.getpatient');
-Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
-Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
-Route::resource('invoiceTest',InvoiceTestController::class);
+        /*====================schedule Sector ==============*/
+        Route::resource('shift',ShiftController::class);
+        Route::resource('schedule',ScheduleController::class);
+        Route::get('/scheduleget', [ScheduleController::class, 'show'])->name('scheduleget');
+
+
+        //birth
+        Route::resource('birth',BirthController::class);
+
+        //death
+        Route::resource('death',DeathController::class);
+
+        //operation
+        Route::resource('operation',OperationController::class);
+
+
+        /*====================Room Sector ==============*/
+        Route::resource('roomCategory',RoomCategoryController::class);
+        Route::resource('roomList',RoomListController::class);
+
+        /*====================Test Sector ==============*/
+        Route::resource('testCategory',TestCategoryController::class);
+        Route::resource('test',TestController::class);
+
+        /*====================invoice Sector ==============*/
+        Route::get('/inv/search',[InvoiceTestController::class,'getpatient'])->name('inv.getpatient');
+        Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
+        Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
+        Route::resource('invoiceTest',InvoiceTestController::class);
+    });
+});
