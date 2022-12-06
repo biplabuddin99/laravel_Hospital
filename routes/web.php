@@ -68,6 +68,7 @@ Route::get('/getSerial', [AppointmentController::class, 'getSerial'])->name('app
 
 //Patient route
 Route::resource('patient',PatientController::class);
+Route::get('/room/get_room',[PatientAdmitController::class,'getroomlist'])->name('room.get_room');
 Route::resource('patientAdmit',PatientAdmitController::class);
 
 /*====================schedule Sector ==============*/
@@ -88,6 +89,7 @@ Route::resource('operation',OperationController::class);
 
 /*====================Room Sector ==============*/
 Route::resource('roomCategory',RoomCategoryController::class);
+
 Route::resource('roomList',RoomListController::class);
 
 /*====================Test Sector ==============*/

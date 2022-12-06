@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\softDeletes;
 class RoomCategory extends Model
 {
     use HasFactory,softDeletes;
+
+    public function patien_admit()
+    {
+        return $this->hasMany(PatientAdmit::class);
+    }
 }
