@@ -32,7 +32,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="padding:20px;font-weight:bold"> {{$data->first_name}} {{$data->last_name}}</td>
+                                                            <td style="padding:20px;font-weight:bold"> {{$data->name}}</td>
                                                         </tr>
                                                     </table>
 
@@ -44,12 +44,8 @@
                                                             <td style="text-align:left">{{$data->user_func[0]->email}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th style="float:right; padding-right: 40px;">Present Address</th>
-                                                            <td style="text-align:left">{{$data->present_address}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th style="float:right; padding-right: 40px;">Permanent Address</th>
-                                                            <td style="text-align:left">{{$data->permanent_address}}</td>
+                                                            <th style="float:right; padding-right: 40px;">Address</th>
+                                                            <td style="text-align:left">{{$data->address}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Phone no</th>
@@ -60,11 +56,11 @@
                                                             <td style="text-align:left">{{$data->birth_date}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th style="float:right; padding-right: 40px;">Sex</th>
+                                                            <th style="float:right; padding-right: 40px;">Gender</th>
                                                             <td style="text-align:left">
-                                                                @if($data->sex==1)
+                                                                @if($data->gender==1)
                                                                     {{"Male"}}
-                                                                @elseif($data->sex==2)
+                                                                @elseif($data->gender==2)
                                                                     {{"Female"}}
                                                                 @else
                                                                     {{"Common"}}

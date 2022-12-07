@@ -61,7 +61,7 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
 
         //employee
         Route::resource('employee',EmployeeController::class);
-        // Route::get('profile/{id}',EmployeeController::class,'profile');
+        Route::get('profile/{id}',[EmployeeController::class,'profile']);
 
 
         /*====================Appointment Sector ==============*/
