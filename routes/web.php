@@ -73,6 +73,7 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
 
         //Patient route
         Route::resource('patient',PatientController::class);
+        Route::get('/room/get_room',[PatientAdmitController::class,'getroomlist'])->name('room.get_room');
         Route::resource('patientAdmit',PatientAdmitController::class);
 
         /*====================schedule Sector ==============*/
