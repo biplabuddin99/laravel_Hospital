@@ -185,18 +185,18 @@
                                   </div>
                                     <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <select class="form-control" id="room_cat_id" name="room_cat_id" value="{{ old('room_cat_id') }}" required>
+                                    <select class="form-control" id="room_cat_id" name="room_cat_id" value="{{ old('room_cat_id') }}" onchange="get_room(this)" required>
                                       <option>-- select --</option>
-                                    {{-- @foreach($room_cat as $rc)
-                                      <option value="{{$rc->room_cat_id}}">{{$rc->room_cat_name}}</option>
-                                    @endforeach --}}
+                                          @foreach($room_cat as $rc)
+                                            <option value="{{$rc->id}}">{{$rc->name}}</option>
+                                          @endforeach
                                     
                                     </select>
                                   </div>
                                     <label class="control-label col-sm-4" for="room_no">Room No <span style="color:red"></span>:</label>
                                   <div class="col-sm-8">
                                     <select class="form-control" id="room_no" name="room_no" value="{{ old('room_no') }}" required>
-                                      <option>-- select --</option>
+                                      <option value="0"> -- Select Room No -- </option>
                                     </select>
                                   </div><br>
                                   <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" >Patient in Emergency</button>	
@@ -231,4 +231,28 @@
     
   @endsection
 
-  
+<script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script>
+	$(document).ready(function() {
+		//#------------------------------------
+    $('#room_cat_id').on('change', function(){
+			var room_cat_id = $(this).val();
+			//console.log(room_cat_id)
+			$.ajax({ 
+				url:'{{route("room.get_room")}}',
+				type: 'GET',
+				data: {'id': room_cat_id},
+				
+				success: function(data){//console.log(data);
+					if(data){
+						$('#room_no').html('');
+						for(var a in data){
+							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
+						}
+					}
+					
+					
+				}
+			});
+		});
+</script>

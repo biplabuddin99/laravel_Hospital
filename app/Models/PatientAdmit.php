@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use App\Models\Patient;
-use App\Models\Room;
+use App\Models\RoomCategory;
+use App\Models\RoomList;
 
 class PatientAdmit extends Model
 {
@@ -22,8 +23,12 @@ class PatientAdmit extends Model
 			{
 				return $this->belongsTo(Patient::class);
 			}
-			public function get_room()
+			public function get_roomCat()
 			{
-				return $this->belongsTo(Room::class);
+				return $this->belongsTo(RoomCategory::class);
+			}
+			public function get_roomList()
+			{
+				return $this->belongsTo(RoomList::class);
 			}
 }

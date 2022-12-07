@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PatientAdmit;
+use App\Models\RoomCategory;
+use App\Models\RoomList;
 use Illuminate\Http\Request;
 use Exception; 
 
@@ -27,7 +29,9 @@ class PatientAdmitController extends Controller
      */
     public function create()
     {
-        return view('patientAdmit.patient_admit_create');
+        $room_cat=RoomCategory::all();
+        $room_list=RoomList::all();
+        return view('patientAdmit.patient_admit_create', compact('room_cat','room_list'));
     }
 
     /**
@@ -153,5 +157,10 @@ class PatientAdmitController extends Controller
     {
         $patientAdmit->delete();
         return redirect()->back();
+    }
+
+    public function getroomlist(Request $request){
+        $get_room= RoomList::where('room_category_id', $request->id)->get();
+        return $get_room;
     }
 }

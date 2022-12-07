@@ -35,6 +35,7 @@
                               <th scope="col">Guardian</th>
                               <th scope="col">Problem</th>
                               <th scope="col">Reference</th>
+                              <th scope="col">Room Category</th>
                               <th scope="col">Room No</th>
                               <th scope="col">Status</th>
                               <th scope="col">Action</th>
@@ -59,7 +60,8 @@
                                 <td>{{ $pa->guardian }}</td>
                                 <td>{{ $pa->problem }}</td>
                                 <td>{{ $pa->doctor_ref }}</td>
-                                <td>{{ $pa->room }}</td>
+                                <td>{{ $pa->room_category_id }}</td>
+                                <td>{{ $pa->room_list_id }}</td>
                                 <td>@if($pa->status==1) Active @else Inactive @endif</td>
                                 <td class="d-flex">
                                   <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>

@@ -35,8 +35,11 @@ return new class extends Migration
             $table->string('marital_status');
             $table->string('doctor_ref');
             $table->text('problem');
-            // $table->unsignedBigInteger('room_id')->nullable();
-            // $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->unsignedBigInteger('room_category_id')->nullable();
+			$table->foreign('room_category_id')->references('id')->on('room_categories')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('room_list_id')->nullable();
+			$table->foreign('room_list_id')->references('id')->on('room_lists')->onDelete('cascade');
             $table->string('guardian');
             $table->string('relation');
             $table->text('emg_condition')->nullable();
