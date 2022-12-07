@@ -21,41 +21,37 @@
         <div class="panel-heading"><a href="{{route('patientAdmit.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Admitted Patient List </a></div>
 
               <!-- ======= Patient ID Modal ======== -->
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                  
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Patient Id</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                          <div class="col-md-12 ">
-                            <label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
-                            <div class="col-md-6">
-                              <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
-                              <span class="">
-                                
-                              </span>
-                            </div>
-                            <button class="btn btn-secondary" id="search_p" type="button" data-dismiss="modal">Search Patient</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                <div class="form-group mb-3 d-grid justify-content-end">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
-                </div>
-          </div>
+										<div class="modal fade" id="patientId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Patient Id</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<div class="form-group">
+															<div class="row ">
+																	<label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
+																<div class="col-md-6">
+																	<input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
+																	<span class="">
+		
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" id="search_p" data-bs-dismiss="modal">Search Patient</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									<div class="row">
+										<div class="">
+											<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#patientId" style="margin-right:2px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+										</div>
+									</div>
 
 
     <!-- Horizontal Form -->
@@ -235,6 +231,39 @@
 <script>
 	$(document).ready(function() {
 		//#------------------------------------
+		//   Patient ID Search
+		//#------------------------------------
+			$('#search_p').click(function(){
+			var patient_id = $('#patient_id').val();
+			$.ajax({
+				url:'{{ route("inv.getpatient") }}',
+				type: 'GET',
+				data: {'id':patient_id},
+				success: function(data){
+					//console.log(data);
+					if(data){
+						$('#checkExist').val(data[0].id);
+						$('#FullName').val(data[0].name);
+						$('#patientAge').val(data[0].age);
+						$('#fullAdress').val(data[0].address);
+						$('#contactNumber').val(data[0].phone);
+						$('#patientBlood').val(data[0].blood);
+						if(data[0].gender==1){
+							$('#m').attr('checked', true);
+						} else if(data[0].gender==2){
+							$('#f').attr('checked', true);
+						} else if(data[0].gender==3){
+							$('#c').attr('checked', true);
+						} else{
+						}
+
+					}
+				}
+			});
+		});
+
+
+		//#----------Room Cat & Room-----------------
     $('#room_cat_id').on('change', function(){
 			var room_cat_id = $(this).val();
 			//console.log(room_cat_id)
@@ -249,9 +278,7 @@
 						for(var a in data){
 							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
 						}
-					}
-					
-					
+					}		
 				}
 			});
 		});
