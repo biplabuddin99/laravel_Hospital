@@ -54,6 +54,8 @@
                               <td class="d-flex">
                                   <a href="{{ route('appoint.edit',$app->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                   &nbsp;
+                                  <a href="#"><i style='color: orange' class="fa-solid fa-plus"></i></a>
+                                  &nbsp;
                                   <form id="form{{$app->id}}" action="{{ route('appoint.destroy',$app->id) }}" method="POST">
                                     @csrf
                                     @method('delete')

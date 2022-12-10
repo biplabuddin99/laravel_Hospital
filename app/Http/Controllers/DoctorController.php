@@ -79,7 +79,7 @@ class DoctorController extends Controller
             Toastr::success('Doctor Created Successfully!');
             return back();
         }catch (Exception $e){
-            dd($e);
+            //dd($e);
             return back()->withInput();
         }
 

@@ -21,6 +21,7 @@ use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\TestCategoryController;
 use App\Http\Controllers\InvoiceTestController;
+use App\Http\Controllers\PrescriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,5 +106,9 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
         Route::get('/inv/get_test_price',[InvoiceTestController::class,'get_test_price'])->name('inv.get_test_price');
         Route::get('/inv/get_test',[InvoiceTestController::class,'get_test'])->name('inv.get_test');
         Route::resource('invoiceTest',InvoiceTestController::class);
+
+
+        /*====================prescription sector============*/
+		Route::resource('prescription',PrescriptionController::class);
     });
 });
