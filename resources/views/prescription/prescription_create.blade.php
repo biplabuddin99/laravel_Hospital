@@ -17,15 +17,15 @@
 				<!-- left column -->
 					<div class="col-md-12">
 						<div class="title">Add Prescription</div>
-						<div class="box box-info">
+						<div class="box box-info mt-3">
 							<div class="panel panel-default pres">							
-								<div class="panel-heading"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>								
+								<div class="panel-heading mb-3"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>								
 								<div class="panel-body">					
 									<form class="form-horizontal pres_form" action="{{route('prescription.store')}}" method="post">
 										@csrf									
 										<div class="row">
 											<div class="col-md-12">
-												<div class="row p1">
+												<div class="row p1 m-3">
 													<div class="col-md-4">
 														<div class="form-group row">
 															<div class="col-md-5">
