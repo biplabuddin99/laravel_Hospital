@@ -11,7 +11,13 @@
 					border-bottom: 1px dotted black !important;
 					border-radius: unset !important;
 					background-color: transparent !important;
+					outline: none !important;					
 				}
+				input:focus {
+						/* background-color: transparent !important; */
+						outline: none !important;
+						box-shadow: none !important;
+					}
 			</style>
 			<div class="row">
 				<!-- left column -->
@@ -31,9 +37,9 @@
 															<div class="col-md-5">
 																<label for="reg">Patient Id:</label>
 															</div>
-															<div class="col-md-7">
+															<div class="col-md-7 form-raw">
 																<input type="hidden" name="app_id" id="app_id" value="{{$data->app_id}}"/>
-																<input type="text" class="form-control" id="patient_id" name="patient_id"  value="{{$data->patient->patient_id}}">
+																<input type="text" class="form-control outline-0" id="patient_id" name="patient_id"  value="{{$data->patient->patient_id}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -43,7 +49,7 @@
 																<label for="date">Date:</label>
 															</div>
 															<div class="col-md-9">
-																<input type="text" class="form-control " id="date_dis"  name="date" value="{{date('Y-m-d')}}" >
+																<input type="text" class="form-control " id="date_dis"  name="date" value="{{date('Y-m-d')}}" disabled >
 															</div>
 														</div>
 													</div>
@@ -55,7 +61,7 @@
 																<label for="name">Name:</label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="name" name="name" value="{{$data->patient->name}}">
+																<input type="text" class="form-control" id="name" name="name" value="{{$data->patient->name}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -65,7 +71,7 @@
 																<label for="age">Age: </label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="age" name="age" value="{{$data->patient->age}}">
+																<input type="text" class="form-control" id="age" name="age" value="{{$data->patient->age}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -75,7 +81,7 @@
 																<label for="sex">Sex: </label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="sex" name="sex" value="{{$s}}">
+																<input type="text" class="form-control" id="sex" name="sex" value="{{$s}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -139,7 +145,7 @@
 															<label for="medicine">Medicine: </label>
 														</div>
 														<div class="col-md-5">
-															<input type="text" class="form-control" placeholder="medicine name" id="m_name">
+															<input type="text" class="form-control outline-0" placeholder="medicine name" id="m_name">
 														</div>
 														<div class="col-md-5">
 															<input type="text" class="form-control" placeholder="medicine type" id="m_type">
