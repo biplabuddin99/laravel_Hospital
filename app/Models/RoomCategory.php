@@ -13,6 +13,6 @@ class RoomCategory extends Model
 
     public function patient_admit()
     {
-        return $this->hasMany(PatientAdmit::class);
+        return $this->hasMany(PatientAdmit::class,'id','room_category_id');
     }
 }

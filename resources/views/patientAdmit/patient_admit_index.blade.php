@@ -30,7 +30,6 @@
                               <th scope="col">Patient Name</th>
                               <th scope="col">Picture</th>
                               <th scope="col">Father Name</th>
-                              <th scope="col">Reference Doctor</th>
                               <th scope="col">Admit_date</th>
                               <th scope="col">Guardian</th>
                               <th scope="col">Problem</th>
@@ -55,13 +54,12 @@
                                     @endif
                                 </td>
                                 <td>{{ $pa->father_name }}</td>
-                                <td>{{ $pa->doctor_ref }}</td>
                                 <td>{{ $pa->admit_date }}</td>
                                 <td>{{ $pa->guardian }}</td>
                                 <td>{{ $pa->problem }}</td>
-                                <td>{{ $pa->doctor_ref }}</td>
-                                <td>{{ $pa->room_category_id }}</td>
-                                <td>{{ $pa->room_list_id }}</td>
+                                {{-- <td>{{ $pa->name }}</td>
+                                <td>{{ $pa->room_category->name }}</td>
+                                <td>{{ $pa->roomlist->room_no }}</td> --}}
                                 <td>@if($pa->status==1) Active @else Inactive @endif</td>
                                 <td class="d-flex">
                                   <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
