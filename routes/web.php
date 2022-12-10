@@ -54,14 +54,14 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('admin.dashboard');
-        // Doctor route
+    /*====================Doctor Sector ==============*/
         Route::resource('department',DepartmentController::class);
         Route::resource('designation',DesignationController::class);
         Route::resource('doctor',DoctorController::class);
 
         //employee
         Route::resource('employee',EmployeeController::class);
-        Route::get('profile/{id}',[EmployeeController::class,'profile']);
+        // Route::get('employee',[EmployeeController::class,'profile']);
 
 
         /*====================Appointment Sector ==============*/
