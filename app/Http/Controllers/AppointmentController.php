@@ -126,9 +126,10 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show($id)
     {
-        //
+        $show=Appointment::findOrFail($id);
+        return view('appointment.appoint_show',compact('show'));
     }
 
     /**
@@ -137,9 +138,21 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
+    public function edit($id)
     {
-        //
+        $data = Appointment::findOrFail($id);
+		$gender = $data->patient->gender;
+		if($gender == 1){
+			$s = 'Male';
+		}elseif($gender == 2){
+			$s = 'Female';
+		}elseif($gender == 3){
+			$s = 'Common';
+		}else{
+			$s = '';
+		}
+		
+		return view('prescription.prescription_create',compact('data','s'));
     }
 
     /**

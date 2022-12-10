@@ -48,7 +48,7 @@
                                                             </td>
 
                                                             <td>
-                                                                {{$sch['shift']['start']. '  to  ' .$sch['shift']['end']}}
+                                                                {{ date('h:i a',strtotime($sch->shift->start)) }} - {{ date('h:i a',strtotime($sch->shift->end)) }}
                                                             </td>
                                                             <td>
                                                                 @if($sch['status']==1)

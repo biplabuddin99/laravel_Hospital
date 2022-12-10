@@ -35,8 +35,8 @@ class Appointment extends Model
     {
         return $this->belongsTo(Schedule::class,'employee_id','employee_id');
     }
-    public function prescription()
-	{
-		return $this->hasMany('App\prescription_model','prescription_id','prescription_id');
-	}
+    // public function prescription()
+	// {
+	// 	return $this->hasMany('App\prescription_model','prescription_id','prescription_id');
+	// }
 }

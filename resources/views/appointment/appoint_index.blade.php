@@ -1,9 +1,7 @@
 @extends('app')
 @section('content')
 
-
   <main id="main" class="main">
-
     <div class="pagetitle">
       <h1>Appointment Tables</h1>
       <nav>
@@ -52,9 +50,9 @@
                               <td>{{ $app->appoint_date }}</td>
                               <td>@if($app->status==1) Active @else Inactive @endif</td>
                               <td class="d-flex">
-                                  <a href="{{ route('appoint.edit',$app->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                  <a href="{{ route('appoint.show',$app->id) }}"><i class="ace-icon fa fa-eye bigger-130"></i></a>
                                   &nbsp;
-                                  <a href="#"><i style='color: orange' class="fa-solid fa-plus"></i></a>
+                                  <a href="{{ route('appoint.edit',$app->id) }}"><i style='color: orange' class="fa-solid fa-plus"></i></a>
                                   &nbsp;
                                   <form id="form{{$app->id}}" action="{{ route('appoint.destroy',$app->id) }}" method="POST">
                                     @csrf
