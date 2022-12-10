@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Prescription;
+use App\Models\Prescription_medicine;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -35,7 +38,40 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prescription = new Prescription;
+        $prescription->appointment_id = $request->id;
+        $prescription->cc = $request->cc;
+        $prescription->inv = $request->inv;
+        $prescription->advice = $request->advice;
+        $prescription->visit = $request->visit;
+        //echo $prescription;        
+        $prescription->save();
+        
+        if($request->m_name){
+    foreach($request->m_name as $key => $value){
+        
+        $insertedId = $prescription->prescription_id;
+        
+        $data2 = new Prescription_medicine;
+        $data2->prescription_id = $insertedId;
+        $data2->medi_name = $request->m_name[$key];
+        $data2->type = $request->m_type[$key];
+        $data2->dose = $request->dose[$key];
+        $data2->note = $request->note[$key];
+        $data2->duration = $request->duration[$key];
+        //echo $data2;     
+        $data2->save();	
+    }
+        }else{
+            return back()->withInput()->with("please try again");
+        }
+    
+    $data3 = Appointment::findOrFail($request->app_id);
+    $data3->status = 0;
+    $data3->save();
+    
+    Toastr::info('prescription create Successfully!');
+    // return \Redirect::route('appointment.index');
     }
 
     /**

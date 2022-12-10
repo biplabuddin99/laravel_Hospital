@@ -23,8 +23,8 @@ return new class extends Migration
 			$table->string('note');
 			$table->integer('duration');
 			$table->integer('status')->default(1);
-			$table->integer('created_by');
-			$table->integer('updated_by');
+			$table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
 			$table->softDeletes();
 			$table->timestamps();
         });

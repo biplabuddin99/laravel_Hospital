@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
+use App\Models\Appointment;
+use App\Models\Prescription_medicine;
 
 class Prescription extends Model
 {
@@ -12,7 +14,7 @@ class Prescription extends Model
 
     public function appointment()
 	{
-		return $this->belongsTo(Appointment::class);
+		return $this->belongsTo(Appointment::class,'appointment_id','id');
 	}
 	
 	

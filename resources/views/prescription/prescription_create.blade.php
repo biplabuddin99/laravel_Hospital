@@ -4,19 +4,19 @@
   <main id="main" class="main">
     <section class="section">
 			<style>
-				input, textarea, select{
+				.emb, select{
 					border: 0px !important;
 					/* border-bottom: 1px dotted black; */
 					/* border: transparent; */
 					border-bottom: 1px dotted black !important;
 					border-radius: unset !important;
-					background-color: transparent !important;
 					outline: none !important;
+					box-shadow: none !important;
 				}
-				select,textarea,input:focus {
+				.emb, textarea {
 						/* background-color: transparent !important; */
-						outline: none !important;
-						box-shadow: none !important;
+						/* outline: none !important; */
+						background-color: transparent !important;
 					}
 			</style>
 			<div class="row">
@@ -38,18 +38,18 @@
 																<label for="reg">Patient Id:</label>
 															</div>
 															<div class="col-md-7 form-raw">
-																<input type="hidden" name="app_id" id="app_id" value="{{$data->app_id}}"/>
-																<input type="text" class="form-control outline-0" id="patient_id" name="patient_id"  value="{{$data->patient->patient_id}}" disabled>
+																<input type="hidden" name="app_id" id="app_id" value="{{$data->id}}"/>
+																<input type="text" class="form-control outline-0 emb" id="patient_id" name="patient_id"  value="{{$data->patient->patient_id}}" disabled>
 															</div>
 														</div>
 													</div>
-													<div class="col-md-offset-5 col-md-3">
+													<div class="col-md-3">
 														<div class="form-group row">
 															<div class="col-md-3">
 																<label for="date">Date:</label>
 															</div>
 															<div class="col-md-9">
-																<input type="text" class="form-control " id="date_dis"  name="date" value="{{date('Y-m-d')}}" disabled >
+																<input type="text" class="form-control emb" id="date_dis"  name="date" value="{{date('Y-m-d')}}" disabled >
 															</div>
 														</div>
 													</div>
@@ -61,7 +61,7 @@
 																<label for="name">Name:</label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="name" name="name" value="{{$data->patient->name}}" disabled>
+																<input type="text" class="form-control emb" id="name" name="name" value="{{$data->patient->name}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -71,7 +71,7 @@
 																<label for="age">Age: </label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="age" name="age" value="{{$data->patient->age}}" disabled>
+																<input type="text" class="form-control emb" id="age" name="age" value="{{$data->patient->age}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -81,7 +81,7 @@
 																<label for="sex">Sex: </label>
 															</div>
 															<div class="col-md-10">
-																<input type="text" class="form-control" id="sex" name="sex" value="{{$s}}" disabled>
+																<input type="text" class="form-control emb" id="sex" name="sex" value="{{$s}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -93,7 +93,7 @@
 																<label for="address">Address:</label>
 															</div>
 															<div class="col-md-11">
-																<textarea class="form-control" rows="1" id="address" name="address">{{$data->patient->address}}</textarea>
+																<textarea class="form-control emb" rows="1" id="address" name="address" disabled>{{$data->patient->address}}</textarea>
 															</div>
 														</div>
 													</div>
@@ -105,7 +105,7 @@
 																<label for="dx">Dx:</label>
 															</div>
 															<div class="col-md-11">
-																<textarea class="form-control" rows="1" id="dx" name="dx">{{$data->problem}}</textarea>
+																<textarea class="form-control emb" rows="1" id="dx" name="dx" disabled>{{$data->problem}}</textarea>
 															</div>
 														</div>
 													</div>
@@ -115,7 +115,7 @@
 																 <label for="phone">Phone: </label>
 															</div>
 															<div class="col-md-9">
-																 <input type="text" class="form-control" id="phone" name="phone" value="{{$data->patient->phone}}">
+																 <input type="text" class="form-control emb" id="phone" name="phone" value="{{$data->patient->phone}}" disabled>
 															</div>
 														</div>
 													</div>
@@ -123,7 +123,7 @@
 											</div>
 										</div>
 										<hr />
-										<div class="row second_row">
+										<div class="row second_row mt-5">
 											<div class="col-md-3">
 												<div class="form-group">
 													<label for="cc">C/C</label>
@@ -145,10 +145,10 @@
 															<label for="medicine">Medicine: </label>
 														</div>
 														<div class="col-md-5">
-															<input type="text" class="form-control outline-0" placeholder="medicine name" id="m_name">
+															<input type="text" class="form-control outline-0 emb" placeholder="medicine name" id="m_name">
 														</div>
 														<div class="col-md-5">
-															<input type="text" class="form-control" placeholder="medicine type" id="m_type">
+															<input type="text" class="form-control emb" placeholder="medicine type" id="m_type">
 														</div>
 													</div>
 													<div class="form-group row">
@@ -156,7 +156,7 @@
 															<label for="dose">Dose: </label>
 														</div>
 														<div class="col-md-3">
-															<input type="text" class="form-control" placeholder="dose" id="dose">
+															<input type="text" class="form-control emb" placeholder="dose" id="dose">
 														</div>
 														<div class="col-md-3">
 															<select class="form-control" id="note">
@@ -165,7 +165,7 @@
 															</select>
 														</div>
 														<div class="col-md-4">
-															<input type="text" class="form-control" placeholder="duration" id="duration">
+															<input type="text" class="form-control emb" placeholder="duration" id="duration">
 														</div>
 													</div>
 													</div>
@@ -179,7 +179,7 @@
 													<br />
 													<div class="medi"></div>
 													<div class="row medi1">
-														<div class="col-md-12">
+														<div class="col-md-8 offset-1">
 															<table class="table table-striped">
 																<thead>
 																	<tr>
@@ -201,7 +201,7 @@
 															<label for="advice">Advice:</label>
 														</div>
 														<div class="col-md-10">
-															<textarea class="form-control" rows="1" id="advice" name="advice"></textarea>
+															<textarea class="form-control emb" rows="1" id="advice" name="advice"></textarea>
 														</div>
 													</div>
 													<br />
@@ -210,7 +210,7 @@
 															<label for="advice">Next visit:</label>
 														</div>
 														<div class="col-md-9">
-															After <input type="number" name="visit" id="visit" /> days
+															After <input type="number" class="emb" name="visit" id="visit" /> days
 														</div>
 													</div>
 												</div>

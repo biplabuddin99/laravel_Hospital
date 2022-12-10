@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-			$table->integer('appointment_id')->unsigned()->nullable();
-			$table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
+
+            $table->integer('appointment_id')->unsigned()->nullable();
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
+
 			$table->text('cc');
 			$table->text('inv');
 			$table->text('advice');
 			$table->integer('visit');
 			$table->integer('status')->default(1);
-			$table->integer('created_by');
-			$table->integer('updated_by');
+			$table->integer('created_by')->nullable();
+			$table->integer('updated_by')->nullable();
 			$table->softDeletes();
 			$table->timestamps();
         });
