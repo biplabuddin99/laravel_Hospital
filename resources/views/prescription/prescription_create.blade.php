@@ -1,21 +1,26 @@
 @extends('app')
+
 @section('content')
   <main id="main" class="main">
     <section class="section">
+			<style>
+				input, textarea, select{
+					border: 0px !important;
+					/* border-bottom: 1px dotted black; */
+					/* border: transparent; */
+					border-bottom: 1px dotted black !important;
+					border-radius: unset !important;
+					background-color: transparent !important;
+				}
+			</style>
 			<div class="row">
 				<!-- left column -->
 					<div class="col-md-12">
 						<div class="title">Add Prescription</div>
 						<div class="box box-info">
-							<div class="panel panel-default pres">
-							
-							
-								<div class="panel-heading"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>
-								
-								
-								<div class="panel-body">
-								
-								
+							<div class="panel panel-default pres">							
+								<div class="panel-heading"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>								
+								<div class="panel-body">					
 									<form class="form-horizontal pres_form" action="{{route('prescription.store')}}" method="post">
 										@csrf									
 										<div class="row">
