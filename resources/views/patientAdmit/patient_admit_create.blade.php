@@ -163,7 +163,12 @@
                                   </div>	
                                     <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                    <select class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                      <option>-- select --</option>
+                                          @foreach($doctor as $d)
+                                            <option value="{{$d->id}}">{{$d->employee->name}}</option>
+                                          @endforeach
+                                    </select>
                                   </div>
                                   <label class="control-label col-sm-4" for="guardian_name">Gurdian Name :</label>
                                 <div class="col-sm-8">

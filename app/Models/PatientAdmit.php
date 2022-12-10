@@ -31,4 +31,8 @@ class PatientAdmit extends Model
 			{
 				return $this->belongsTo(RoomList::class);
 			}
+			public function get_DoctorList()
+			{
+				return $this->belongsTo(Doctor::class);
+			}
 }

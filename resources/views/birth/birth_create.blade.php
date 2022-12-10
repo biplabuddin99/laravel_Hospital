@@ -20,47 +20,54 @@
 
         <div class="panel-heading"><a href="{{route('birth.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Birth Child List </a></div>
 
-              <!-- ======= Patient ID Modal ======== -->
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                  
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Patient Id</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                          <div class="col-md-12 ">
-                            <label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
-                            <div class="col-md-6">
-                              <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
-                              <span class="">
-                                
-                              </span>
+             
+                
+                
+         {{-- Patient_Search --}}
+         <div class="panel-body">
+          <form action="{{ route('birth.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+          <input type="hidden" name="checkExist" id="checkExist" value="0" />
+
+
+
+            <!-- ======= Patient ID Modal ======== -->
+                  <div class="modal fade" id="patientId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Patient Id</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <div class="row ">
+                                <label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
+                                <span class="">
+  
+                                </span>
+                              </div>
                             </div>
-                            <button class="btn btn-secondary" id="search_p" type="button" data-dismiss="modal">Search Patient</button>
                           </div>
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" id="search_p" data-bs-dismiss="modal">Search Patient</button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                
-                <div class="form-group mb-3 d-grid justify-content-end">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+                <div class="row">
+                  <div class="">
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#patientId" style="margin-right:2px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
+                  </div>
                 </div>
           </div>
 
 
+
     <!-- Horizontal Form -->
-    <form action="{{ route('birth.store') }}" method="POST" enctype="multipart/form-data">
-      @csrf
         <div class="card">
           <div class="card-body m-3">
 
@@ -85,11 +92,11 @@
                           </div>
                           <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
+                            <input type="radio" id="m" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
                             &nbsp;
-                            <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
+                            <input type="radio" id="f" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
                             &nbsp;
-                            <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
+                            <input type="radio" id="c" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Common <br>
                           </div>
                         </div>
                     </div>    
@@ -116,9 +123,14 @@
                                 </select>
                               </div>
                               <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
-                                  <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
-                                  </div>
+                              <div class="col-sm-8">
+                                <select class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                  <option>-- select --</option>
+                                      @foreach($doctor as $d)
+                                        <option value="{{$d->id}}">{{$d->employee->name}}</option>
+                                      @endforeach
+                                </select>
+                              </div>
                         </div>
                     </div>
                   </div>
@@ -149,4 +161,60 @@
     
   @endsection
 
-  
+  <script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script>
+		$(document).ready(function() {
+		//#------------------------------------
+		//   Patient ID Search
+		//#------------------------------------
+			$('#search_p').click(function(){
+			var patient_id = $('#patient_id').val();
+			$.ajax({
+				url:'{{ route("inv.getpatient") }}',
+				type: 'GET',
+				data: {'id':patient_id},
+				success: function(data){
+					//console.log(data);
+          if(data){
+						$('#checkExist').val(data[0].id);
+						$('#name').val(data[0].name);
+						$('#birthdate').val(data[0].dob);
+						$('#address').val(data[0].address);
+						$('#phone').val(data[0].phone);
+						$('#blood').val(data[0].blood);
+						if(data[0].gender==1){
+							$('#m').attr('checked', true);
+						} else if(data[0].gender==2){
+							$('#f').attr('checked', true);
+						} else if(data[0].gender==3){
+							$('#c').attr('checked', true);
+						} else{
+						}
+
+					}
+				}
+			});
+		});
+    
+
+		//#----------Room Cat & Room-----------------
+    $('#room_cat_id').on('change', function(){
+			var room_cat_id = $(this).val();
+			//console.log(room_cat_id)
+			$.ajax({ 
+				url:'{{route("room.get_room")}}',
+				type: 'GET',
+				data: {'id': room_cat_id},
+				
+				success: function(data){//console.log(data);
+					if(data){
+						$('#room_no').html('');
+						for(var a in data){
+							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
+						}
+					}		
+				}
+			});
+		});
+  });
+</script>
