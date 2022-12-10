@@ -20,6 +20,15 @@
 
         <div class="panel-heading"><a href="{{route('patientAdmit.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Admitted Patient List </a></div>
 
+
+          {{-- Patient_Search --}}
+          <div class="panel-body">
+            <form action="{{ route('patientAdmit.store') }}" method="POST" enctype="multipart/form-data">
+              @csrf
+            <input type="hidden" name="checkExist" id="checkExist" value="0" />
+
+
+
               <!-- ======= Patient ID Modal ======== -->
 										<div class="modal fade" id="patientId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
@@ -52,11 +61,11 @@
 											<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#patientId" style="margin-right:2px;"><i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
 										</div>
 									</div>
+            </div>
 
 
     <!-- Horizontal Form -->
-    <form action="{{ route('patientAdmit.store') }}" method="POST" enctype="multipart/form-data">
-      @csrf
+
         <div class="card">
           <div class="card-body m-2">
 
@@ -67,14 +76,10 @@
                           <div class="col-sm-8">
                             <input type="text" class="form-control" id="name" name="patientName" value="{{ old('patientName') }}" required>
                           </div>
-                            <label class="control-label col-sm-4" for="email">Email<span style="color:red">* </span>:</label>
-                          <div class="col-sm-8">
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
-                          </div>
                             <label class="control-label col-sm-4" for="phone">Phone <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
-                          </div><br>
+                          </div>
                           <label class="control-label col-sm-4" for="picture">Picture :</label>
                           <div class="col-sm-8">
                             <input type="file" class="form-control-file" id="picture" name="picture">
@@ -85,27 +90,13 @@
                           </div><br>
                           <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
-                            <input type="radio" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
+                            <input type="radio" id="m" value="1" {{ old('patientGender')=='1' ? 'checked':'' }} name="patientGender"> Male
                             &nbsp;
-                            <input type="radio" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
+                            <input type="radio" id="f" value="2" {{ old('patientGender')=='2' ? 'checked':'' }} name="patientGender"> Female
                             &nbsp;
-                            <input type="radio" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Other <br>
-                          </div>
-                        </div>
-                    </div>    
-     
-                        
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label class="control-label" for="present_add">Present Address <span style="color:red">* </span>:</label>
-                              <div class="col-sm-8">
-                                <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required>{{ old('present_address') }}</textarea>
-                              </div>
-                            <label class="control-label" for="permanent_add">Permanent Address <span style="color:red">* </span>:</label>
-                              <div class="col-sm-8">
-                                <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required>{{ old('permanent_address') }}</textarea>
-                              </div>
-                                <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
+                            <input type="radio" id="c" value="3" {{ old('patientGender')=='3' ? 'checked':'' }} name="patientGender"> Common <br>
+                          </div><br>
+                          <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <select class="form-control" id="blood" name="blood" required>
                                   <option value="">Select Blood Group</option>
@@ -118,6 +109,24 @@
                                   <option value="AB+"{{ old('blood')=='AB+' ? 'selected':''}}>AB+</option>
                                   <option value="AB-"{{ old('blood')=='AB-' ? 'selected':''}}>AB-</option>
                                 </select>
+                              </div>
+                        </div>
+                    </div>    
+     
+                        
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="present_add">Present Address <span style="color:red">* </span>:</label>
+                              <div class="col-sm-8">
+                                <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required>{{ old('present_address') }}</textarea>
+                              </div>
+                            <label class="control-label" for="permanent_add">Permanent Address :</label>
+                              <div class="col-sm-8">
+                                <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required>{{ old('permanent_address') }}</textarea>
+                              </div>
+                              <label class="control-label col-sm-4" for="email">Email :</label>
+                              <div class="col-sm-8">
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
                               </div>
                         </div>
                     </div>
@@ -177,7 +186,7 @@
                                   </div>
                                     <label class="control-label" for="problem">Patient Problem <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <textarea name="problem" id="problem" class="form-control"required>{{ old('problem') }}"</textarea>
+                                    <textarea name="problem" id="problem" class="form-control"required>{{ old('problem') }}</textarea>
                                   </div>
                                     <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
@@ -229,7 +238,7 @@
 
 <script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script>
-	$(document).ready(function() {
+		$(document).ready(function() {
 		//#------------------------------------
 		//   Patient ID Search
 		//#------------------------------------
@@ -241,13 +250,13 @@
 				data: {'id':patient_id},
 				success: function(data){
 					//console.log(data);
-					if(data){
+          if(data){
 						$('#checkExist').val(data[0].id);
-						$('#FullName').val(data[0].name);
-						$('#patientAge').val(data[0].age);
-						$('#fullAdress').val(data[0].address);
-						$('#contactNumber').val(data[0].phone);
-						$('#patientBlood').val(data[0].blood);
+						$('#name').val(data[0].name);
+						$('#birthdate').val(data[0].dob);
+						$('#present_add').val(data[0].address);
+						$('#phone').val(data[0].phone);
+						$('#blood').val(data[0].blood);
 						if(data[0].gender==1){
 							$('#m').attr('checked', true);
 						} else if(data[0].gender==2){
@@ -261,7 +270,7 @@
 				}
 			});
 		});
-
+    
 
 		//#----------Room Cat & Room-----------------
     $('#room_cat_id').on('change', function(){
