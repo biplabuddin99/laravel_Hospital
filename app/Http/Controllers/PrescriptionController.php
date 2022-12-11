@@ -39,18 +39,18 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         $prescription = new Prescription;
-        $prescription->appointment_id = $request->id;
+        $prescription->appointment_id = $request->app_id;
         $prescription->cc = $request->cc;
         $prescription->inv = $request->inv;
         $prescription->advice = $request->advice;
         $prescription->visit = $request->visit;
         //echo $prescription;        
         $prescription->save();
-        
+
         if($request->m_name){
-    foreach($request->m_name as $key => $value){
+        foreach($request->m_name as $key => $value){
         
-        $insertedId = $prescription->prescription_id;
+        $insertedId = $prescription->id;
         
         $data2 = new Prescription_medicine;
         $data2->prescription_id = $insertedId;
@@ -61,7 +61,7 @@ class PrescriptionController extends Controller
         $data2->duration = $request->duration[$key];
         //echo $data2;     
         $data2->save();	
-    }
+        }
         }else{
             return back()->withInput()->with("please try again");
         }
