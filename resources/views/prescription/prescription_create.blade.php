@@ -11,9 +11,9 @@
 					border-bottom: 1px dotted black !important;
 					border-radius: unset !important;
 					background-color: transparent !important;
-					outline: none !important;					
+					outline: none !important;
 				}
-				input:focus {
+				select,textarea,input:focus {
 						/* background-color: transparent !important; */
 						outline: none !important;
 						box-shadow: none !important;
@@ -24,11 +24,11 @@
 					<div class="col-md-12">
 						<div class="title">Add Prescription</div>
 						<div class="box box-info mt-3">
-							<div class="panel panel-default pres">							
-								<div class="panel-heading mb-3"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>								
-								<div class="panel-body">					
+							<div class="panel panel-default pres">
+								<div class="panel-heading mb-3"><a href="{{route('prescription.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Prescription List </a></div>
+								<div class="panel-body">
 									<form class="form-horizontal pres_form" action="{{route('prescription.store')}}" method="post">
-										@csrf									
+										@csrf
 										<div class="row">
 											<div class="col-md-12">
 												<div class="row p1 m-3">
@@ -138,7 +138,7 @@
 												<div class="portion_rx">
 													<p style="font-weight: bold; font-size: 20px;">Rx:</p>
 													<br />
-													
+
 													<div class="a">
 													<div class="form-group row">
 														<div class="col-md-2">
@@ -172,7 +172,7 @@
 													<div class="row">
 														<div class="col-md-12">
 															<center>
-																<button type="button" class="btn btn-success add" name="add">Add Medicine</button>
+																<button type="button" class="btn btn-success add mt-3" name="add">Add Medicine</button>
 															</center>
 														</div>
 													</div>
@@ -190,7 +190,7 @@
 																	</tr>
 																</thead>
 																<tbody id="list">
-																
+
 																</tbody>
 															</table>
 														</div>
@@ -217,7 +217,7 @@
 											</div>
 										</div>
 										<hr />
-										<div class="form-group">        
+										<div class="form-group">
 											<div class=" col-md-4 col-md-offset-4 change-btn">
 												<button type="reset" class="btn btn-primary">Reset</button>
 												<span class="btn or">or</span>
@@ -225,7 +225,7 @@
 											</div>
 										</div>
 									</form>
-	
+
 								</div>
 							</div>
 						</div>
@@ -240,28 +240,28 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('.table').css('display','none');
-				
+
 				/*append row in table for medicine list*/
-				
-				
+
+
 				$('.add').click(function(){
-					
-					$('.table').css('display','block');	
-					
+
+					$('.table').css('display','block');
+
 					div = "<tr><td>"+"<input type='hidden' name='m_name[]' value='"+$('#m_name').val()+"'><input type='hidden' name='m_type[]' value='"+$('#m_type').val()+"'>"+$('#m_name').val()+' - '+$('#m_type').val()+"</td><td><input type='hidden' name='dose[]' value='"+$('#dose').val()+"'/>"+$('#dose').val()+"</td><td>"+"<input type='hidden' name='note[]' value='"+$('#note').val()+"'/><input type='hidden' name='duration[]' value='"+$('#duration').val()+"'/>"+$('#note option:selected').text()+'   '+$('#duration').val()+"</td><td>"+"<i class='fa fa-times btn btn-sm btn-default dlt' style='color:red;'></i>"+"</td></tr>";
-					
+
 					$('#list').append(div);
 					$('#m_name').val('');
 					$('#m_type').val('');
 					$('#dose').val('');
 					$('#duration').val('');
 				});
-				
+
 				$(document).on('click', '.dlt', function(){
 					$(this).parent('td').parent('tr').remove();
 				});
-				
+
 			});
 		</script>
-	
+
 	@endsection

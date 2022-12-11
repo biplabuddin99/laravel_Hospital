@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prescriptions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
 			$table->integer('appointment_id')->unsigned()->nullable();
 			$table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
 			$table->text('cc');

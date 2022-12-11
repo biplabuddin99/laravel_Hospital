@@ -27,7 +27,7 @@
                                                                 @if($data->picture == '')
                                                                     <i class="fa fa-user-md" style="font-size:150px;"></i>
                                                                 @else
-                                                                    <img src="{{ URL::asset('public/images/'.$data->picture) }}" alt="no image" width="250" height="300"/>
+                                                                    <img src="{{ asset('uploads/employee/'.$data->picture) }}" alt="no image" width="250" height="300"/>
                                                                 @endif
                                                             </td>
                                                         </tr>
