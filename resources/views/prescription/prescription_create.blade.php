@@ -56,7 +56,7 @@
 												</div>
 												<div class="row p2">
 													<div class="col-md-6">
-														 <div class="form-group row">
+														 <div class="form-group row mt-3">
 															<div class="col-md-2">
 																<label for="name">Name:</label>
 															</div>
@@ -65,7 +65,7 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-md-3">
+													<div class="col-md-3  mt-3">
 														<div class="form-group row">
 															<div class="col-md-2">
 																<label for="age">Age: </label>
@@ -75,7 +75,7 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-md-3">
+													<div class="col-md-3 mt-3">
 														<div class="form-group row">
 															<div class="col-md-2">
 																<label for="sex">Sex: </label>
@@ -86,7 +86,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row p3">
+												<div class="row p3 mt-3">
 													<div class="col-md-12">
 														<div class="form-group row">
 															<div class="col-md-1">
@@ -99,7 +99,7 @@
 													</div>
 												</div>
 												<div class="row p4"  style="margin-bottom: 20px;">
-													<div class="col-md-8">
+													<div class="col-md-8 mt-3">
 														<div class="form-group row">
 															<div class="col-md-1">
 																<label for="dx">Dx:</label>
@@ -109,7 +109,7 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-md-4">
+													<div class="col-md-4 mt-3">
 														<div class="form-group row">
 															<div class="col-md-3">
 																 <label for="phone">Phone: </label>
