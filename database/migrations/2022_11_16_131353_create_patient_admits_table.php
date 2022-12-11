@@ -20,14 +20,14 @@ return new class extends Migration
             // $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
          
             $table->string('name');
-            $table->string('email');
             $table->string('phone');
             $table->string('picture')->nullable();
             $table->string('dob');
             $table->string('gender');
-            $table->string('present_add');
-            $table->string('permanent_add');
             $table->string('blood');
+            $table->string('present_add');
+            $table->string('permanent_add')->nullable();
+            $table->string('email')->nullable();
             $table->string('admit_date');
             $table->string('father_name');
             $table->string('mother_name');
