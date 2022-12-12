@@ -7,6 +7,7 @@ use App\Models\Prescription;
 use App\Models\Prescription_medicine;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteRegistrar;
 
 class PrescriptionController extends Controller
 {
@@ -72,7 +73,7 @@ class PrescriptionController extends Controller
     $data3->save();
 
     Toastr::info('prescription create Successfully!');
-    // return \Redirect::route('appointment.index');
+    return redirect(route('prescription.index'));
     }
 
     /**
