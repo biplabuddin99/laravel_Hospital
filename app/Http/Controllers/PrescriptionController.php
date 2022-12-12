@@ -81,9 +81,19 @@ class PrescriptionController extends Controller
      * @param  \App\Models\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function show(Prescription $prescription)
+    public function show($id)
     {
-        //
+        $pres_show=Prescription::findOrFail($id);
+        $gender = $pres_show->patient->gender;
+		if($gender == 1){
+			$s = 'Male';
+		}elseif($gender == 2){
+			$s = 'Female';
+		}elseif($gender == 3){
+			$s = 'Common';
+		}else{
+			$s = '';
+		}
     }
 
     /**
