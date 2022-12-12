@@ -17,7 +17,8 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        //
+        $prescription=Prescription::paginate(10);
+        return view('prescription.prescription_index',compact('prescription'));
     }
 
     /**
@@ -44,14 +45,14 @@ class PrescriptionController extends Controller
         $prescription->inv = $request->inv;
         $prescription->advice = $request->advice;
         $prescription->visit = $request->visit;
-        //echo $prescription;        
+        //echo $prescription;
         $prescription->save();
 
         if($request->m_name){
         foreach($request->m_name as $key => $value){
-        
+
         $insertedId = $prescription->id;
-        
+
         $data2 = new Prescription_medicine;
         $data2->prescription_id = $insertedId;
         $data2->medi_name = $request->m_name[$key];
@@ -59,17 +60,17 @@ class PrescriptionController extends Controller
         $data2->dose = $request->dose[$key];
         $data2->note = $request->note[$key];
         $data2->duration = $request->duration[$key];
-        //echo $data2;     
-        $data2->save();	
+        //echo $data2;
+        $data2->save();
         }
         }else{
             return back()->withInput()->with("please try again");
         }
-    
+
     $data3 = Appointment::findOrFail($request->app_id);
     $data3->status = 0;
     $data3->save();
-    
+
     Toastr::info('prescription create Successfully!');
     // return \Redirect::route('appointment.index');
     }
