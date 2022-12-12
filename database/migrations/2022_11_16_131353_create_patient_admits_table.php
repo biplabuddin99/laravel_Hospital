@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('mother_name');
             $table->string('husband_name');
             $table->string('marital_status');
-            $table->string('doctor_ref');
+            $table->unsignedBigInteger('doctor_id')->nullable();
+			$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->text('problem');
             $table->unsignedBigInteger('room_category_id')->nullable();
 			$table->foreign('room_category_id')->references('id')->on('room_categories')->onDelete('cascade');

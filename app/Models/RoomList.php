@@ -16,10 +16,9 @@ class RoomList extends Model
 	{
 		return $this->belongsTo(RoomCategory::class,'room_category_id','id');
 	}
-	public function patient_admit()
+    public function patient_admit()
     {
-        return $this->hasMany(PatientAdmit::class);
+        return $this->hasMany(PatientAdmit::class,'room_list_id', 'id');
     }
-
 
 }

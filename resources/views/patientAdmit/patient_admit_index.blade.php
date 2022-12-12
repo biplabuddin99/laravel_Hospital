@@ -57,9 +57,9 @@
                                 <td>{{ $pa->admit_date }}</td>
                                 <td>{{ $pa->guardian }}</td>
                                 <td>{{ $pa->problem }}</td>
-                                {{-- <td>{{ $pa->name }}</td>
+                                <td>{{ $pa->employee?->name }}</td>
                                 <td>{{ $pa->room_category->name }}</td>
-                                <td>{{ $pa->roomlist->room_no }}</td> --}}
+                                <td>{{ $pa->room_list_id }}</td>
                                 <td>@if($pa->status==1) Active @else Inactive @endif</td>
                                 <td class="d-flex">
                                   <a href="{{ route('patientAdmit.edit',$pa->admit_id) }}"><i class="fa-solid fa-pen-to-square"></i></a>

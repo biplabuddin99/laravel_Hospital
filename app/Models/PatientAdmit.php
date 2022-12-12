@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 use App\Models\Patient;
 use App\Models\RoomCategory;
 use App\Models\RoomList;
+use App\Models\Doctor;
 
 class PatientAdmit extends Model
 {
@@ -19,6 +20,10 @@ class PatientAdmit extends Model
     protected $primaryKey = 'admit_id';
 
 
+			public function doctor()
+			{
+				return $this->belongsTo(Doctor::class,'doctor_id', 'id');
+			}
 			public function get_patient()
 			{
 				return $this->belongsTo(Patient::class);
@@ -29,10 +34,6 @@ class PatientAdmit extends Model
 			}
 			public function get_roomList()
 			{
-				return $this->belongsTo(RoomList::class);
-			}
-			public function get_DoctorList()
-			{
-				return $this->belongsTo(Doctor::class);
+				return $this->belongsTo(RoomList::class, 'room_list_id', 'id');
 			}
 }
