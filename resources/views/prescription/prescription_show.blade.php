@@ -30,16 +30,16 @@
                                     <div style="float:left;margin-bottom: 20px;">
                                         <table style="text-align:left">
                                             <tr>
-                                                <th style="text-align:left">{{'Dr. '.$app_data->employ_basic->first_name.' '.$app_data->employ_basic->last_name}}</th>
+                                                <th style="text-align:left">{{'Dr. '.$pres_show->employee->name}}</th>
                                             </tr>
                                             <tr>
-                                                <td style="padding-top:10px;padding-left:0px;text-align:left">{!!$app_data->doctor->education!!}</td>
+                                                <td style="padding-top:10px;padding-left:0px;text-align:left">{!!$pres_show->doctor->education!!}</td>
                                             </tr>
                                             <tr>
-                                                <th style="text-align:left">{{$app_data->doctor->department->dep_name}}</th>
+                                                <th style="text-align:left">{{$pres_show->doctor->department->name}}</th>
                                             </tr>
                                             <tr>
-                                                <td style="text-align:left">{{$app_data->doctor->designation->desig_name}}</td>
+                                                <td style="text-align:left">{{$pres_show->doctor->designation->name}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -47,11 +47,11 @@
                                         <table style="text-align:right">
                                             <tr>
                                                 <th>Date:</th>
-                                                <td>{{$data->created_at->todatestring()}}</td>
+                                                <td>{{$data1->created_at->todatestring()}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Patient Id:</th>
-                                                <td>{{$app_data->patient->patient_id}}</td>
+                                                <td>{{$pres_show->patient->patient_id}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -59,10 +59,10 @@
                                 <div style="text-transform: capitalize;color: #367FA9;font-weight:bold;margin-bottom:20px;">
                                     <table style="width:100%">
                                         <tr>
-                                            <td>Name: {{$app_data->patient->first_name.' '.$app_data->patient->last_name}}</td>
-                                            <td>Age: {{\Carbon\Carbon::parse($app_data->patient->birth_date)->diff(\Carbon\Carbon::now())->format('%y years')}}</td>
+                                            <td>Name: {{$pres_show->patient->name}}</td>
+                                            <td>Age: {{$pres_show->patient->age}}</td>
                                             <td>Sex: {{$s}}</td>
-                                            <td>Problem: {{$app_data->problem}}</td>
+                                            <td>Problem: {{$pres_show->problem}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -73,11 +73,11 @@
                                                 <table>
                                                     <tr>
                                                         <th>c/c: </th>
-                                                        <td>{{$data->cc}}</td>
+                                                        <td>{{$data1->cc}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>INV: </th>
-                                                        <td>{{$data->inv}}</td>
+                                                        <td>{{$data1->inv}}</td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -87,7 +87,7 @@
                                                 <div style="text-align:left;font-weight:bold; color: #4F5F6F">Medicine:</div>
                                                 <div>
                                                     <table style="width:100%">
-                                                        @foreach($medi as $r)
+                                                        @forelse($medi as $r)
                                                                 <tr>
                                                                     <td  style="text-align:center">{{$r['medi_name'].' - '.$r['type']}}</td>
                                                                     <td  style="text-align:center">{{$r['dose']}}</td>
@@ -97,10 +97,12 @@
                                                                         @else
                                                                             {{'Before meal '.$r['duration'].' days'}}
                                                                         @endif
-
+                                                                        
                                                                     </td>
                                                                 </tr>
-                                                        @endforeach
+                                                        @empty
+                                                        <td colspan="3" class="text-center">No Medicine</td>
+                                                        @endforelse
                                                     </table>
                                                 </div>
                                                 </div>
@@ -116,8 +118,8 @@
     </div>
     <!-- /.row -->
 </section>
-<script type="text/javascript"  src="{{asset('public/js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('public/js/jquery.PrintArea.js')}}"></script>
+<script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/jquery.PrintArea.js')}}"></script>
 <script>
  $(document).ready(function(){
 

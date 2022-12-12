@@ -14,8 +14,6 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <div class="panel-heading"><a href="{{route('prescription.create')}}" class="btn btn-md btn-success list-btn mb-3"><i class="fa fa-plus"></i> Add Prescription </a></div>
-
     <section class="section">
         <div class="row">
 			<!-- left column -->
@@ -52,9 +50,9 @@
 															<div>
 
 																<!--for view prescription-->
-																{{-- <a class="edit btn btn-sm btn-primary" style="padding-right:8px" href="{{route('prescription.show',$l['app_id'])}}">
+																<a class="edit btn btn-sm btn-primary" style="padding-right:8px" href="{{route('prescription.show',$l->appointment_id)}}">
 																<i class="ace-icon fa fa-file-text bigger-130"></i>
-																</a> --}}
+																</a>
 															</div>
 														</td>
 													</tr>

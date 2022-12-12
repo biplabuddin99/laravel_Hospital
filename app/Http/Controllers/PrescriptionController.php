@@ -28,7 +28,7 @@ class PrescriptionController extends Controller
      */
     public function create()
     {
-        //
+        // return view('prescription.prescription_create');
     }
 
     /**
@@ -83,7 +83,7 @@ class PrescriptionController extends Controller
      */
     public function show($id)
     {
-        $pres_show=Prescription::findOrFail($id);
+        $pres_show=Appointment::findOrFail($id);
         $gender = $pres_show->patient->gender;
 		if($gender == 1){
 			$s = 'Male';
@@ -94,6 +94,14 @@ class PrescriptionController extends Controller
 		}else{
 			$s = '';
 		}
+        $pres=Prescription::select('id')->where('appointment_id',$id)->get();
+        $data=$pres[0]->id;
+        $data1=Prescription::findOrFail($data);
+
+        $json=Prescription_medicine::where('prescription_id',$data)->get();
+        $medi=json_decode($json,TRUE);
+		// dd($json);
+		return view('prescription.prescription_show')->with('data1',$data1)->with('medi',$medi)->with('pres_show',$pres_show)->with('s',$s);
     }
 
     /**
