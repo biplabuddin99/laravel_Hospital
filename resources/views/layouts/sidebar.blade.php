@@ -78,9 +78,26 @@
                 <i class="fa fa-pencil-square"></i><span>Appointment</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="{{ route('appoint.create') }}">
+                <i class="bi bi-circle"></i><span>Add Appointment</span>
+                </a>
+            </li>
             <li>
                 <a href="{{ route('appoint.index') }}">
                 <i class="bi bi-circle"></i><span>Appointment List</span>
+                </a>
+            </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#pres-nav" data-bs-toggle="collapse" href="#">
+              <i class="ace-icon fa fa-file-text bigger-130"></i><span>Prescription</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="pres-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('prescription.index') }}">
+                <i class="bi bi-circle"></i><span>Prescriotion List</span>
                 </a>
             </li>
             </ul>

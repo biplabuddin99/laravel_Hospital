@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->string('type');
 			$table->string('dose');
 			$table->string('note');
-			$table->integer('duration');
+			$table->string('duration');
 			$table->integer('status')->default(1);
 			$table->integer('created_by')->nullable();
 			$table->integer('updated_by')->nullable();
