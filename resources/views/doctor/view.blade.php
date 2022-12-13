@@ -15,16 +15,16 @@
 									<a href="{{route('doctor.create')}}" class="btn btn-md btn-success list-btn"><i class="fa fa-plus"></i> Add doctor </a>
 							{{-- @endif	 --}}
 									<a href="{{route('doctor.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Doctor List</a>
-									
+
 									<a href="#" class="btn btn-md btn-danger print_btn"><i class="fa fa-print"></i></a>
-									
+
 								</div>
 							</div>
 							 <div class="panel-body">
 								<div style="text-align:center;margin-top:30px;">
 									<p style="font-size: 36px;font-weight:bold;color:#207fdd">Doctor Information</p>
 									<center style="margin-top: 50px;margin-bottom:50px;">
-									
+
 										<table>
 											<tr>
 												<td style="padding-right: 100px;">
@@ -42,7 +42,7 @@
 															<td style="padding:20px;font-weight:bold">Dr.{{ $doctor->employee->name }}</td>
 														</tr>
 													</table>
-													
+
 												</td>
 												<td>
 													<table>
@@ -104,7 +104,7 @@
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Created Date</th>
-															<td style="text-align:left">{{$doctor->created_at}}</td>
+															<td style="text-align:left">{{$doctor->created_at->diffForHumans()}}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Updated Date</th>
@@ -144,15 +144,15 @@
 <script type="text/javascript" src="{{asset('assets/js/jquery.PrintArea.js')}}"></script>
 <script>
      $(document).ready(function(){
-		
+
 		/*for print a page*/
 		 $('.print_btn').click(function(){
 			w=window.open();
 			w.document.write($('.panel-body').html());
 			w.print();
-			w.close(); 
+			w.close();
 		});
-		
+
 	 });
 </script>
 
