@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Exception;
 use App\Models\Birth;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class BirthController extends Controller
@@ -25,7 +26,8 @@ class BirthController extends Controller
      */
     public function create()
     {
-        return view('birth.birth_create');
+        $doctor=Doctor::all();
+        return view('birth.birth_create', compact('doctor'));
     }
 
     /**
@@ -45,7 +47,7 @@ class BirthController extends Controller
             $b->dob=$request->birth_date;
             $b->blood=$request->blood;
             $b->address=$request->address;
-            $b->doctor_ref=$request->doctor_ref;
+            $b->doctor_id=$request->doctor_ref;
             $b->status=1;
             $b->save();
             return redirect(route('birth.index'));
@@ -96,7 +98,7 @@ class BirthController extends Controller
             $b->dob=$request->birth_date;
             $b->blood=$request->blood;
             $b->address=$request->address;
-            $b->doctor_ref=$request->doctor_ref;
+            $b->doctor_id=$request->doctor_ref;
             $b->status=1;
             $b->save();
             return redirect(route('birth.index'));

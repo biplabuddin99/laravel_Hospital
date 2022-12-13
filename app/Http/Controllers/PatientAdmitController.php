@@ -172,8 +172,4 @@ class PatientAdmitController extends Controller
         return $get_room;
     }
 
-    public function get_doctor(Request $request){
-        $get_doctor= Doctor::where('id', $request->id)->get();
-        return $get_doctor;
-    }
 }
