@@ -196,25 +196,5 @@
 			});
 		});
     
-
-		//#----------Room Cat & Room-----------------
-    $('#room_cat_id').on('change', function(){
-			var room_cat_id = $(this).val();
-			//console.log(room_cat_id)
-			$.ajax({ 
-				url:'{{route("room.get_room")}}',
-				type: 'GET',
-				data: {'id': room_cat_id},
-				
-				success: function(data){//console.log(data);
-					if(data){
-						$('#room_no').html('');
-						for(var a in data){
-							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
-						}
-					}		
-				}
-			});
-		});
   });
 </script>

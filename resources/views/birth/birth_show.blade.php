@@ -63,7 +63,7 @@
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Reference Doctor :</th>
-															<td style="text-align:left">{{ $birth->doctor_ref }}</td>
+															<td style="text-align:left">{{ $birth->doctor->employee->name }}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Address :</th>

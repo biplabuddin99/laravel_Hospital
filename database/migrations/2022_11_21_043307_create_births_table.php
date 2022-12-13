@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('dob');
             $table->string('blood');
             $table->string('address');
-            $table->string('doctor_ref');
+            $table->unsignedBigInteger('doctor_id')->nullable();
+			$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
 			$table->integer('status')->default(1);
 			$table->integer('created_by')->nullable();
 			$table->integer('updated_by')->nullable();
