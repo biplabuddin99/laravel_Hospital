@@ -29,29 +29,21 @@
                       <h6>Filter</h6>
                     </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                    <li><a class="dropdown-item" href="#">Today ({{ $appointment->count() }})</a></li>
+                    <li><a class="dropdown-item" href="#">This Month ({{ $appointment_montn->count() }})</a></li>
+                    <li><a class="dropdown-item" href="#">This Year ({{ $appointment_year->count() }})</a></li>
                   </ul>
                 </div>
 
+
                 <div class="card-body">
                   <h5 class="card-title">Appointment <span>| Today</span></h5>
-                  {{-- <div><span class="count-number">{{$doc->count('id')}}</span></div> --}}
-
-                  
-                   {{-- @forelse ($ad_patient as $inv) 
-                  <span class="count-number">{{$inv->id->count()}}</span> 
-                  @empty
-                      no
-                  @endforelse  --}}
-
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="fa fa-line-chart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>{{ $appointment->count() }}</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -86,7 +78,7 @@
                         <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>144</h6>
+                      <h6>{{ $doc }}</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
