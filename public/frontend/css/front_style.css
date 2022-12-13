@@ -1,0 +1,63 @@
+/*-----------------front end degisn-----------------*/
+.front_from
+{
+	padding: 40px 30px;
+	font-size: 14px;
+}
+.intro-content{
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size:cover;
+   position:relative;
+}
+.tab-content,.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	background-color: rgba(255,255,255,.8);
+}
+.div_wrap{
+	text-align:center;
+	padding:20px;
+}
+.wrap_child{ 
+display: none;
+}
+.anchor:hover .wrap_child{
+	display:block;
+}
+.wrapper
+{	
+	position:relative;
+	
+}
+.anchor
+{
+	text-decoration:none;
+	
+}
+.wrap_child
+{	
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10; 
+	opacity:.8; 
+	background-color: rgba(0,0,0,1);
+}
+.text
+{
+	color:#fff;
+	font-size:20px; 
+	padding:70px 40px;
+	font-weight:bold;
+}
+.name{
+	padding-top: 20px;
+	color:#4ACCD1;
+	font-weight:bold;
+}
+.dep{font-weight:bold;}
+a:hover, a:focus {
+    color: #e9eeef;
+}

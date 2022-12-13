@@ -1,0 +1,112 @@
+.change-btn{
+	position: relative;
+}
+.or{
+	width: 25px;
+    height: 25px;
+    padding: 0px;
+    background: #fff;
+	
+    border-radius: 20px;
+    position: absolute;
+    left: 79px;
+    top: 6px;
+    cursor: default;
+    z-index: 2;
+}
+
+table td,th{
+	text-align:center;
+}
+
+.title{
+	width: 100%;
+	border-bottom: 1px solid #d2caca;
+	margin-bottom: 20px;
+	color: #000000b8;
+}
+.info_table{
+	font-size:14px;
+	line-height:25px;
+}
+.tab1,.tab2{
+	font-size:16px;
+	//line-height:25px;
+}
+.info_table tr th,.tab1 tr th, .tab2 tr th{
+	text-align:right;
+	padding-right: 30px;
+}
+.info_table tr td,.tab1 tr td, .tab2 tr td{
+	text-align:left;
+}
+p{
+	line-height:2px;
+}
+.edit{
+	padding:0 4px;
+}
+.add_row td{
+	text-align:left;
+	padding-right: 10px;
+}
+.tab1{
+	margin-left: 40px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+.tab2{
+	margin-right: 40px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+/*==============prescription page=====================*/
+.pres_form{
+	margin: 40px;
+}
+.second_row{
+	padding: 20px;
+}
+
+.pres input, .pres select,#address, #dx, #diet, #advice{
+	border: none;
+    border-bottom: 1px dotted black;
+}
+#cc, #inv{
+	padding-right: 20px;
+}
+#date_dis{
+    background-color: #fff;
+}
+#patient_id {
+    background-color: #fff;
+}
+.others {
+	padding-top: 20px;
+	border-left: 1px dotted #9B9090;
+}
+.portion_rx{
+	padding-left: 20px;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: #a09797;
+}
+table.dataTable.no-footer {
+    border-bottom: 1px solid #bbafaf;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 2px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
