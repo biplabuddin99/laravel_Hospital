@@ -19,43 +19,7 @@
 
 
         <div class="panel-heading"><a href="{{route('patientAdmit.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Admitted Patient List </a></div>
-              <!-- ======= Patient ID Modal ======== -->
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                  
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Patient Id</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                          <div class="col-md-12 ">
-                            <label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
-                            <div class="col-md-6">
-                              <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
-                              <span class="">
-                                
-                              </span>
-                            </div>
-                            <button class="btn btn-secondary" id="search_p" type="button" data-dismiss="modal">Search Patient</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                <div class="form-group mb-3 d-grid justify-content-end">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
-                </div>
-          </div>
-
+              
 
     <!-- Horizontal Form -->
     <form action="{{ route('patientAdmit.update',$pAdmit->admit_id) }}" method="POST" enctype="multipart/form-data">
@@ -159,9 +123,14 @@
                                   <div class="col-sm-8">
                                     <input type="text" class="form-control" id="husband_name" name="husband_name" value="{{ old('husband_name', $pAdmit->husband_name) }}">
                                   </div>	
-                                    <label class="control-label col-sm-4" for="doctor_id">Doctor Ref. <span style="color:red" >* </span>:</label>
+                                  <label class="control-label col-sm-4" for="doctor_id">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id', $pAdmit->doctor_id) }}" required>
+                                    <select class="form-control" id="doctor_id" name="doctor_id" required>
+                                      <option>-- select --</option>
+                                          @foreach($doctor as $d)
+                                            <option value="{{$d->id}}">{{$d->employee->name}}</option>
+                                          @endforeach
+                                    </select>
                                   </div>
                                   <label class="control-label col-sm-4" for="guardian_name">Guardian Name :</label>
                                 <div class="col-sm-8">
@@ -186,26 +155,26 @@
                                   <div class="col-sm-8">
                                     <textarea name="problem" id="problem" class="form-control"required>{{ old('problem', $pAdmit->problem) }}</textarea>
                                   </div>
-                                    <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
+                                  <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
-                                    <select class="form-control" id="room_cat_id" name="room_cat_id" required>
+                                    <select class="form-control" id="room_cat_id" name="room_cat_id" onchange="get_room(this)" required>
                                       <option>-- select --</option>
-                                    {{-- @foreach($room_cat as $rc)
-                                      <option value="{{$rc->room_cat_id}}">{{$rc->room_cat_name}}</option>
-                                    @endforeach --}}
+                                          @foreach($room_cat as $rc)
+                                            <option value="{{$rc->id}}">{{$rc->name}}</option>
+                                          @endforeach
                                     
                                     </select>
                                   </div>
                                     <label class="control-label col-sm-4" for="room_no">Room No <span style="color:red"></span>:</label>
                                   <div class="col-sm-8">
                                     <select class="form-control" id="room_no" name="room_no" required>
-                                      <option>-- select --</option>
+                                      <option value="0"> -- Select Room No -- </option>
                                     </select>
                                   </div><br>
-                                  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" >Patient in Emergency</button>	
+                                  <button type="button" class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#demo" >Patient in Emergency</button>	
                                   <div id="demo" class="collapse">
                                     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-2">
-                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" ></textarea>
+                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immedietly.</textarea>
                                     </div>
                                   </div>
                           </div>	
@@ -256,5 +225,63 @@
           reader.readAsDataURL(file);
         }
       }
-    </script>
+
+
+
+
+
+		//#------------------------------------
+		//   Patient ID Search
+		//#------------------------------------
+    $('#search_p').click(function(){
+			var patient_id = $('#patient_id').val();
+			$.ajax({
+				url:'{{ route("inv.getpatient") }}',
+				type: 'GET',
+				data: {'id':patient_id},
+				success: function(data){
+					//console.log(data);
+          if(data){
+						$('#checkExist').val(data[0].id);
+						$('#name').val(data[0].name);
+						$('#birthdate').val(data[0].dob);
+						$('#present_add').val(data[0].address);
+						$('#phone').val(data[0].phone);
+						$('#blood').val(data[0].blood);
+						if(data[0].gender==1){
+							$('#m').attr('checked', true);
+						} else if(data[0].gender==2){
+							$('#f').attr('checked', true);
+						} else if(data[0].gender==3){
+							$('#c').attr('checked', true);
+						} else{
+						}
+
+					}
+				}
+			});
+		});
+    
+
+		//#----------Room Cat & Room-----------------
+    $('#room_cat_id').on('change', function(){
+			var room_cat_id = $(this).val();
+			//console.log(room_cat_id)
+			$.ajax({ 
+				url:'{{route("room.get_room")}}',
+				type: 'GET',
+				data: {'id': room_cat_id},
+				
+				success: function(data){//console.log(data);
+					if(data){
+						$('#room_no').html('');
+						for(var a in data){
+							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
+						}
+					}		
+				}
+			});
+		});
+</script>
+
 

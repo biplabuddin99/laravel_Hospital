@@ -209,10 +209,10 @@
                                       <option value="0"> -- Select Room No -- </option>
                                     </select>
                                   </div><br>
-                                  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" >Patient in Emergency</button>	
+                                  <button type="button" class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#demo" >Patient in Emergency</button>	
                                   <div id="demo" class="collapse">
                                     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-2">
-                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >{{ old('patient_emrg') }}"</textarea>
+                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immedietly.</textarea>
                                     </div>
                                   </div>
                           </div>	

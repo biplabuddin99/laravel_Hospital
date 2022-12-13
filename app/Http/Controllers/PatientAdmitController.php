@@ -103,8 +103,11 @@ class PatientAdmitController extends Controller
      */
     public function edit($id)
     {
+        $room_cat=RoomCategory::all();
+        $room_list=RoomList::all();
+        $doctor=Doctor::all();
         $pAdmit=PatientAdmit::findOrFail($id);
-        return view('patientAdmit.patient_admit_edit', compact('pAdmit'));
+        return view('patientAdmit.patient_admit_edit', compact('pAdmit','room_cat','room_list','doctor'));
     }
 
     /**

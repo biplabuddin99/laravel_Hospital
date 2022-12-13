@@ -32,7 +32,7 @@ class PatientAdmit extends Model
 			{
 				return $this->belongsTo(RoomCategory::class,'room_category_id','id');
 			}
-			public function get_roomList()
+			public function room_list()
 			{
 				return $this->belongsTo(RoomList::class, 'room_list_id', 'id');
 			}
