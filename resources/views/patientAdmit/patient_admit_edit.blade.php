@@ -128,7 +128,7 @@
                                     <select class="form-control" id="doctor_id" name="doctor_id" required>
                                       <option>-- select --</option>
                                           @foreach($doctor as $d)
-                                            <option value="{{$d->id}}">{{$d->employee->name}}</option>
+                                            <option value="{{$d->id}}" {{$d->employee->id == $d->id ? 'selected' : ''}}>{{$d->employee->name}}</option>
                                           @endforeach
                                     </select>
                                   </div>
@@ -160,7 +160,7 @@
                                     <select class="form-control" id="room_cat_id" name="room_cat_id" onchange="get_room(this)" required>
                                       <option>-- select --</option>
                                           @foreach($room_cat as $rc)
-                                            <option value="{{$rc->id}}">{{$rc->name}}</option>
+                                            <option value="{{$rc->id}}" {{ $rc->id == $rc->id ? 'selected' : '' }}>{{$rc->name}}</option>
                                           @endforeach
                                     
                                     </select>

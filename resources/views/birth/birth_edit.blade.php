@@ -20,44 +20,7 @@
 
         <div class="panel-heading"><a href="{{route('birth.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Birth Child List </a></div>
 
-              <!-- ======= Patient ID Modal ======== -->
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                  
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Patient Id</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                          <div class="col-md-12 ">
-                            <label class="control-label col-md-3 " for="patient_id">Patient ID<span style="color:red" >* </span>:</label>
-                            <div class="col-md-6">
-                              <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Search Patient">
-                              <span class="">
-                                
-                              </span>
-                            </div>
-                            <button class="btn btn-secondary" id="search_p" type="button" data-dismiss="modal">Search Patient</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                <div class="form-group mb-3 d-grid justify-content-end">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search-plus" style="padding-right:10px;"></i>Search Patient ID</button>
-                </div>
-          </div>
-
-
+             
     <!-- Horizontal Form -->
     <form action="{{ route('birth.update', $birth->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
@@ -117,9 +80,14 @@
                                 </select>
                               </div>
                               <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
-                                  <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref', $birth->doctor_ref) }}" required>
-                                  </div>
+                              <div class="col-sm-8">
+                                <select class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                  <option>-- select --</option>
+                                      @foreach($doctor as $d)
+                                        <option value="{{$d->id}}" {{$d->employee->id == $d->id ? 'selected' : ''}}>{{$d->employee->name }}</option>
+                                      @endforeach
+                                </select>
+                              </div>
                         </div>
                     </div>
                   </div>

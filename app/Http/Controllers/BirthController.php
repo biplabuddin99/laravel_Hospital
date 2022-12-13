@@ -77,7 +77,8 @@ class BirthController extends Controller
      */
     public function edit(Birth $birth)
     {
-        return view('birth.birth_edit', compact('birth'));
+        $doctor=Doctor::all();
+        return view('birth.birth_edit', compact('birth','doctor'));
     }
 
     /**
