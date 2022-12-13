@@ -159,9 +159,9 @@
                                   <div class="col-sm-8">
                                     <input type="text" class="form-control" id="husband_name" name="husband_name" value="{{ old('husband_name', $pAdmit->husband_name) }}">
                                   </div>	
-                                    <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
+                                    <label class="control-label col-sm-4" for="doctor_id">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref', $pAdmit->doctor_ref) }}" required>
+                                    <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id', $pAdmit->doctor_id) }}" required>
                                   </div>
                                   <label class="control-label col-sm-4" for="guardian_name">Guardian Name :</label>
                                 <div class="col-sm-8">

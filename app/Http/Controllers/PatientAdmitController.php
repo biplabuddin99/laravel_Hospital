@@ -61,7 +61,7 @@ class PatientAdmitController extends Controller
             $pa->mother_name=$request->mother_name;
             $pa->husband_name=$request->husband_name;
             $pa->marital_status=$request->marital_status;
-            $pa->doctor_ref=$request->doctor_ref;
+            $pa->doctor_id=$request->doctor_id;
             $pa->problem=$request->problem;
             $pa->admit_date=$request->admit_date;
             $pa->guardian=$request->guardian_name;
@@ -132,7 +132,7 @@ class PatientAdmitController extends Controller
             $pa->mother_name=$request->mother_name;
             $pa->husband_name=$request->husband_name;
             $pa->marital_status=$request->marital_status;
-            $pa->doctor_ref=$request->doctor_ref;
+            $pa->doctor_id=$request->doctor_id;
             $pa->problem=$request->problem;
             $pa->admit_date=$request->admit_date;
             $pa->guardian=$request->guardian_name;

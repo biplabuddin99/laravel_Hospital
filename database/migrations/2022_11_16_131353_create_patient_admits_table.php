@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('admit_date');
             $table->string('father_name');
             $table->string('mother_name');
-            $table->string('husband_name');
+            $table->string('husband_name')->nullable();
             $table->string('marital_status');
             $table->unsignedBigInteger('doctor_id')->nullable();
 			$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');

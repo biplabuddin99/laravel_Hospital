@@ -161,9 +161,9 @@
                                   <div class="col-sm-8">
                                     <input type="text" class="form-control" id="husband_name" name="husband_name" value="{{ old('husband_name') }}">
                                   </div>	
-                                    <label class="control-label col-sm-4" for="doctor_ref">Doctor Ref. <span style="color:red" >* </span>:</label>
+                                    <label class="control-label col-sm-4" for="doctor_id">Doctor Ref. <span style="color:red" >* </span>:</label>
                                   <div class="col-sm-8">
-                                    <select class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
+                                    <select class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id') }}" required>
                                       <option>-- select --</option>
                                           @foreach($doctor as $d)
                                             <option value="{{$d->id}}">{{$d->employee->name}}</option>

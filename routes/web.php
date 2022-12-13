@@ -52,9 +52,10 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::prefix('admin')->group(function () {
 
         Route::resource('dashboard', DashboardController::class);
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('admin.dashboard');
+        Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+        // Route::get('/dashboard', function () {
+        //     return view('dashboard');
+        // })->name('admin.dashboard');
     /*====================Doctor Sector ==============*/
         Route::resource('department',DepartmentController::class);
         Route::resource('designation',DesignationController::class);
