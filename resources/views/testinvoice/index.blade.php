@@ -37,7 +37,7 @@
 												@forelse($invoice as $l)
 													<tr>
 														<td>{{ ++$loop->index }}</td>
-														<td>{{$l->created_at->todatestring()}}</td>
+														<td>{{$l->created_at->diffForHumans()}}</td>
 														<td>{{$l->patient->patient_id}}</td>
 														<td>{{$l->total}}</td>
 														<td>{{$l->vat}}</td>

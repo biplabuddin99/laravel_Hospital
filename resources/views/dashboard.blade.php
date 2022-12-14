@@ -35,6 +35,7 @@
                   </ul>
                 </div>
 
+
                 <div class="card-body">
                   <h5 class="card-title">Appointment <span>| Today</span></h5>
                   <div class="d-flex align-items-center">
@@ -44,6 +45,7 @@
                     <div class="ps-3">
                       <h6>{{ $appointment->count() }}</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
                     </div>
                   </div>
                 </div>
@@ -69,14 +71,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Doctor <span>| This Month</span></h5>
+                  <h5 class="card-title">Test <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
+                      <i class="bi bi-capsule-pill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{ $doc }}</h6>
+                      <h6>{{ $test->count() }}</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -85,7 +87,6 @@
 
               </div>
             </div><!-- End Revenue Card -->
-
             <!-- Customers Card -->
             <div class="col-xxl-4 col-md-6">
 
@@ -105,16 +106,18 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Total Patient <span>| This Year</span></h5>
+                  <h5 class="card-title">Admitted <span>| Today</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
+                        <i class="fa fa-bar-chart"> </i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <h6>{{ $pa_admit }}</h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
                     </div>
                   </div>
+
                 </div>
               </div>
 
@@ -138,14 +141,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Investigation <span>| This Year</span></h5>
+                  <h5 class="card-title">Total Patient <span>| This Year</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="fa fa-bar-chart"> </i>
+                      <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <h6>{{ $pa_list }}</h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
@@ -172,8 +175,133 @@
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
                 </div>
+                <section class="section">
+                  <div class="row sameheight-container">
+                      <div class="col-12 p-5">
+                          <div class="card sameheight-item stats" data-exclude="xs">
+                              <div class="card-block p-5">
 
-                <div class="card-body">
+                                  <div class="title-block">
+                                      <h4 class="title">
+                                          States of Employee
+                                      </h4>
+                                  </div>
+
+                                  <div class="row row-sm stats-container">
+                                      <div class="col-xs-12 col-sm-6 stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-user-md"></i>&nbsp;&nbsp;&nbsp;
+                                                  <strong>{{$doc}}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Doctor
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="25" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 25%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+                                      <div class="col-xs-12 col-sm-6 stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;
+                                              <strong>{{$nurse->count()}}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Nurse
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="25" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 25%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+                                      <div class="col-xs-12 col-sm-6  stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-line-chart"></i>&nbsp;&nbsp;&nbsp;
+                                              <strong>{{$accountant->count()}}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Accountant
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="60" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 60%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+
+
+                                      <div class="col-xs-12 col-sm-6  stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-user-secret"></i>&nbsp;&nbsp;&nbsp;
+                                              <strong>{{$receptionist->count()}}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Reciptionist
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="34" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 34%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+
+                                      <div class="col-xs-12 col-sm-6  stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-list-alt"></i>&nbsp;&nbsp;&nbsp;
+                                              <strong>{{$lab->count() }}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Laboratorist
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="49" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 49%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+                                      <div class="col-xs-12 col-sm-6 stat-col">
+                                          <div class="stat-icon">
+                                              <i class="fa fa-users"></i>&nbsp;&nbsp;&nbsp;
+                                              <strong>{{$allemployee}}</strong>
+                                          </div>
+                                          <div class="stat">
+                                              <div class="name">
+                                                  Total Employee
+                                              </div>
+                                          </div>
+                                          <progress style="height: 4px;" class="progress-bar progress-bar-striped" value="15" max="100">
+                                              <div class="progress">
+                                                  <span class="progress-bar" style="width: 15%;"></span>
+                                              </div>
+                                          </progress>
+                                      </div>
+
+
+                                  </div>
+
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+              </section>
+                {{-- <div class="card-body">
                   <h5 class="card-title">Reports <span>/Today</span></h5>
 
                   <!-- Line Chart -->
@@ -233,7 +361,7 @@
                   </script>
                   <!-- End Line Chart -->
 
-                </div>
+                </div> --}}
 
               </div>
             </div><!-- End Reports -->
