@@ -193,7 +193,7 @@
                                   <div class="col-sm-8">
                                     <textarea name="problem" id="problem" class="form-control"required>{{ old('problem') }}</textarea>
                                   </div>
-                                    <label class="control-label col-sm-4" for="room_cat">Room Category <span style="color:red">* </span>:</label>
+                                    <label class="control-label col-sm-4" for="room_cat_id">Room Category <span style="color:red">* </span>:</label>
                                   <div class="col-sm-8">
                                     <select class="form-control" id="room_cat_id" name="room_cat_id" value="{{ old('room_cat_id') }}" onchange="get_room(this)" required>
                                       <option>-- select --</option>
@@ -212,7 +212,7 @@
                                   <button type="button" class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#demo" >Patient in Emergency</button>	
                                   <div id="demo" class="collapse">
                                     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-2">
-                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immedietly.</textarea>
+                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immediately.</textarea>
                                     </div>
                                   </div>
                           </div>	

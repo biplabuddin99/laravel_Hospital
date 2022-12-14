@@ -42,7 +42,7 @@
                             <label class="control-label col-sm-4" for="phone">Phone <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $pAdmit->phone) }}" required>
-                          </div><br>
+                          </div>
                           <label class="control-label col-sm-4" for="picture">Picture :</label>
                           
                           <div class="col-md-offset-3 col-md-9">
@@ -54,14 +54,6 @@
                           <label class="control-label col-sm-4" for="birthdate">Date of Birth <span style="color:red">* </span>:</label>
                           <div class="col-sm-8">
                             <input type="date" class="form-control" id="birthdate" name="birth_date" value="{{ old('birth_date', $pAdmit->dob) }}">
-                          </div><br>
-                          <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
-                          <div class="col-sm-8">
-                            <input type="radio" value="1" {{ $pAdmit->gender=='1' ? 'checked':'' }} name="patientGender"> Male
-                            &nbsp;
-                            <input type="radio" value="2" {{ $pAdmit->gender=='2' ? 'checked':'' }} name="patientGender"> Female
-                            &nbsp;
-                            <input type="radio" value="3" {{ $pAdmit->gender=='3' ? 'checked':'' }} name="patientGender"> Other <br>
                           </div>
                         </div>
                     </div>    
@@ -72,11 +64,11 @@
                             <label class="control-label" for="present_add">Present Address <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <textarea name="present_address" id="present_add" cols="30" class="form-control" rows="5" required>{{ old('present_address', $pAdmit->present_add) }}</textarea>
-                              </div>
+                              </div><br>
                             <label class="control-label" for="permanent_add">Permanent Address <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <textarea name="permanent_address" id="permanent_address" cols="30" class="form-control" rows="5" required>{{ old('permanent_address', $pAdmit->permanent_add) }}</textarea>
-                              </div>
+                              </div><br>
                                 <label class="control-label col-sm-4" for="blood">Blood Group <span style="color:red">* </span>:</label>
                               <div class="col-sm-8">
                                 <select class="form-control" id="blood" name="blood" required>
@@ -89,6 +81,14 @@
                                   <option value="AB+" {{ $pAdmit->blood=="AB+" ? "selected":""}}>AB+</option>
                                   <option value="AB-" {{ $pAdmit->blood=="AB-" ? "selected":""}}>AB-</option>
                                 </select>
+                              </div><br>
+                              <label class="control-label col-sm-4" for="sex">Gender <span style="color:red">* </span>:</label>
+                              <div class="col-sm-8">
+                                <input type="radio" value="1" {{ $pAdmit->gender=='1' ? 'checked':'' }} name="patientGender"> Male
+                                &nbsp;
+                                <input type="radio" value="2" {{ $pAdmit->gender=='2' ? 'checked':'' }} name="patientGender"> Female
+                                &nbsp;
+                                <input type="radio" value="3" {{ $pAdmit->gender=='3' ? 'checked':'' }} name="patientGender"> Other <br>
                               </div>
                         </div>
                     </div>
@@ -165,16 +165,20 @@
                                     
                                     </select>
                                   </div>
-                                    <label class="control-label col-sm-4" for="room_no">Room No <span style="color:red"></span>:</label>
+                                  <label class="control-label col-sm-4" for="room_no">Room No <span style="color:red"></span>:</label>
                                   <div class="col-sm-8">
-                                    <select class="form-control" id="room_no" name="room_no" required>
-                                      <option value="0"> -- Select Room No -- </option>
+                                    <select class="form-control" id="room_no" name="room_no" value="{{ old('room_no') }}" required>
+                                      <option>-- select --</option>
+                                          @foreach($room_list as $rl)
+                                            <option value="{{$rl->id}}" {{ $rl->id == $rl->id ? 'selected' : '' }}>{{$rl->room_no}}</option>
+                                          @endforeach
+                                    
                                     </select>
                                   </div><br>
                                   <button type="button" class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#demo" >Patient in Emergency</button>	
                                   <div id="demo" class="collapse">
                                     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-2">
-                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immedietly.</textarea>
+                                      <textarea name="patient_emrg" id="patient_emrg" cols="30" class="form-control" rows="2" >This Patient is emergency. Please Admit immediately.</textarea>
                                     </div>
                                   </div>
                           </div>	
@@ -226,62 +230,6 @@
         }
       }
 
-
-
-
-
-		//#------------------------------------
-		//   Patient ID Search
-		//#------------------------------------
-    $('#search_p').click(function(){
-			var patient_id = $('#patient_id').val();
-			$.ajax({
-				url:'{{ route("inv.getpatient") }}',
-				type: 'GET',
-				data: {'id':patient_id},
-				success: function(data){
-					//console.log(data);
-          if(data){
-						$('#checkExist').val(data[0].id);
-						$('#name').val(data[0].name);
-						$('#birthdate').val(data[0].dob);
-						$('#present_add').val(data[0].address);
-						$('#phone').val(data[0].phone);
-						$('#blood').val(data[0].blood);
-						if(data[0].gender==1){
-							$('#m').attr('checked', true);
-						} else if(data[0].gender==2){
-							$('#f').attr('checked', true);
-						} else if(data[0].gender==3){
-							$('#c').attr('checked', true);
-						} else{
-						}
-
-					}
-				}
-			});
-		});
-    
-
-		//#----------Room Cat & Room-----------------
-    $('#room_cat_id').on('change', function(){
-			var room_cat_id = $(this).val();
-			//console.log(room_cat_id)
-			$.ajax({ 
-				url:'{{route("room.get_room")}}',
-				type: 'GET',
-				data: {'id': room_cat_id},
-				
-				success: function(data){//console.log(data);
-					if(data){
-						$('#room_no').html('');
-						for(var a in data){
-							$('#room_no').append("<option value='"+data[a]['id']+"'>"+data[a]['room_no']+"</option>");
-						}
-					}		
-				}
-			});
-		});
 </script>
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Death;
 use Illuminate\Http\Request;
+use App\Models\Doctor;
+use Exception;
 
 class DeathController extends Controller
 {
@@ -25,7 +27,8 @@ class DeathController extends Controller
      */
     public function create()
     {
-        return view('death.death_create');
+        $doctor=Doctor::all();
+        return view('death.death_create', compact('doctor'));
     }
 
     /**
@@ -45,7 +48,7 @@ class DeathController extends Controller
             $d->dob=$request->birth_date;
             $d->blood=$request->blood;
             $d->address=$request->address;
-            $d->doctor_ref=$request->doctor_ref;
+            $d->doctor_id=$request->doctor_ref;
             $d->status=1;
             $d->save();
             return redirect(route('death.index'));
@@ -75,7 +78,8 @@ class DeathController extends Controller
      */
     public function edit(Death $death)
     {
-        return view('death.death_edit', compact('death'));
+        $doctor=Doctor::all();
+        return view('death.death_edit', compact('death', 'doctor'));
     }
 
     /**
@@ -96,7 +100,7 @@ class DeathController extends Controller
             $d->dob=$request->birth_date;
             $d->blood=$request->blood;
             $d->address=$request->address;
-            $d->doctor_ref=$request->doctor_ref;
+            $d->doctor_id=$request->doctor_ref;
             $d->status=1;
             $d->save();
             return redirect(route('death.index'));
