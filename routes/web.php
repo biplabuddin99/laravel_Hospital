@@ -17,6 +17,7 @@ use App\Http\Controllers\OperationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PatientAdmitController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\TestCategoryController;
@@ -38,9 +39,10 @@ use App\Http\Controllers\PrescriptionController;
 //     return view('dashboard');
 // });
 
-// authentication
-Route::get('/', [UserController::class, 'userLoginForm'])->name('userlogin');
-Route::post('/', [UserController::class, 'userLoginCheck'])->name('userlogin');
+Route::resource('/',FrontendController::class);
+Route::resource('welcome',FrontendController::class);
+Route::get('/admin', [UserController::class, 'userLoginForm'])->name('userlogin');
+Route::post('/admim', [UserController::class, 'userLoginCheck'])->name('userlogin');
 Route::get('logout', [UserController::class, 'logOut'])->name('logout');
 
 Route::get('register', [UserController::class, 'signUpForm'])->name('userstore');

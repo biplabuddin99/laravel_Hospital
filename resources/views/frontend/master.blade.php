@@ -9,7 +9,8 @@
 
 	<title>Hospital Management System</title>
 	<link rel="icon" type="image/png" href="{{asset('images/icons/favicon.ico')}}"/>
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
   <!-- css -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />

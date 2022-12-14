@@ -19,7 +19,7 @@ class FrontendController extends Controller
     {
         $doctor=Doctor::all();
         $blood=Blood::orderBy('id','asc')->get();
-        $departm=Department::where('status',1)->orderBy('id','asc')->get();
+        $department=Department::where('status',1)->orderBy('id','asc')->get();
         return view('frontend.index',compact('doctor','blood','department'));
     }
 
