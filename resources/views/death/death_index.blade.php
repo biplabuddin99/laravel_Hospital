@@ -50,7 +50,7 @@
                                 <td>{{ $d->gender }}</td>
                                 <td>{{ $d->dob }}</td>
                                 <td>{{ $d->blood }}</td>
-                                <td>{{ $d->doctor_ref }}</td>
+                                <td>{{ $d->doctor->employee->name }}
                                 <td>{{ $d->address }}</td>
                                 <td>@if($d->status==1) Active @else Inactive @endif</td>
                                 <td class="d-flex">

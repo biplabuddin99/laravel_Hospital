@@ -145,6 +145,8 @@ class PatientAdmitController extends Controller
             $pa->present_add=$request->present_address;
             $pa->permanent_add=$request->permanent_address;
             $pa->problem=$request->problem;
+            $pa->room_category_id=$request->room_cat_id;
+            $pa->room_list_id=$request->room_no;
             $pa->status=1;
             $pa->save();
             return redirect(route('patientAdmit.index'));
@@ -173,3 +175,4 @@ class PatientAdmitController extends Controller
     }
 
 }
+
