@@ -1,6 +1,6 @@
 @extends('app')
 @section('title','Department')
-{{-- @push('admin_style')
+@push('admin_style')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
 <style>
@@ -8,7 +8,7 @@
         padding: 20px 0;
     }
 </style>
-@endpush --}}
+@endpush
 @section('content')
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"> --}}
@@ -86,7 +86,7 @@
   </main><!-- End #main -->
   @endsection
 
-  {{-- @push('admin_script')
+  @push('admin_script')
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
@@ -96,5 +96,5 @@
         pagingType: 'first_last_numbers',
     });
   </script>
-@endpush --}}
+@endpush
 

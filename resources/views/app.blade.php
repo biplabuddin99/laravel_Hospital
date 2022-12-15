@@ -1,5 +1,5 @@
 @include('layouts.header')
-{{-- @stack('admin_style') --}}
+@stack('admin_style')
   <!-- ======= Header ======= -->
   @include('layouts.topbar')
 <!-- End Header -->
@@ -9,7 +9,7 @@
   <!-- End Sidebar-->
 
  @yield('content')
- {{-- @stack('admin_script') --}}
+ @stack('admin_script')
 <!-- Sweet Alert Delete -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
