@@ -41,6 +41,11 @@ use App\Http\Controllers\PrescriptionController;
 
 Route::resource('/',FrontendController::class);
 Route::resource('welcome',FrontendController::class);
+Route::post('welcome/appointment', [FrontendController::class,'postApp'])->name('welcome.appointment');
+Route::get('/getPatient', [FrontendController::class, 'get_patient'])->name('welcome.getPatient');
+Route::get('/getEmploy', [FrontendController::class, 'getEmploy'])->name('welcome.getEmploy');
+Route::get('/getSchedule', [FrontendController::class, 'getSchedule'])->name('welcome.getSchedule');
+Route::get('/getSerial', [FrontendController::class, 'getSerial'])->name('welcome.getSerial');
 Route::get('/admin', [UserController::class, 'userLoginForm'])->name('userlogin');
 Route::post('/admim', [UserController::class, 'userLoginCheck'])->name('userlogin');
 Route::get('logout', [UserController::class, 'logOut'])->name('logout');

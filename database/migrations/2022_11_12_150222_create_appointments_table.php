@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->unsignedBigInteger('patient_id')->nullable();
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');          
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->string('serial');
-            $table->string('problem');
+            $table->string('problem')->nullable();
             $table->string('phone');
             $table->date('appoint_date');
             $table->integer('status')->default(1);

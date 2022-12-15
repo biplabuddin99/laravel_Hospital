@@ -25,7 +25,7 @@
                   <div class="col-sm-10">
                   <select class="form-control"  id="department" name="department">
                     <option value="">Select Department</option>
-                    
+
                          @forelse($department as $dep)
                             <option value="{{$dep->id}}">
                                 {{__($dep->name)}}
@@ -33,9 +33,9 @@
                           @empty
                             <option value="">No Data Founds</option>
                           @endforelse
-                          
+
                   </select>
-                   
+
                     {{-- @if($errors->has('department'))
                       <span class="text-danger">
                         {{ $errors->first('department') }}
@@ -48,7 +48,7 @@
                     <label for="doctor" class="col-sm-2 col-form-label">Doctor Name<span style="color:red">* </span>:</label>
                     <div class="col-sm-10">
                     <select class="form-control"  id="doctor" name="doctor_id">
-                      <option value=""></option>    
+                      <option value=""></option>
                     </select>
                     <div id="sch_data" style="color:green;font-size:14px;"></div>
                   </div>
@@ -72,7 +72,7 @@
                     <label for="problem" class="col-sm-2 col-form-label">Problem:</label>
                     <div class="col-sm-10">
                       <textarea type="text" name="patientProblem" value="" cols="30" class="form-control" id="problem">{{ old('patientProblem') }}</textarea>
-   
+
                       {{-- @if($errors->has('patientProblem'))
                     <span class="text-danger">
                       {{ $errors->first('patientProblem') }}
@@ -80,12 +80,12 @@
                     @endif --}}
                   </div>
                 </div>
-                    
+
                 <div class="row mb-3">
                   <label for="birth_date" class="col-sm-2 col-form-label">Appointment Date<span style="color:red">* </span>:</label>
                   <div class="col-sm-10">
                     <input type="date" name="appoint_date" cols="30" class="form-control app_date" id="datepicker" value="">
-                   
+
                   </div>
                 </div>
 
@@ -137,115 +137,115 @@
     </section>
 
   </main><!-- End #main -->
-    
+
 <script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
   <script>
 		$(document).ready(function(){
-			
+
 			/*keyup function for patient name*/
 			$('#patient_id').keyup(function(){
-				
+
 				var pa = '<div style="color:red">Invalid patient ID</div>';
 				$('#pa_data').html('');
 				$('#pa_data').append(pa);
-				
+
 				var patient = $(this).val();
 				var div = $(this).parent();
 				$.ajax({
-					
+
 					type:'get',
 					url:"{{ route('app.getPatient') }}",
 					data:{'id':patient},
-					
+
 					success:function(data){
 						if(data.length>0){
 							//console.log(data);
 							var id = data[0].id;
 							var name = data[0].name;
-							
+
 							/*get id from patient table*/
 							$('#p_id').val('');
-							$('#p_id').val(id); 
-							
+							$('#p_id').val(id);
+
 							/*get firstname and lastname from patient table*/
 							$('#pa_data').html('');
-							$('#pa_data').append(name); 
-						} 
+							$('#pa_data').append(name);
+						}
 					}
 				});
 			});
-			
-			
-			
+
+
+
 			/*------select department option and show doctor name------*/
 			$('#department').on('change', function(){
 				//console.log('this is change');
 				var department_id = $(this).val();
 				var div = $(this).parent();
 				$.ajax({
-					
+
 					type:'get',
 					url:"{{ route('app.getEmploy') }}",
 					data:{'id':department_id},
-					
+
 					success:function(data){
 						var op= "<option value='0' selected disabled>-- select doctor name --</option>"+data;
 						$('#doctor').html('');
-						$('#doctor').append(op); 
+						$('#doctor').append(op);
 					}
 				});
-			
+
 			});
-			
+
 			/*------select doctor name option and show schedule------*/
 			$('#doctor').on('change', function(){
 				//console.log('this is change');
 				var doctor = $(this).val();
 				var div = $(this).parent();
 				$.ajax({
-					
+
 					type:'get',
 					url:"{{ route('app.getSchedule') }}",
 					data:{'id':doctor},
-					
+
 					success:function(data){
-						
+
 						if(data==''){
 							var err = '<div style="color:red">No Schedule Available</div>';
 							$('#sch_data').html('');
-							$('#sch_data').append(err); 
+							$('#sch_data').append(err);
 						}else{
 							$('#sch_data').html('');
-							$('#sch_data').append(data); 
+							$('#sch_data').append(data);
 						}
 					}
 				});
-			
+
 			});
-			
+
 			/*------select serial number------*/
 			$('.serial').click(function(){
 				var s = $(this).addClass('btn-danger').text();
 				$('.serial').attr('disabled','disabled');
 				$('#serial_div').val('');
-				$('#serial_div').val(s); 
+				$('#serial_div').val(s);
 			});
-			
-			
+
+
 			/*------select doctor name option and show serial number active or inactive------*/
 			$('.app_date').on('change', function(){
-				
+
 				$('.serial').removeClass('btn-danger').attr('disabled',false);
 				var doctor = $('#doctor').val();
 				var app_date = $(this).val();
 				var div = $(this).parent();
-      
+
 				$.ajax({
-					
+
 					type:'get',
 					url:"{{ route('app.getSerial') }}",
 					data:{'id':doctor, 'dat':app_date},
-					
+
 					success:function(data){
 						console.log(data);
 						if(data == 'daYnotfind')
@@ -284,18 +284,18 @@
 								}else if(ser == 10){
 										$('#serial10').addClass('btn-danger').attr('disabled','disabled');
 								}else{
-										
+
 									//$('#serial').addClass('btn-danger').attr('disabled','disabled');
 								}
-							} 
-						} 
-						
+							}
+						}
+
 					}
-				}); 
-			
+				});
+
 			});
-		
-			
+
+
 		});
-	</script>
+  </script>
   @endsection

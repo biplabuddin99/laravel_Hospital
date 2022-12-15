@@ -11,7 +11,7 @@
               <p class="bold text-left">Monday - Saturday, 8am to 10pm </p>
             </div>
             <div class="col-sm-6 col-md-6">
-              <p class="bold text-right">Call us now +8801848169742</p>
+              <p class="bold text-right">Call us now +8801628682796</p>
             </div>
           </div>
         </div>
@@ -65,10 +65,9 @@
 
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
-					<form class="form-horizontal" action="" method="post">
-					<input type="hidden" name="_token" value="{{Session::token()}}" />
+					<form class="form-horizontal" action="{{ route('welcome.appointment') }}" method="post">
+                      @csrf
 						<div class="front_from">
-
 						    <div class="form-group">
 								<label for="patient_id">Patient Id<span style="color:red">*</span>:</label>
 								<input type="hidden" name="id" id="p_id"/>
@@ -97,18 +96,24 @@
 									<div class="error" style="color:red;font-style:italic;">{{ $errors->first('doctor_id') }}</div>
 									<div id="sch_data" style="color:green;font-size:14px;"></div>
 							</div>
+                            <div class="form-group">
+								<label for="patientPhone">Contact :</label>
+								<input type="text" name="patientPhone" id="patientPhone" class="form-control" value="{{old('patientPhone')}}">
+							</div>
+                            {{-- <div class="form-group">
+								<label for="patientProblem">Problem :</label>
+								<textarea name="patientProblem" id="patientProblem" class="form-control" rows="1">{{old('patientProblem')}}</textarea>
+							</div> --}}
 							<div class="form-group">
 								<label for="app_date">Appointment Date <span style="color:red">* </span>:</label>
 								<div class="input-group date">
 								  <div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								  </div>
-								  <input type="date" class="form-control app_date" min="<?php echo date('Y-m-d'); ?>" name="app_date" value="{{Request::old('app_date')}}">
+								  <input type="date" class="form-control app_date" min="<?php echo date('Y-m-d'); ?>" name="appoint_date" value="{{old('appoint_date')}}">
 								</div>
-								<div class="error" style="color:red;font-style:italic;">{{ $errors->first('app_date') }}</div>
+								<div class="error" style="color:red;font-style:italic;">{{ $errors->first('appoint_date') }}</div>
 							</div>
-
-
 
 							<div class="form-group">
 								<label for="serial">Serial No <span style="color:red">* </span>:</label>
@@ -130,12 +135,6 @@
 								</div>
 							</div>
 							<div class="error" style="color:red;font-style:italic;">{{ $errors->first('serial') }}</div>
-
-							<div class="form-group">
-								<label for="problem">Problem :</label>
-								<textarea name="problem" id="problem" class="form-control" rows="1">{{Request::old('problem')}}</textarea>
-							</div>
-
 
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
@@ -202,7 +201,7 @@
             </div>
             <div class="col-lg-6">
               <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
-                <img src="{{URL::asset('frontend/img/dummy/img-1.png')}}" class="img-responsive" alt="" />
+                <img src="{{URL::asset('frontend/img/dummy/frontimg1.png')}}" class="img-responsive" alt="" />
               </div>
             </div>
           </div>
@@ -224,7 +223,7 @@
                 <i class="fa fa-check fa-3x circled bg-skin"></i>
                 <h4 class="h-bold">Make an appoinment</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, nec te mollis utroque honestatis, ut utamur molestiae vix, graecis eligendi ne.
+                  Registration is required to make an appointment.When making an appointment you should give the person your name and the reason for wanting an appointment.
                 </p>
               </div>
             </div>
@@ -236,7 +235,7 @@
                 <i class="fa fa-list-alt fa-3x circled bg-skin"></i>
                 <h4 class="h-bold">Choose your package</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, nec te mollis utroque honestatis, ut utamur molestiae vix, graecis eligendi ne.
+                    Our health check-up programs are designed to promote good health and facilitate early detection of health problems. Our goal is to encourage people toward a longer and healthier life so that there will be HOPE of having quality time with family.
                 </p>
               </div>
             </div>
@@ -308,7 +307,7 @@
         <div class="row">
           <div class="col-sm-6 col-md-6">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <img src="{{URL::asset('frontend/img/dummy/img-1.jpg')}}" class="img-responsive" alt="" />
+              <img src="{{asset('frontend/img/dummy/img-1.jpg')}}" class="img-responsive" alt="" />
             </div>
           </div>
           <div class="col-sm-3 col-md-3">

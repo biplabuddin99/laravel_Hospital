@@ -51,14 +51,14 @@
   <script src="{{asset('frontend/js/nivo-lightbox.min.js')}}"></script>
   <script src="{{asset('frontend/js/custom.js')}}"></script>
 
-
+  <script type="text/javascript"  src="{{asset('assets/js/jquery.min.js')}}"></script>
 	<script>
 
 		$(document).ready(function(){
 
 
 			/*keyup function for patient name*/
-			$('#patient_id').on('keyup blur change', function(){
+			$('#patient_id').keyup(function(){
 
 				var pa = '<div style="color:red">Invalid patient ID</div>';
 				$('#pa_data').html('');
@@ -69,14 +69,13 @@
 				$.ajax({
 
 					type:'get',
-					url:'{!!URL::to('welcome/getPatient')!!}',
+					url:"{{ route('welcome.getPatient') }}",
 					data:{'id':patient},
-
 					success:function(data){
-						if(data){
+						if(data.length>0){
 							//console.log(data);
 							var id = data[0].id;
-							var name = data[0].first_name + ' ' +data[0].last_name;
+							var name = data[0].name;
 
 							/*get id from patient table*/
 							$('#p_id').val('');
@@ -100,7 +99,7 @@
 				$.ajax({
 
 					type:'get',
-					url:'{!!URL::to('welcome/getEmploy')!!}',
+					url:"{{ route('welcome.getEmploy') }}",
 					data:{'id':department_id},
 
 					success:function(data){
@@ -125,7 +124,7 @@
 				$.ajax({
 
 					type:'get',
-					url:'{!!URL::to('welcome/getSchedule')!!}',
+					url:"{{ route('welcome.getSchedule') }}",
 					data:{'id':doctor},
 
 					success:function(data){
@@ -164,7 +163,7 @@
 				$.ajax({
 
 					type:'get',
-					url:'{!!URL::to('welcome/getSerial')!!}',
+					url:"{{ route('welcome.getSerial') }}",
 					data:{'id':doctor, 'dat':app_date},
 
 					success:function(data){

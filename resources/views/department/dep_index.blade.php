@@ -71,7 +71,7 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              {{-- {{ $department->links() }} --}}
+              {{ $department->links() }}
             </div>
           </div>
               <!-- End small tables -->
