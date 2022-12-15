@@ -27,7 +27,7 @@
               <h5 class="card-title">List of Doctor</h5>
 
               <!-- Table with stripped rows -->
-              <table class="table table-striped">
+              <table class="table table-striped table-responsive">
                 <thead>
                   <tr>
                     <th>SL.No</th>
@@ -57,7 +57,7 @@
                         <td>{{ $doct->employee->name }}</td>
                         @if($doct->department_id=='' )
                         <td>no department</td>
-                        @else                       
+                        @else
                         <td>{{ $doct->department->name }}</td>
                         @endif
                         @if($doct->designation_id =='' )

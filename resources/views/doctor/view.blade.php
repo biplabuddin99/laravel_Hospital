@@ -104,11 +104,11 @@
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Created Date</th>
-															<td style="text-align:left">{{$doctor->created_at->diffForHumans()}}</td>
+															<td style="text-align:left">{{$doctor->created_at->format('d M Y')}}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Updated Date</th>
-															<td style="text-align:left">{{$doctor->updated_at}}</td>
+															<td style="text-align:left">{{$doctor->updated_at->diffForHumans()}}</td>
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Status</th>

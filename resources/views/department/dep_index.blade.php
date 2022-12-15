@@ -1,9 +1,18 @@
 @extends('app')
 @section('title','Department')
+{{-- @push('admin_style')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+<style>
+    .dataTables_length{
+        padding: 20px 0;
+    }
+</style>
+@endpush --}}
 @section('content')
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"> --}}
   <main id="main" class="main">
-
     <div class="pagetitle">
       <h1>General Tables</h1>
       <nav>
@@ -26,7 +35,7 @@
               <h5 class="card-title">List of Department</h5>
 
               <!-- Table with stripped rows -->
-              <table class="table table-striped">
+              <table class="table table-striped" id="dataTable">
                 <thead>
                   <tr>
                     <th scope="col">#SL No</th>
@@ -62,11 +71,9 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              {{ $department->links() }}
+              {{-- {{ $department->links() }} --}}
             </div>
           </div>
-
-
               <!-- End small tables -->
 
             </div>
@@ -77,4 +84,17 @@
     </section>
 
   </main><!-- End #main -->
-@endsection
+  @endsection
+
+  {{-- @push('admin_script')
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    $('#dataTable').DataTable({
+        pagingType: 'first_last_numbers',
+    });
+  </script>
+@endpush --}}
+
