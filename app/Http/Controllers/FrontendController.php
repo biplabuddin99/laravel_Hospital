@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Blood;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Frontend;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -41,8 +43,40 @@ class FrontendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $p=new Patient;
+            $p->name=$request->patientName;
+            $p->age=$request->patientAge;
+            $p->phone=$request->patientPhone;
+            $p->dob=$request->birth_date;
+            $p->gender=$request->patientGender;
+            $p->blood=$request->patientBlood;
+            $p->address=$request->patientAddress;
+            $p->problem=$request->patientProblem;
+            $p->status=1;
+            $p->save();
+
+                //===insert patient id===//
+
+            $p->patient_id= 'PA-'.$p->id.RAND(1000,9999);
+            $p->save();
+            //===insert id===//
+            $pa = $p->patient_id;
+
+            return redirect()->route('welcome.index')->with('pa',$p->patient_id);
+
+
+        }catch(Exception $e){
+            dd($e);
+            return back()->withInput();
+        }
     }
+
+    public function get_patient(Request $request)
+	{
+		$data = Patient::where('patient_id',$request->id)->get();
+		return $data;
+	}
 
     /**
      * Display the specified resource.

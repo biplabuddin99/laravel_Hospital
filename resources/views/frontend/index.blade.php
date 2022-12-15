@@ -34,8 +34,8 @@
             <li><a href="#facilities">Facilities</a></li>
           </ul>
         </div>
-			
-			
+
+
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
@@ -56,19 +56,19 @@
 		  </div>
 			</div>
           <div class="row">
-		 
+
             <div class="col-lg-5" style="float:right">
 				<ul class="nav nav-tabs" style="font-weight:bold">
 				  <li class="active"><a data-toggle="tab" href="#home">Appointment</a></li>
 				  <li><a data-toggle="tab" href="#menu1">Registration</a></li>
 				</ul>
 
-				{{-- <div class="tab-content">
+				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
-					<form class="form-horizontal" action="{{route('welcome.appointment')}}" method="post">
+					<form class="form-horizontal" action="" method="post">
 					<input type="hidden" name="_token" value="{{Session::token()}}" />
 						<div class="front_from">
-							
+
 						    <div class="form-group">
 								<label for="patient_id">Patient Id<span style="color:red">*</span>:</label>
 								<input type="hidden" name="id" id="p_id"/>
@@ -80,12 +80,12 @@
 								<label for="department">Department Name<span style="color:red">*</span>:</label>
 								<select class="form-control select2" style="width: 100%;" id="department" name="department">
 								  <option value="">-- select department --</option>
-									@forelse($depart as $dep)
-										<option value="{{$dep['department_id']}}" {{$dep['department_id'] == Request::old('department') ? 'selected' : ''}}>{{$dep['dep_name']}}</option>
+									@forelse($department as $dep)
+										<option value="{{$dep['id']}}" {{$dep['id'] == Request::old('department') ? 'selected' : ''}}>{{$dep['name']}}</option>
 									@empty
 										<option>No data found</option>
 									@endforelse
-										
+
 								</select>
 								<div class="error" style="color:red;font-style:italic;">{{ $errors->first('department') }}</div>
 							</div>
@@ -107,9 +107,9 @@
 								</div>
 								<div class="error" style="color:red;font-style:italic;">{{ $errors->first('app_date') }}</div>
 							</div>
-							
-							
-									
+
+
+
 							<div class="form-group">
 								<label for="serial">Serial No <span style="color:red">* </span>:</label>
 								<div class="ee" style="display:none;color:red">
@@ -130,73 +130,74 @@
 								</div>
 							</div>
 							<div class="error" style="color:red;font-style:italic;">{{ $errors->first('serial') }}</div>
-							
+
 							<div class="form-group">
 								<label for="problem">Problem :</label>
 								<textarea name="problem" id="problem" class="form-control" rows="1">{{Request::old('problem')}}</textarea>
 							</div>
-							
-							
+
+
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</form>
 				  </div>
 				  <div id="menu1" class="tab-pane fade">
 					<form class="form-horizontal" method="post" action="{{route('welcome.store')}}">
-					<input type="hidden" name="_token" value="{{Session::token()}}" />
+                        @csrf
 						<div class="front_from">
 							<div class="form-group">
-								<label for="name">Full Name <span style="color:red">*</span>:</label>
-								<div class="row">
-									<div class="col-md-6">
-										<input type="text" class="form-control" id="name" name="first_name" placeholder="First Name" required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="patientName">Full Name <span style="color:red">*</span>:</label>
+										<input type="text" class="form-control" id="patientName" name="patientName" placeholder="First Name" required>
 									</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="name" name="last_name" placeholder="Last Name" required>
+                                        <label for="patientAge">Age <span style="color:red">*</span>:</label>
+										<input type="number" class="form-control" id="patientAge" name="patientAge" placeholder="Age" required>
 									</div>
 								</div>
 							</div>
 						    <div class="form-group">
-								<label for="phone">Contact<span style="color:red">*</span>:</label>
-								<input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile Number" required>
+								<label for="patientPhone">Contact<span style="color:red">*</span>:</label>
+								<input type="text" class="form-control" id="patientPhone" name="patientPhone" placeholder="Mobile Number" required>
 							</div>
 							<div class="form-group">
-								<label for="sex">Sex<span style="color:red">*</span>:</label>
+								<label for="patientGender">Gender<span style="color:red">*</span>:</label>
 								&nbsp;
-								<input type="radio" name="sex" value="1"> Male
+								<input type="radio" name="patientGender" value="1"> Male
 								&nbsp;
-								<input type="radio" name="sex" value="2"> Female
+								<input type="radio" name="patientGender" value="2"> Female
 								&nbsp;
-								<input type="radio" name="sex" value="3"> Common
+								<input type="radio" name="patientGender" value="3"> Common
 							</div>
 							<div class="form-group">
-								<label for="birthdate">Date of Birth<span style="color:red">*</span>:</label>
-								<input type="date" class="form-control" id="birthdate" name="birth_date" placeholder="Date of Birth" required>
+								<label for="birth_date">Date of Birth<span style="color:red">*</span>:</label>
+								<input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of Birth" required>
 							</div>
 							<div class="form-group">
-								<label for="blood">Blood Group:</label>
-								<select class="form-control" id="blood" name="blood" required>
+								<label for="patientBlood">Blood Group:</label>
+								<select class="form-control" id="patientBlood" name="patientBlood" required>
 									<option value="0">-- select --</option>
-									@forelse($bl as $b)
-										<option value="{{$b['blood_id']}}">{{$b['blood_name']}}</option>
+									@forelse($blood as $b)
+										<option value="{{$b['id']}}">{{$b['blood_name']}}</option>
 									@empty
 										<option>No data found</option>
 									@endforelse
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="picture">Picture:</label>
-								<input type="file" class="form-control-file" id="picture" name="picture">
+								<label for="patientAddress">Address<span style="color:red">*</span>:</label>
+								<textarea name="patientAddress" id="patientAddress" class="form-control" rows="1" required></textarea>
 							</div>
 							<div class="form-group">
-								<label for="present_add">Address<span style="color:red">*</span>:</label>
-								<textarea name="present_address" id="present_add" class="form-control" rows="1" required></textarea>
+								<label for="patientProblem">Problem<span style="color:red">*</span>:</label>
+								<textarea name="patientProblem" id="patientProblem" class="form-control" rows="1" required></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</form>
 				  </div>
-				</div> --}}
+				</div>
 
             </div>
             <div class="col-lg-6">
@@ -409,27 +410,31 @@
           </div>
         </div>
       </div>
-	
-      {{-- <div class="container">
+
+      <div class="container">
         <div class="row">
-		@foreach($list as $l)
+		@foreach($doctor as $l)
           <div class="col-md-3 div_wrap" >
 			<div class="wrapper">
-				<a href="{{route('welcome.show',$l['doctor_id'])}}" class="anchor">
-					<img src="{{URL::asset('images/'.$l['employ_basic']['picture']) }}" alt="no image" width='250px' height='200px'/>
+				<a href="" class="anchor">
+					{{-- <img src="{{URL::asset('images/'.$l['employ_basic']['picture']) }}" alt="no image" width='250px' height='200px'/> --}}
+                    @if($l->employee->picture == '')
+                    <i class="fa fa-user-md" style="font-size:150px;"></i>
+                @else
+                    <img src="{{ asset('uploads/employee/'.$l->employee->picture) }}" alt="no image" width="250" height="200"/>
+                @endif
 					<div class="wrap_child">
 						<div class='text'>view profile</div>
 					</div>
-					
 				</a>
 			</div>
-			<div class="name">{{$l['employ_basic']['first_name']}} {{$l['employ_basic']['last_name']}}</div>
-			<div class="dep">{{$l['department']['dep_name']}}</div>
+			<div class="name">{{$l['employee']['name']}}</div>
+			<div class="dep">{{$l['department']['name']}}</div>
 		  </div>
 		  @endforeach
-		  
+
         </div>
-      </div> --}}
+      </div>
 
     </section>
     <!-- /Section: team -->
