@@ -415,7 +415,7 @@
 		@foreach($doctor as $l)
           <div class="col-md-3 div_wrap" >
 			<div class="wrapper">
-				<a href="" class="anchor">
+				<a href="{{route('welcome.show',$l['id'])}}" class="anchor">
 					{{-- <img src="{{URL::asset('images/'.$l['employ_basic']['picture']) }}" alt="no image" width='250px' height='200px'/> --}}
                     @if($l->employee->picture == '')
                     <i class="fa fa-user-md" style="font-size:150px;"></i>

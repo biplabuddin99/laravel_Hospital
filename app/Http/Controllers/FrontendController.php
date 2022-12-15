@@ -161,9 +161,10 @@ class FrontendController extends Controller
      * @param  \App\Models\Frontend  $frontend
      * @return \Illuminate\Http\Response
      */
-    public function show(Frontend $frontend)
+    public function show($id)
     {
-        //
+		$doctor = Doctor::findOrFail($id);
+		return view('frontend.doctor_show',compact('doctor'));
     }
 
     /**
