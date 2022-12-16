@@ -193,11 +193,28 @@
             </li>
 
             <li>
+                @if(Session::has('roleID',2))
+                <div style="display:none">{{$id = DB::table('doctors')->get('id') }}</div>
+                <a class="dropdown-item" href="{{route('doctor.show',$id)}}">
+                  <i class="fa fa-user icon"></i>
+                  Profile
+                </a>
+
+                @else
+                    <div style="display:none">{{$id = DB::table('user_details')->get('id') }}</div>
+                    <a class="dropdown-item" href="{{url('profile',$id)}}">
+                  <i class="fa fa-user icon"></i>
+                  Profile
+                </a>
+                 @endif
+                {{-- @if(Session::has('roleID',1))
+                {{ DB::table()-> }} --}}
+
               {{-- @forelse ($data as $d)
               <a class="dropdown-item d-flex align-items-center" href="{{route('employee.profile',$d->id)}}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
-              </a>               
+              </a>
               @empty
                 no data
               @endforelse --}}
