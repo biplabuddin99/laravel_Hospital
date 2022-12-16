@@ -25,7 +25,7 @@
 							<div class="panel-body">
 								<!-- div.dataTables_borderWrap -->
 										<div>
-											<table id="myTable" class="table table-striped table-bordered table-hover">
+											<table id="myTable" class="table table-borderless datatable">
 												<thead>
 													<tr>
 														<th>SL.No</th>
@@ -37,27 +37,27 @@
 												</thead>
 
 											<tbody>
-												
+
 												@forelse($shif as $s)
 													<tr>
 														<td>{{++$loop->index}}</td>
 														<td>{{$s['name']}}</td>
-                            <td>{{ date('h:i a',strtotime($s->start)) }} - {{ date('h:i a',strtotime($s->end)) }}</td>
+                                                         <td>{{ date('h:i a',strtotime($s->start)) }} - {{ date('h:i a',strtotime($s->end)) }}</td>
 														<td>
 															@if($s['status']==1)
 																{{"Active"}}
 															@else
 																{{"Inactive"}}
-															@endif				
+															@endif
 														</td>
 
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-															
+
 																<a href="{{route('shift.edit',$s['id'])}}" class="edit btn btn-sm btn-primary">
 																<i class="fa fa-edit bigger-130"></i>
 																</a>
-																	
+
 															</div>
 														</td>
 													</tr>

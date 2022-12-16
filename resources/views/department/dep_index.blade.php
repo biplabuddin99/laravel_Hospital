@@ -33,26 +33,26 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">List of Department</h5>
+              <div class="card-body">
 
-              <!-- Table with stripped rows -->
-              <table class="table table-striped" id="dataTable">
-                <thead>
-                  <tr>
-                    <th scope="col">#SL No</th>
-                    <th scope="col">Department Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                        <th scope="col">#SL No</th>
+                        <th scope="col">Department Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     @forelse ($department as $dep)
                     <tr>
-                        <th scope="row">{{ ++$loop->index }}</th>
-                        <td>{{ $dep->name }}</td>
-                        <td>{{ $dep->description }}</td>
-                        <td>@if($dep->status==1) Active @else Inactive @endif</td>
-                        <td class="d-flex">
+                      <th scope="row">{{ ++$loop->index }}</th>
+                      <td>{{ $dep->name }}</td>
+                      <td>{{ $dep->description }}</td>
+                      <td>@if($dep->status==1) Active @else Inactive @endif</td>
+                      <td class="d-flex">
                             <a href="{{ route('department.edit',$dep->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             {{-- <a href="javascript:void()" onclick="$('#form{{$dep->id}}').submit()">
                                 <i class="fa fa-trash"></i>
@@ -62,14 +62,18 @@
                                 @method('delete')
                                 <button class="btn p-0 show_confirm" data-toggle="tooltip" type="submit"><i class='bi bi-trash-fill' style='color:red'></i></a></button>
                             </form>
-                        </td>
+                     </td>
                     </tr>
                     @empty
                     <td colspan="5" class="text-center">There is no Department</td>
                     @endforelse
+                  </tbody>
+                </table>
 
-                </tbody>
-              </table>
+              </div>
+              <!-- Table with stripped rows -->
+              {{-- <table class="table table-striped" id="dataTable">
+              </table> --}}
               <!-- End Table with stripped rows -->
               {{ $department->links() }}
             </div>

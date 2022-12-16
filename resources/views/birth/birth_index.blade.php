@@ -23,7 +23,7 @@
                       <h5 class="card-title">Child List</h5>
 
                         <!-- Table with stripped rows -->
-                        <table class="table table-striped">
+                        <table class="table table-borderless datatable">
                           <thead>
                             <tr>
                               <th scope="col">#SL</th>

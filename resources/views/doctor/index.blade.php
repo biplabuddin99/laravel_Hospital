@@ -27,21 +27,20 @@
               <h5 class="card-title">List of Doctor</h5>
 
               <!-- Table with stripped rows -->
-              <table class="table table-striped table-responsive">
+              <table class="table table-borderless datatable table-responsive">
                 <thead>
                   <tr>
-                    <th>SL.No</th>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Designation</th>
-                    <th>Email Address</th>
-                    <th>Phone</th>
-                    <th>Action</th>
+                    <th scope="col">SL.No</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php echo $doctors ?>
                     @forelse ($doctors as $doct)
                     <tr>
                         <th scope="row">{{ ++$loop->index }}</th>

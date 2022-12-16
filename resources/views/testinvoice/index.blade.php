@@ -16,7 +16,7 @@
 							<div class="panel-body">
 								<!-- div.dataTables_borderWrap -->
 										<div>
-											<table id="myTable" class="table table-striped table-bordered table-hover">
+											<table id="myTable" class="table table-borderless datatable">
 												<thead>
 													<tr>
 														<th>SL.No</th>
