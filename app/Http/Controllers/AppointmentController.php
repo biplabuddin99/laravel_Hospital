@@ -112,6 +112,8 @@ class AppointmentController extends Controller
             $app->serial=$request->serial;
             $app->status=1;
             $app->save();
+            Toastr::success('Appointment add Successfully!');
+            
             return redirect(route('appoint.index'));
 
 

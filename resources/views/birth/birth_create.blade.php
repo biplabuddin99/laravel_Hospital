@@ -18,10 +18,7 @@
         @endif
 
 
-        <div class="panel-heading"><a href="{{route('birth.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Birth Child List </a></div>
-
-             
-                
+        <div class="panel-heading"><a href="{{route('birth.index')}}" class="btn btn-md btn-primary list-btn"><i class="fa fa-list"></i> Birth Child List </a></div>   
                 
          {{-- Patient_Search --}}
          <div class="panel-body">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TestCategory;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 
 class TestCategoryController extends Controller
@@ -42,6 +43,7 @@ class TestCategoryController extends Controller
         $testcat->name=$request->testCategoryName;
         $testcat->status=$request->status;
         $testcat->save();
+        Toastr::success('Report Created Successfully!');
         return redirect(route('testCategory.index'));
             
         }catch(Exception $e){
@@ -85,6 +87,7 @@ class TestCategoryController extends Controller
         $testcat->name=$request->testCategoryName;
         $testcat->status=$request->status;
         $testcat->save();
+        Toastr::info('Updated Successfully!');
         return redirect(route('testCategory.index'));
 
         }catch(Exception $e){
@@ -101,6 +104,7 @@ class TestCategoryController extends Controller
     public function destroy(TestCategory $testCategory)
     {
         $testCategory->delete();
+        Toastr::warning('Report Deleted!');
         return redirect()->back();
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Operation;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 
 class OperationController extends Controller
@@ -26,7 +28,8 @@ class OperationController extends Controller
      */
     public function create()
     {
-        return view('operation.create');
+        $doctor=Doctor::all();
+        return view('operation.create', compact('doctor'));
     }
 
     /**
@@ -46,12 +49,13 @@ class OperationController extends Controller
             $d->dob=$request->birth_date;
             $d->blood=$request->blood;
             $d->address=$request->address;
-            $d->doctor_ref=$request->doctor_ref;
+            $d->doctor_id=$request->doctor_ref;
             $d->opr_date=$request->operation_date;
             $d->ot_no=$request->ot_no;
             $d->description=$request->description;
             $d->status=1;
             $d->save();
+            Toastr::success('Created Successfully!');
             return redirect(route('operation.index'));
 
 
@@ -79,7 +83,8 @@ class OperationController extends Controller
      */
     public function edit(Operation $operation)
     {
-        return view('operation.edit', compact('operation'));
+        $doctor=Doctor::all();
+        return view('operation.edit', compact('operation', 'doctor'));
     }
 
     /**
@@ -100,12 +105,13 @@ class OperationController extends Controller
             $d->dob=$request->birth_date;
             $d->blood=$request->blood;
             $d->address=$request->address;
-            $d->doctor_ref=$request->doctor_ref;
+            $d->doctor_id=$request->doctor_ref;
             $d->opr_date=$request->operation_date;
             $d->ot_no=$request->ot_no;
             $d->description=$request->description;
             $d->status=1;
             $d->save();
+            Toastr::info('Updated Successfully!');
             return redirect(route('operation.index'));
 
 
@@ -123,6 +129,7 @@ class OperationController extends Controller
     public function destroy(Operation $operation)
     {
         $operation->delete();
+        Toastr::warning('Deleted Successfully!');
         return redirect()->back();
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('dob');
             $table->string('blood');
             $table->string('address');
-            $table->string('doctor_ref');
+            $table->string('doctor_id');
             $table->string('opr_date');
             $table->string('ot_no');
             $table->string('description');

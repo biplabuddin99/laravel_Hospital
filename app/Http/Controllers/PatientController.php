@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\patient\PatientRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PatientController extends Controller
 {
@@ -50,6 +51,7 @@ class PatientController extends Controller
             $p->problem=$request->patientProblem;
             $p->status=1;
             $p->save();
+            Toastr::success('Patient add Successfully!');
 
                 //===insert patient id===//
  
@@ -108,6 +110,7 @@ class PatientController extends Controller
             $p->problem=$request->patientProblem;
             $p->status=1;
             if($p->save());
+            Toastr::success('Patient Update Successfully!');
             return redirect(route('patient.index'));
 
 
@@ -125,6 +128,7 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
+        Toastr::warning('Deleted Permanently!');
         return redirect()->back();
     }
 }

@@ -18,8 +18,8 @@
         <section class="section">
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="">
+                    <div class="">
                       <h5 class="card-title">Operation List</h5>
 
                         <!-- Table with stripped rows -->
@@ -53,7 +53,7 @@
                                 <td>{{ $d->gender }}</td>
                                 <td>{{ $d->dob }}</td>
                                 <td>{{ $d->blood }}</td>
-                                <td>{{ $d->doctor_ref }}</td>
+                                <td>{{ $d->doctor->employee->name }}</td>
                                 <td>{{ $d->address }}</td>
                                 <td>{{ $d->opr_date }}</td>
                                 <td>{{ $d->ot_no }}</td>
