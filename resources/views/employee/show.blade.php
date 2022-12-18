@@ -40,13 +40,13 @@
 
 												@forelse($employee as $em)
 													<tr>
-                                                        <td>{{ ++$loop->index }}</td>
+															<td>{{ ++$loop->index }}</td>
 														<td>
 
 															@if($em['picture'] == '')
 																<i class="fa fa-user-md" style="font-size:50px;"></i>
 															@else
-                                                            <img width="50px" src="{{ asset('uploads/employee/'.$em->picture) }}" alt="no image">
+																<img width="50px" src="{{ asset('uploads/employee/'.$em->picture) }}" alt="no image">
 															@endif
 
 														</td>

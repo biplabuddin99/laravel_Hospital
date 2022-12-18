@@ -57,7 +57,7 @@
                                 <td>{{ $pa->admit_date }}</td>
                                 <td>{{ $pa->guardian }}</td>
                                 <td>{{ $pa->problem }}</td>
-                                <td>{{ $pa->doctor->employee->name }}</td>
+                                <td>{{ $pa->doctor->employee?->name }}</td>
                                 <td>{{ $pa->room_category->name }}</td>
                                 <td>{{ $pa->room_list->room_no }}</td>
                                 <td>@if($pa->status==1) Active @else Inactive @endif</td>

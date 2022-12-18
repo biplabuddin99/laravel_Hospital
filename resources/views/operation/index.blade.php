@@ -18,8 +18,8 @@
         <section class="section">
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="">
-                    <div class="">
+                  <div class="card">
+                    <div class="table-responsive">
                       <h5 class="card-title">Operation List</h5>
 
                         <!-- Table with stripped rows -->

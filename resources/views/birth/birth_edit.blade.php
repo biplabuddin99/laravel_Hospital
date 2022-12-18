@@ -83,9 +83,11 @@
                               <div class="col-sm-8">
                                 <select class="form-control" id="doctor_ref" name="doctor_ref" value="{{ old('doctor_ref') }}" required>
                                   <option>-- select --</option>
-                                      @foreach($doctor as $d)
-                                        <option value="{{$d->id}}" {{$d->employee->id == $d->id ? 'selected' : ''}}>{{$d->employee->name }}</option>
-                                      @endforeach
+                                      @forelse($doctor as $d)
+                                        <option value="{{$d->id}}" {{$birth->doctor_id == $d->id ? 'selected' : ''}}>{{$d->employee->name }}</option>
+                                      @empty
+                                        <option>No data found</option>
+                                      @endforelse
                                 </select>
                               </div>
                         </div>

@@ -23,11 +23,11 @@
         <div class="col-lg-12">
 
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">List of Doctor</h5>
+            <div class="table-responsive">
+              <h5 class="">List of Doctor</h5>
 
               <!-- Table with stripped rows -->
-              <table class="table table-borderless datatable table-responsive">
+              <table class="table table-borderless datatable">
                 <thead>
                   <tr>
                     <th scope="col">SL.No</th>
