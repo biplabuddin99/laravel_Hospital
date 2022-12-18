@@ -18,8 +18,8 @@
         <section class="section">
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="">
+                    <div class="">
                       <h5 class="card-title">Admited Patient</h5>
 
                         <!-- Table with stripped rows -->
@@ -57,7 +57,7 @@
                                 <td>{{ $pa->admit_date }}</td>
                                 <td>{{ $pa->guardian }}</td>
                                 <td>{{ $pa->problem }}</td>
-                                <td>{{ $pa->doctor->employee->name }}</td>
+                                <td>{{ $pa->doctor->employee?->name }}</td>
                                 <td>{{ $pa->room_category->name }}</td>
                                 <td>{{ $pa->room_list->room_no }}</td>
                                 <td>@if($pa->status==1) Active @else Inactive @endif</td>

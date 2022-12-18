@@ -45,7 +45,7 @@
 														<td>{{$l->appointment->patient_id}}</td>
 														<td>{{$l->appointment->employee->name}}</td>
 														<td>{{$l->appointment->doctor->department->name}}</td>
-														<td>{{$l->created_at->todatestring()}}</td>
+														<td>{{$l->created_at->format('d M Y')}}</td>
 														<td>
 															<div>
 

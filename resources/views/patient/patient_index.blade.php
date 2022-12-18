@@ -21,8 +21,8 @@
 
         <div class="col-lg-12">
 
-          <div class="card">
-            <div class="card-body">
+          <div class="">
+            <div class="">
               <h5 class="card-title">List of Patient</h5>
 
               <!-- Table with stripped rows -->
