@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('birth_date');
 			$table->unsignedBigInteger('blood_id');
 			$table->foreign('blood_id')->references('id')->on('bloods')->onDelete('cascade');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->string('address');
             $table->integer('status')->default(1);
             $table->integer('created_by')->nullable();
