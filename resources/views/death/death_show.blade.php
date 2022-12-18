@@ -71,7 +71,7 @@
 														</tr>
 														<tr>
 															<th style="float:right; padding-right: 40px;text-align:right">Created Date :</th>
-															<td class=text-left>{{$death->created_at}}</td>
+															<td class=text-left>{{$death->created_at->format('d M Y')}}</td>
 														</tr>
 													</table>
 
