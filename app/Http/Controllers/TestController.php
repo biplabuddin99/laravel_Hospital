@@ -6,6 +6,7 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use Exception;
 use App\Models\TestCategory;
+use Brian2694\Toastr\Facades\Toastr;
 
 class TestController extends Controller
 {
@@ -47,6 +48,7 @@ class TestController extends Controller
         $t->description=$request->description;
         $t->status=$request->status;
         $t->save();
+        Toastr::success('Created Successfully!');
         return redirect(route('test.index'));
         
         
@@ -97,6 +99,7 @@ class TestController extends Controller
 
         $t->status=$request->status;
         $t->save();
+        Toastr::info('Updated Successfully!');
         return redirect(route('test.index'));
 
         }catch(Exception $e){
@@ -113,6 +116,7 @@ class TestController extends Controller
     public function destroy(Test $test)
     {
         $test->delete();
+        Toastr::warning('Deleted Successfully!');
         return redirect()->back();
     }
 }

@@ -5,6 +5,7 @@ use Exception;
 use App\Models\Birth;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class BirthController extends Controller
 {
@@ -50,6 +51,7 @@ class BirthController extends Controller
             $b->doctor_id=$request->doctor_ref;
             $b->status=1;
             $b->save();
+            Toastr::success('Birth Report Created Successfully!');
             return redirect(route('birth.index'));
 
 
@@ -102,6 +104,7 @@ class BirthController extends Controller
             $b->doctor_id=$request->doctor_ref;
             $b->status=1;
             $b->save();
+            Toastr::info('Birth Report Updated Successfully!');
             return redirect(route('birth.index'));
 
 
@@ -119,6 +122,7 @@ class BirthController extends Controller
     public function destroy(Birth $birth)
     {
         $birth->delete();
+        Toastr::warning('Birth Report Deleted!!');
         return redirect()->back();
     }
 }

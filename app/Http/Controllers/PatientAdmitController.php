@@ -7,6 +7,7 @@ use App\Models\RoomCategory;
 use App\Models\RoomList;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use Exception; 
 
 class PatientAdmitController extends Controller
@@ -75,6 +76,7 @@ class PatientAdmitController extends Controller
             $pa->room_list_id=$request->room_no;
             $pa->status=1;
             $pa->save();
+            Toastr::success('Patient Admit Successfully!');
             return redirect(route('patientAdmit.index'));
 
 
@@ -149,6 +151,7 @@ class PatientAdmitController extends Controller
             $pa->room_list_id=$request->room_no;
             $pa->status=1;
             $pa->save();
+            Toastr::info('Patient Admit  Updated!');
             return redirect(route('patientAdmit.index'));
 
 
@@ -166,6 +169,7 @@ class PatientAdmitController extends Controller
     public function destroy(PatientAdmit $patientAdmit)
     {
         $patientAdmit->delete();
+        Toastr::warning('Deleted Permanently!');
         return redirect()->back();
     }
 

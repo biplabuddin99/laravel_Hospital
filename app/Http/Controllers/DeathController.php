@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Death;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 
 class DeathController extends Controller
@@ -51,6 +52,7 @@ class DeathController extends Controller
             $d->doctor_id=$request->doctor_ref;
             $d->status=1;
             $d->save();
+            Toastr::success('Death Report Created Successfully!');
             return redirect(route('death.index'));
 
 
@@ -103,6 +105,7 @@ class DeathController extends Controller
             $d->doctor_id=$request->doctor_ref;
             $d->status=1;
             $d->save();
+            Toastr::info('Death Report Updated Successfully!');
             return redirect(route('death.index'));
 
 
@@ -120,6 +123,7 @@ class DeathController extends Controller
     public function destroy(Death $death)
     {
         $death->delete();
+        Toastr::warning('Death Report Deleted!');
         return redirect()->back();
     }
 }

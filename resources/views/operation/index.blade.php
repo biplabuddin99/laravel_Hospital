@@ -53,7 +53,7 @@
                                 <td>{{ $d->gender }}</td>
                                 <td>{{ $d->dob }}</td>
                                 <td>{{ $d->blood }}</td>
-                                <td>{{ $d->doctor_ref }}</td>
+                                <td>{{ $d->doctor->employee->name }}</td>
                                 <td>{{ $d->address }}</td>
                                 <td>{{ $d->opr_date }}</td>
                                 <td>{{ $d->ot_no }}</td>

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('appointment_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('appointment_id')->nullable();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
 
 			$table->text('cc');
