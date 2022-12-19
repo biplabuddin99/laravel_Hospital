@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blood;
+use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
 
@@ -71,9 +72,32 @@ class UserDetailsController extends Controller
      * @param  \App\Models\UserDetails  $userDetails
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserDetails $userDetails)
+    public function update(Request $request,$id)
     {
-        //
+        try {
+            $store =User::findOrFail($id);
+            $store->name = $request->FullName;
+            $store->email = $request->userEmailAddress;
+            $store->save();
+            $insertedId = $store->id;
+            $details=UserDetails::findOrFail($id);
+            $details->user_id=$insertedId;
+            $details->name = $request->userFullName;
+            $details->email = $request->userEmailAddress;
+            $details->address = $request->FullAddress;
+
+            if ($details->save()) {
+                // dd($store);
+                return redirect('/')->with($this->resMessageHtml(true, false, 'User created successfully'));
+                return redirect()->back();
+            }
+
+
+        } catch (Exception $error) {
+            dd($error);
+            return redirect()->back()->with($this->responseMsg(false, 'error', 'Server error'));
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

@@ -11,8 +11,8 @@
                             <div class="panel-heading">
                             </div>
 
-                            <div class="panel-body">
-
+                            <div class="col-8 offset-2">
+                                <h5 class="m-3 text-success">Update Your Profile</h5>
                                 <form class="form-horizontal" action="{{route('userDetails.update',$useredit)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('patch')
@@ -22,27 +22,19 @@
                                         <input type="text" class="form-control" id="name" name="FullName" value="{{ old('FullName',$useredit->name)}}">
                                     </div>
                                     </div>
-
+                                    <div class="form-group mt-3">
+                                        <label class="control-label col-sm-3" for="userEmailAddress">Emaill <span style="color:red">* </span>:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="userEmailAddress" name="userEmailAddress" value="{{old('userEmailAddress',$useredit->email)}}">
+                                    </div>
+                                    </div>
                                     <div class="form-group mt-3">
                                         <label class="control-label col-sm-3" for="add">Address <span style="color:red">* </span>:</label>
                                     <div class="col-sm-9">
-                                        <textarea name="FullAddress" id="add" cols="30" class="form-control" rows="5">{{ old('present_add',$useredit->address)}}</textarea>
+                                        <textarea name="FullAddress" id="add" cols="30" class="form-control" rows="3">{{ old('present_add',$useredit->address)}}</textarea>
                                     </div>
                                     </div>
 
-                                    <div class="form-group mt-3">
-                                        <label class="control-label col-sm-3" for="phone">Phone <span style="color:red">* </span>:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="phone" name="contact" value="{{old('contact',$useredit->phone)}}">
-                                    </div>
-                                    </div>
-
-                                    <div class="form-group mt-3">
-                                        <label class="control-label col-sm-3" for="emaillAdress">Emaill <span style="color:red">* </span>:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="emaillAdress" name="emaillAdress" value="{{old('emaillAdress',$useredit->email)}}">
-                                    </div>
-                                    </div>
                                     <div class="form-group mt-3">
 
 										<div class="col-md-offset-3 col-md-9">
