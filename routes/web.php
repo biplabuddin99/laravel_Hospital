@@ -23,6 +23,7 @@ use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\TestCategoryController;
 use App\Http\Controllers\InvoiceTestController;
 use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\UserDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,7 @@ Route::post('register', [UserController::class, 'userRegistrationStore'])->name(
 Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::prefix('admin')->group(function () {
 
+        Route::resource('userDetails',UserDetailsController::class);
         Route::resource('dashboard', DashboardController::class);
         Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
         // Route::get('/dashboard', function () {

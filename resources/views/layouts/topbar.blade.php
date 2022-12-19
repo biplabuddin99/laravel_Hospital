@@ -193,19 +193,30 @@
             </li>
 
             <li>
+              {{-- <div style="display:none">{{$id = DB::table('user_details')->get() }}</div> --}}
+              <a class="dropdown-item" href="{{route('userDetails.show',Session::get('userId'))}}">
+            <i class="fa fa-user icon"></i>
+            Profile
+          </a>
+
                 @if(Session::has('roleID',2))
-                <div style="display:none">{{$id = DB::table('doctors')->get('id') }}</div>
+                {{-- <div style="display:none">{{$id = DB::table('doctors')->get('id') }}</div>
                 <a class="dropdown-item" href="{{route('doctor.show',$id)}}">
                   <i class="fa fa-user icon"></i>
                   Profile
-                </a>
+                </a> --}}
+                <div style="display:none">{{$id = DB::table('user_details')->get() }}</div>
+                <a class="dropdown-item" href="{{route('userDetails.show',$id)}}">
+              <i class="fa fa-user icon"></i>
+              Profile
+            </a>
 
                 @else
-                    <div style="display:none">{{$id = DB::table('user_details')->get('id') }}</div>
-                    <a class="dropdown-item" href="{{url('profile',$id)}}">
+                    {{-- <div style="display:none">{{$id = DB::table('user_details')->get('id') }}</div>
+                    <a class="dropdown-item" href="{{route('userDetails.show',$id)}}">
                   <i class="fa fa-user icon"></i>
                   Profile
-                </a>
+                </a> --}}
                  @endif
                 {{-- @if(Session::has('roleID',1))
                 {{ DB::table()-> }} --}}

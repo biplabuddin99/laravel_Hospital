@@ -11,7 +11,7 @@ use App\Http\Requests\auth\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\auth\RegisterRequest;
 use App\Http\Traits\ResponseTrait;
-
+use App\Models\UserDetails;
 
 class UserController extends Controller
 {
@@ -29,15 +29,23 @@ class UserController extends Controller
 
             $store->name = $request->userFullName;
             $store->contact_no = $request->userPhoneNumber;
+            $store->email = $request->userEmailAddress;
             $store->password =Crypt::encryptString( $request->userPassword);
             $store->role_id = $request->userRoles;
             $store->contact_no = $request->userPhoneNumber;
+            $details=new UserDetails();
+            $details->name = $request->userFullName;
+            $details->phone = $request->userPhoneNumber;
+            $details->email = $request->userEmailAddress;
+            $details->save();
 
             if ($store->save()) {
                 // dd($store);
                 return redirect('/')->with($this->resMessageHtml(true, false, 'User created successfully'));
                 return redirect()->back();
             }
+
+
         } catch (Exception $error) {
             dd($error);
             return redirect()->back()->with($this->responseMsg(false, 'error', 'Server error'));

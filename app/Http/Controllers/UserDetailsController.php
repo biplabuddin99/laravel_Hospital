@@ -44,9 +44,10 @@ class UserDetailsController extends Controller
      * @param  \App\Models\UserDetails  $userDetails
      * @return \Illuminate\Http\Response
      */
-    public function show(UserDetails $userDetails)
+    public function show($id)
     {
-        //
+        $details=UserDetails::findOrFail($id);
+        return view('user.show',compact('details'));
     }
 
     /**
