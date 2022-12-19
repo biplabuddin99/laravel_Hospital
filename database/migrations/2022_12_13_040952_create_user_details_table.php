@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id')->nullable();
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->unsignedBigInteger('role_id');
-            // $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
-            // $table->string('birth_date')->nullable();
-			// $table->unsignedBigInteger('blood_id');
-			// $table->foreign('blood_id')->references('id')->on('bloods')->onDelete('cascade');
+            $table->string('birth_date')->nullable();
+			$table->unsignedBigInteger('blood_id')->nullable();
+			$table->foreign('blood_id')->references('id')->on('bloods')->onDelete('cascade');
             $table->string('picture')->nullable();
             $table->string('address')->nullable();
             $table->integer('status')->default(1);

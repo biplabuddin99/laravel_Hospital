@@ -33,13 +33,16 @@ class UserController extends Controller
             $store->password =Crypt::encryptString( $request->userPassword);
             $store->role_id = $request->userRoles;
             $store->contact_no = $request->userPhoneNumber;
+            $store->save();
+            $insertedId = $store->id;
             $details=new UserDetails();
+            $details->user_id=$insertedId;
             $details->name = $request->userFullName;
             $details->phone = $request->userPhoneNumber;
             $details->email = $request->userEmailAddress;
-            $details->save();
+            $details->role_id = $request->userRoles;
 
-            if ($store->save()) {
+            if ($details->save()) {
                 // dd($store);
                 return redirect('/')->with($this->resMessageHtml(true, false, 'User created successfully'));
                 return redirect()->back();

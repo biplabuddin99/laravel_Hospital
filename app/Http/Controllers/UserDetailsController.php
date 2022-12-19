@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blood;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
 
@@ -56,9 +57,11 @@ class UserDetailsController extends Controller
      * @param  \App\Models\UserDetails  $userDetails
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserDetails $userDetails)
+    public function edit($id)
     {
-        //
+        $blood=Blood::all();
+        $useredit=UserDetails::findOrFail($id);
+        return view('user.edit',compact('useredit','blood'));
     }
 
     /**

@@ -198,6 +198,10 @@
             <i class="fa fa-user icon"></i>
             Profile
           </a>
+              <a class="dropdown-item" href="{{route('userDetails.edit',Session::get('userId'))}}">
+            <i class="fa fa-user icon"></i>
+            Profile edit
+          </a>
 
                 @if(Session::has('roleID',2))
                 {{-- <div style="display:none">{{$id = DB::table('doctors')->get('id') }}</div>
