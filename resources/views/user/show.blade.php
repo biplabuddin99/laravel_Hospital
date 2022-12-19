@@ -27,7 +27,7 @@
                                                                 @if($details->picture == '')
                                                                     <i class="fa fa-user-md" style="font-size:150px;"></i>
                                                                 @else
-                                                                    <img src="{{ asset('uploads/employee/'.$details->picture) }}" alt="no image" width="250" height="300"/>
+                                                                    <img src="{{ asset('uploads/useredit/'.$details->picture) }}" alt="no image" width="250" height="300"/>
                                                                 @endif
                                                             </td>
                                                         </tr>
@@ -43,19 +43,19 @@
                                                             <th style="float:right; padding-right: 40px;">Email Address</th>
                                                             <td style="text-align:left">{{$details->email}}</td>
                                                         </tr>
-                                                        {{-- <tr>
+                                                        <tr>
                                                             <th style="float:right; padding-right: 40px;">Address</th>
                                                             <td style="text-align:left">{{$details->address}}</td>
-                                                        </tr> --}}
+                                                        </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Phone no</th>
                                                             <td style="text-align:left">{{$details->phone}}</td>
                                                         </tr>
-                                                        {{-- <tr>
+                                                        <tr>
                                                             <th style="float:right; padding-right: 40px;">Date of Birth</th>
                                                             <td style="text-align:left">{{$details->birth_date}}</td>
-                                                        </tr> --}}
-                                                        {{-- <tr>
+                                                        </tr>
+                                                        <tr>
                                                             <th style="float:right; padding-right: 40px;">Gender</th>
                                                             <td style="text-align:left">
                                                                 @if($details->gender==1)
@@ -66,11 +66,11 @@
                                                                     {{"Common"}}
                                                                 @endif
                                                             </td>
-                                                        </tr> --}}
-                                                        {{-- <tr>
+                                                        </tr>
+                                                        <tr>
                                                             <th style="float:right; padding-right: 40px;">Blood Group</th>
                                                             <td style="text-align:left">{{$details->blood->blood_name}}</td>
-                                                        </tr> --}}
+                                                        </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Created Date</th>
                                                             <td style="text-align:left">{{$details->created_at->format('d M Y')}}</td>

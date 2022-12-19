@@ -62,9 +62,11 @@
                                     <div class="form-group mt-3">
                                         <label class="control-label col-sm-3" for="gender">Gender <span style="color:red">* </span>:</label>
                                         <div class="col-sm-9">
-                                            <input type="radio" name="gender" value="1" {{$useredit->gender == '1' ? 'checked' : ''}}> Male
+                                            <input type="radio" name="gender" checked value="1"> Male
                                             &nbsp;
-                                            <input type="radio" name="gender" value="2" {{$useredit->gender == '2' ? 'checked' : ''}}> Female
+                                            <input type="radio" name="gender" value="2" {{old('gender') == '2' ? 'checked' : ''}}> Female
+                                            &nbsp;
+                                            <input type="radio" name="gender" value="3" {{old('gender') == '3' ? 'checked' : ''}}> Common
                                         </div>
                                     </div>
 

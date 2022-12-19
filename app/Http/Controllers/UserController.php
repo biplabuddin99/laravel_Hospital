@@ -44,7 +44,7 @@ class UserController extends Controller
 
             if ($details->save()) {
                 // dd($store);
-                return redirect('/')->with($this->resMessageHtml(true, false, 'User created successfully'));
+                return redirect('admin')->with($this->resMessageHtml(true, false, 'User created successfully'));
                 return redirect()->back();
             }
 
@@ -92,7 +92,7 @@ class UserController extends Controller
                     'role' => encrypt($user->role->role),
                     'roleIdentity'=>$user->role->identify,
                     'language'=>$user->language,
-                    'image'=>$user->image?$user->image:'no-image.png'
+                    'image'=>$user->profile_pic?$user->profile_pic:'no-image.png'
                 ]
             );
     }
