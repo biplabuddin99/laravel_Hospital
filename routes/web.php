@@ -39,6 +39,9 @@ use App\Http\Controllers\UserDetailsController;
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // });
+Route::get('react', function () {
+    return view('welcome'); 
+});
 
 Route::resource('/',FrontendController::class);
 Route::resource('welcome',FrontendController::class);
