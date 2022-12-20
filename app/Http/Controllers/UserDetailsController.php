@@ -85,18 +85,11 @@ class UserDetailsController extends Controller
                 $request->image->move(public_path('uploads/useredit'), $imageName);
                 $store->profile_pic=$imageName;
             }
-            $store->save();
+           if($store->save());
             $insertedId = $store->id;
             $details=UserDetails::findOrFail($id);
             $details->user_id=$insertedId;
-            $details->name = $request->FullName;
-            $details->email = $request->userEmailAddress;
             $details->address = $request->FullAddress;
-            if($request->hasFile('image')){
-                $imageName = rand(111,999).time().'.'.$request->image->extension();
-                $request->image->move(public_path('uploads/useredit'), $imageName);
-                $details->picture=$imageName;
-            }
             $details->birth_date = $request->birthdate;
             $details->gender = $request->gender;
             $details->blood_id = $request->blood;
@@ -104,6 +97,13 @@ class UserDetailsController extends Controller
 
             if ($details->save()) {
                 // dd($store);
+                request()->session()->put([
+                'userName'=>$store->name,
+                'userPhoneNumber'=>$store->contact_no,
+                'userEmail'=>$store->email,
+                'role' => encrypt($store->role->role),
+                'language'=>$store->language,
+                'image'=>$store->profile_pic?$store->profile_pic:'no-image.png']);
                 Toastr::success('Profile Updated Successfully!');
                 return redirect()->back();
             }

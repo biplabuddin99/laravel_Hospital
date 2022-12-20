@@ -89,6 +89,7 @@ class UserController extends Controller
                     'userName'=>$user->name,
                     'roleID' =>$user->role->id,
                     'userPhoneNumber'=>$user->contact_no,
+                    'userEmail'=>$user->email,
                     'role' => encrypt($user->role->role),
                     'roleIdentity'=>$user->role->identify,
                     'language'=>$user->language,

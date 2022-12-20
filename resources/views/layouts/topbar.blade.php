@@ -169,7 +169,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             @if(Session::has('image'))
-            <img src="{{ asset('uploads/useredit/'.'image') }}" alt="Profile" class="rounded-circle">
+            <img src="{{ asset('uploads/useredit/'.Session::get('image')) }}" alt="Profile" class="rounded-circle">
             @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">
               @if(Session::has('userName'))
