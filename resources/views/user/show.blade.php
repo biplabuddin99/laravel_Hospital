@@ -24,15 +24,15 @@
                                                     <table>
                                                         <tr>
                                                             <td>
-                                                                @if($details->picture == '')
+                                                                @if($user->profile_pic == '')
                                                                     <i class="fa fa-user-md" style="font-size:150px;"></i>
                                                                 @else
-                                                                    <img src="{{ asset('uploads/useredit/'.$details->picture) }}" alt="no image" width="250" height="300"/>
+                                                                    <img src="{{ asset('uploads/useredit/'.$user->profile_pic) }}" alt="no image" width="250" height="300"/>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="padding:20px;font-weight:bold"> {{$details->name}}</td>
+                                                            <td style="padding:20px;font-weight:bold"> {{$user->name}}</td>
                                                         </tr>
                                                     </table>
 
@@ -40,27 +40,30 @@
                                                 <td>
                                                     <table>
                                                         <tr>
+                                                            <th class="text-success" style="float:right;"><h3>{{$user->name}}</h3></th>
+                                                        </tr>
+                                                        <tr>
                                                             <th style="float:right; padding-right: 40px;">Email Address</th>
-                                                            <td style="text-align:left">{{$details->email}}</td>
+                                                            <td style="text-align:left">{{$user->email}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Address</th>
-                                                            <td style="text-align:left">{{$details->address}}</td>
+                                                            <td style="text-align:left">{{$user->address}}</td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <th style="float:right; padding-right: 40px;">Phone no</th>
-                                                            <td style="text-align:left">{{$details->phone}}</td>
-                                                        </tr>
+                                                            <td style="text-align:left">{{$user->phone}}</td>
+                                                        </tr> --}}
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Date of Birth</th>
-                                                            <td style="text-align:left">{{$details->birth_date}}</td>
+                                                            <td style="text-align:left">{{$user->birth_date}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Gender</th>
                                                             <td style="text-align:left">
-                                                                @if($details->gender==1)
+                                                                @if($user->gender==1)
                                                                     {{"Male"}}
-                                                                @elseif($details->gender==2)
+                                                                @elseif($user->gender==2)
                                                                     {{"Female"}}
                                                                 @else
                                                                     {{"Common"}}
@@ -69,20 +72,20 @@
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Blood Group</th>
-                                                            <td style="text-align:left">{{$details->blood->blood_name}}</td>
+                                                            <td style="text-align:left">{{$user->blood?->blood_name}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Created Date</th>
-                                                            <td style="text-align:left">{{$details->created_at->format('d M Y')}}</td>
+                                                            <td style="text-align:left">{{$user->created_at->format('d M Y')}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Updated Date</th>
-                                                            <td style="text-align:left">{{$details->updated_at->diffForHumans()}}</td>
+                                                            <td style="text-align:left">{{$user->updated_at->diffForHumans()}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th style="float:right; padding-right: 40px;">Status</th>
                                                             <td style="text-align:left">
-                                                                @if($details->status==1)
+                                                                @if($user->status==1)
                                                                     {{"Active"}}
                                                                 @else
                                                                     {{"Inactive"}}

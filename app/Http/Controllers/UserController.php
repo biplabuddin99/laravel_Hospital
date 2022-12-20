@@ -37,11 +37,6 @@ class UserController extends Controller
             $insertedId = $store->id;
             $details=new UserDetails();
             $details->user_id=$insertedId;
-            $details->name = $request->userFullName;
-            $details->phone = $request->userPhoneNumber;
-            $details->email = $request->userEmailAddress;
-            $details->role_id = $request->userRoles;
-
             if ($details->save()) {
                 // dd($store);
                 return redirect('admin')->with($this->resMessageHtml(true, false, 'User created successfully'));

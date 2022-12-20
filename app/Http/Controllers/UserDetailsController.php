@@ -50,8 +50,8 @@ class UserDetailsController extends Controller
      */
     public function show($id)
     {
-        $details=UserDetails::findOrFail($id);
-        return view('user.show',compact('details'));
+        $user=User::findOrFail($id);
+        return view('user.show',compact('user'));
     }
 
     /**
@@ -62,9 +62,10 @@ class UserDetailsController extends Controller
      */
     public function edit($id)
     {
+        $user=User::get();
         $blood=Blood::all();
-        $useredit=UserDetails::findOrFail($id);
-        return view('user.edit',compact('useredit','blood'));
+        $user=User::findOrFail($id);
+        return view('user.edit',compact('user','blood','user'));
     }
 
     /**
@@ -84,29 +85,25 @@ class UserDetailsController extends Controller
                 $imageName = rand(111,999).time().'.'.$request->image->extension();
                 $request->image->move(public_path('uploads/useredit'), $imageName);
                 $store->profile_pic=$imageName;
-            }
-           if($store->save());
-            $insertedId = $store->id;
-            $details=UserDetails::findOrFail($id);
-            $details->user_id=$insertedId;
-            $details->address = $request->FullAddress;
-            $details->birth_date = $request->birthdate;
-            $details->gender = $request->gender;
-            $details->blood_id = $request->blood;
-            $details->status = $request->status;
+                $store->address = $request->FullAddress;
+                $store->birth_date = $request->birthdate;
+                $store->gender = $request->gender;
+                $store->blood_id = $request->blood;
+                $store->status = $request->status;
 
-            if ($details->save()) {
-                // dd($store);
-                request()->session()->put([
-                'userName'=>$store->name,
-                'userPhoneNumber'=>$store->contact_no,
-                'userEmail'=>$store->email,
-                'role' => encrypt($store->role->role),
-                'language'=>$store->language,
-                'image'=>$store->profile_pic?$store->profile_pic:'no-image.png']);
-                Toastr::success('Profile Updated Successfully!');
-                return redirect()->back();
             }
+           if($store->save()){
+            // dd($store);
+            request()->session()->put([
+            'userName'=>$store->name,
+            'userPhoneNumber'=>$store->contact_no,
+            'userEmail'=>$store->email,
+            'role' => encrypt($store->role->role),
+            'language'=>$store->language,
+            'image'=>$store->profile_pic?$store->profile_pic:'no-image.png']);
+            Toastr::success('Profile Updated Successfully!');
+            return redirect()->back();
+        }
 
         } catch (Exception $error) {
             dd($error);
