@@ -10,6 +10,7 @@ use App\Models\Blood;
 use App\Models\Patient;
 use App\Models\Schedule;
 use App\Models\Appointment;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class AppoinmentController extends Controller
@@ -47,7 +48,12 @@ class AppoinmentController extends Controller
     public function getBlood()
 	{
 		return Blood::orderBy('id','asc')->get();
-    
+
+	}
+    public function getDepartment()
+	{
+		return Department::orderBy('id','asc')->get();
+
 	}
     public function getSchedule(Request $request)
 	{
