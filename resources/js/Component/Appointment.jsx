@@ -7,7 +7,7 @@ const Appointment = () => {
     const [isError,setIsError] = useState(false);
 
     function getDepartment(){
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('http://localhost:8000/api/department')
         .then(({data}) => {
             console.log('data:',data);
         })
