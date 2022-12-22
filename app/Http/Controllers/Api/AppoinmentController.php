@@ -55,6 +55,8 @@ class AppoinmentController extends Controller
 		return Department::orderBy('id','asc')->get();
 
 	}
+
+
     public function getSchedule(Request $request)
 	{
 		$data = Schedule::where('employee_id',$request->id)->get();
@@ -100,11 +102,18 @@ class AppoinmentController extends Controller
 
     public function postApp(Request $request)
     {
+                // $app = json_decode($request);
+                // $a = Appointment::create($app);
+                // if($a){
+                //     return response($a);
+                // }
+                //    return json_decode($request->patient_id);
+
         try{
-            $app=new Appointment;
-            $app->patient_id=$request->id;
-            $app->employee_id=$request->doctor_id;
-            $app->phone=$request->patientPhone;
+            $app = new Appointment();
+            $app->patient_id=$request->patient_id;
+            $app->employee_id=$request->employee_id;
+            $app->phone=$request->phone;
             // $app->problem=$request->patientProblem;
             $app->appoint_date=$request->appoint_date;
             $app->serial=$request->serial;
@@ -112,11 +121,13 @@ class AppoinmentController extends Controller
             $app->save();
                 // return redirect()->back();
             $a = $app->id;
-            $data = Appointment::findOrFail($a);
-            return view('frontend.appoint_view',compact('data'));
+            // $data = Appointment::findOrFail($app->id);
+            // return view('frontend.appoint_view',compact('data'));
+         
+            return response('saved');
 
         }catch(Exception $e){
-            return back()->withInput();
+            return response ($e);
         }
     }
 

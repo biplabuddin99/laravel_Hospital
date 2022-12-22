@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import CrudService from '../services/CrudService';
+import httpCommon from '../http-common';
+import baseUrl from '../http-common';
+httpCommon
 
 const Registration = () => {
     const [bloods, setBloods]= useState([]);
@@ -27,8 +30,9 @@ const Registration = () => {
   }
 
   const getBlood= () =>{
+    
     setIsLoadding(true);
-    axios.get('http://localhost:8000/api/blood').then((res)=>{
+    baseUrl.get('blood').then((res)=>{
     //   console.log('res:',res.data);
       setBloods(res.data)
     }).catch((err)=>{
@@ -88,6 +92,7 @@ return (
                     <div className="form-group">
                     <label for="blood">Blood Group:</label>
                     <select className="form-control" id="blood" onChange={handelRegiChange} name="blood" required>
+                      <option value="">Select Blood</option>
                     {content}
                     </select>
                     </div>

@@ -21,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/blood', [AppoinmentController::class, 'getBlood']);
 Route::get('/department', [AppoinmentController::class, 'getDepartment']);
+// Route::get('/appoitment', [AppoinmentController::class, 'setAppintment']);
+Route::post('/appoitment', [AppoinmentController::class, 'postApp']);
 Route::post('/registration', [AppoinmentController::class, 'registration']);

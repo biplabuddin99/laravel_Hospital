@@ -2,6 +2,7 @@ import axios from "axios";
 import React,{useEffect,useState } from "react";
 import CrudService from '../services/CrudService';
 import Appointment from "./Appointment";
+import Registration from "./Registration"
 //import {useNavigate} from 'react-router-dom';
 
 export default function HomeIntro(){
