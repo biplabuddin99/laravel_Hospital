@@ -11,6 +11,7 @@ use App\Models\Patient;
 use App\Models\Schedule;
 use App\Models\Appointment;
 use App\Models\Department;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class AppoinmentController extends Controller
@@ -123,7 +124,7 @@ class AppoinmentController extends Controller
             $a = $app->id;
             // $data = Appointment::findOrFail($app->id);
             // return view('frontend.appoint_view',compact('data'));
-         
+
             return response('saved');
 
         }catch(Exception $e){
@@ -142,5 +143,16 @@ class AppoinmentController extends Controller
 		$doctor = Doctor::findOrFail($id);
 		return view('frontend.doctor_show',compact('doctor'));
     }
+
+    public function getDoctor()
+	{
+		return Doctor::orderBy('id','asc')->get();
+
+	}
+    public function getEmployee()
+	{
+		return Employee::orderBy('id','asc')->get();
+
+	}
 
 }

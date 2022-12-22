@@ -24,3 +24,6 @@ Route::get('/department', [AppoinmentController::class, 'getDepartment']);
 // Route::get('/appoitment', [AppoinmentController::class, 'setAppintment']);
 Route::post('/appoitment', [AppoinmentController::class, 'postApp']);
 Route::post('/registration', [AppoinmentController::class, 'registration']);
+
+Route::get('/doctor', [AppoinmentController::class, 'getDoctor']);
+Route::get('/employee', [AppoinmentController::class, 'getEmployee']);
