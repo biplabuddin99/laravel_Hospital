@@ -48,24 +48,31 @@ function handleSubmitForm(e){
         problem:'',
         serial:$('#serial_div').val(),
     }
-    console.log(data);
     BaseUrl.post('appoitment',data)
     .then(({data})=> {
-        console.log(data)
+        formReset()
+        // document.getElementById("appointment").reset();
+        setIsLoadding(false);
         setIsLoadding(false);
         setIsError(false)
+        // if(data){
+        //     document.getElementById('home').innerText = 'Data Saved';
+        // }
     }),caches((err)=>{
         console.log(err)
         setIsError(true)
         setError(err)
         setIsLoadding(false);
     });
-    setIsLoadding(false);
-    setAppointmentDate('');
-    setContact('');
-    setDepartment([]);
-    setDoctorId([]);
-    SetPatient([]);
+   
+}
+
+function formReset(){
+        setAppointmentDate('');
+        setContact('');
+        setDepartment(null);
+        document.getElementById('doctor_id').value = '';
+        SetPatient('');
 }
 
 
@@ -83,7 +90,7 @@ const Loadding = isLoadding && <p className='text-xl'>Loadding.....</p>;
         <div id="home" className="tab-pane fade in active">
             {errorContent}
             {Loadding}
-            <form className="form-horizontal" action="" method="post">
+            <form className="form-horizontal" action="" method="post" id='appointment'>
         <div className="front_from">
             <div className="form-group">
                 <label for="patient_id">Patient Id<span className="text-danger">*</span>:</label>

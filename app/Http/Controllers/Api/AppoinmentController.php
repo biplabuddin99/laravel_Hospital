@@ -13,6 +13,7 @@ use App\Models\Appointment;
 use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppoinmentController extends Controller
 {
@@ -146,7 +147,7 @@ class AppoinmentController extends Controller
 
     public function getDoctor()
 	{
-		return Doctor::orderBy('id','asc')->get();
+		return DB::select('SELECT *,doctors.id as doctorId, employees.id as employeeId, departments.name as department FROM doctors JOIN employees ON doctors.employee_id=employees.id JOIN  departments on doctors.department_id=departments.id');
 
 	}
     public function getEmployee()

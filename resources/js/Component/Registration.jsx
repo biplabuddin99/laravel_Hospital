@@ -15,18 +15,24 @@ const Registration = () => {
 
   const [pregi, setPregi]= useState();
 
-  const handelRegiChange = event =>{
+  const handelRegiChange = event =>{   
       const {name, value} =event.target;
-      setPregi({...pregi,[name]:value});
+      setPregi({...pregi,[name]:value});   
+
   }
+
   const saveRegi= () =>{
+    setIsLoadding(true);
     CrudService.registration(pregi).then(response=>{
       document.getElementById('p_id_msg').innerHTML="Your Patient ID is "+response.data.patient_id
       console.log(response.data);
           //navigate('/students');
+          formReset();
       }).catch(e=>{
           console.log(e);
+          setIsError(e);
       });
+      setIsLoadding(false);
   }
 
   const getBlood= () =>{
@@ -48,6 +54,17 @@ const Registration = () => {
     //       console.log(e);
     //   });
   }
+
+function formReset(){
+  document.getElementById('name').value = '';
+  document.getElementById('age').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('dob').value = '';
+  document.getElementById('address').value = '';
+  document.getElementById('blood').value = '';
+  document.getElementById('problem').value = '';
+}
+
 
   const content = !isLoadding && !isError && bloods.length  > 0 && bloods.map((blood) => {
     return (
@@ -104,11 +121,14 @@ return (
                     <label for="problem">Problem<span style={{color:"red"}}>*</span>:</label>
                     <textarea name="problem" id="problem" className="form-control" rows="1" required></textarea>
                     </div>
-                    <button type="button" onClick={() => saveRegi()} className="btn btn-primary">Submit</button>
+                    <button type="button" disabled={isLoadding} onClick={() => saveRegi()} className="btn btn-primary">Submit</button>
                 </div>
                 </form>
                 </div>
 );
 }
+<script>
+  
+</script>
 
 export default Registration;

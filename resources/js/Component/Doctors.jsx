@@ -1,7 +1,44 @@
 import React,{useEffect,useState} from "react";
+import Baseurl from '../http-common';
 //import axios from "axios";
 
 export default function Doctors(){
+  const [doctors,setDoctors]=useState([]);
+  const [isLoadding,setIsLoadding] = useState(true);
+  const [isError,setIsError] = useState(false);
+  const [error,setError] = useState('');
+  
+
+function getDoctor(){
+  Baseurl.get('doctor').then(function({data}){
+    setIsLoadding(true)
+    setDoctors(data);
+    setIsLoadding(false)
+  }).catch(function(error){
+console.log(error)
+  });
+}
+
+useEffect(function(){
+  getDoctor()
+},[])
+
+// content
+const content=   !isLoadding && doctors.length > 0 && doctors.map(function(doctor){
+return (<div className="col-md-3 div_wrap" >
+<div className="wrapper">
+  <a href={`/welcome/${doctor.doctorId}`} className="anchor">
+    <img src={`/uploads/employee/${doctor.picture}`} alt="no image" width="250" height="200"/>
+    <div className="wrap_child">
+      <div className='text'>view profile</div>
+    </div>
+  </a>
+</div>
+<div className="name">{doctor.name}</div>
+<div className="dep">{doctor.department}</div>
+</div>);
+})
+
   return(
 
     <section id="doc" className="home-section bg-gray paddingbot-60">
@@ -21,22 +58,7 @@ export default function Doctors(){
 
     <div className="container">
       <div className="row">
-        <div className="col-md-3 div_wrap" >
-    <div className="wrapper">
-      <a href="" className="anchor">
-                  {/* @if($l->employee->picture == '')
-                  <i className="fa fa-user-md" style="font-size:150px;"></i>
-              @else
-                  <img src="{{ asset('uploads/employee/'.$l->employee->picture) }}" alt="no image" width="250" height="200"/>
-              @endif */}
-        <div className="wrap_child">
-          <div className='text'>view profile</div>
-        </div>
-      </a>
-    </div>
-    <div className="name"></div>
-    <div className="dep"></div>
-    </div>
+       {content}
 
       </div>
     </div>
