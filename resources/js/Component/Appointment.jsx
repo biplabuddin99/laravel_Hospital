@@ -23,6 +23,7 @@ const Appointment = () => {
         BaseUrl.get('department')
         .then(({data}) => {           
             setDepartment(data);
+            setIsLoadding(false);
         })
         .catch((err) =>{          
             setError(err);
@@ -50,10 +51,10 @@ function handleSubmitForm(e){
     }
     BaseUrl.post('appoitment',data)
     .then(({data})=> {
-        formReset()
+        
         // document.getElementById("appointment").reset();
         setIsLoadding(false);
-        setIsLoadding(false);
+        formReset()
         setIsError(false)
         // if(data){
         //     document.getElementById('home').innerText = 'Data Saved';
@@ -72,6 +73,7 @@ function formReset(){
         setContact('');
         setDepartment(null);
         document.getElementById('doctor_id').value = '';
+        document.getElementById('patient_id').value = '';
         SetPatient('');
 }
 
