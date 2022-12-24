@@ -76,7 +76,7 @@
                                         <select class="form-control select2" style="width: 100%;" id="blood" name="blood">
                                             <option value="0" style="display:none" >--  select blood group  --</option>
                                             @forelse($blood as $b)
-                                                <option value="{{$b->id}}" {{$user->blood->id == $b->id ? 'selected' : ''}}>{{$b['blood_name']}}</option>
+                                                <option value="{{$b->id}}" {{$user->blood?->id == $b->id ? 'selected' : ''}}>{{$b['blood_name']}}</option>
                                             @empty
                                                 <option>No data found</option>
                                             @endforelse

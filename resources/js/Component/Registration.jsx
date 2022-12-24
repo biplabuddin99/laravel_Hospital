@@ -115,11 +115,11 @@ return (
                     </div>
                     <div className="form-group">
                     <label for="address">Address<span style={{color:"red"}}>*</span>:</label>
-                    <textarea name="address" id="address" className="form-control" rows="1" required></textarea>
+                    <textarea name="address" id="address" className="form-control" onChange={handelRegiChange} rows="1" required></textarea>
                     </div>
                     <div className="form-group">
                     <label for="problem">Problem<span style={{color:"red"}}>*</span>:</label>
-                    <textarea name="problem" id="problem" className="form-control" rows="1" required></textarea>
+                    <textarea name="problem" id="problem" className="form-control"onChange={handelRegiChange} rows="1" required></textarea>
                     </div>
                     <button type="button" disabled={isLoadding} onClick={() => saveRegi()} className="btn btn-primary">Submit</button>
                 </div>
